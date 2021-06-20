@@ -2,8 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicBaddieScript : Enemy
+public class GameManager : MonoBehaviour
 {
+    public Enemy[] enemies;
+    public PlayerScript player;
+    public Friendly[] friendlies;
+    public int current_level = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,12 +17,6 @@ public class BasicBaddieScript : Enemy
     // Update is called once per frame
     void Update()
     {
-        Vector2 dF = Random.insideUnitCircle;
-        dF.Scale(new Vector2(4f,4f));
-        body.AddForce(dF);
-        if(0.05>Random.Range(0f, 1f))
-        {
-            Fire();
-        }
+        
     }
 }
