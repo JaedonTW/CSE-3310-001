@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Playables;
 
 [System.Serializable]
+
 public class PlayerScript : PlayableAsset
 {
     // Factory method that generates a playable based on this asset
