@@ -14,6 +14,14 @@ public class MainCharacter : MonoBehaviour
         a predefined variable.
     */
     protected Vector2 player_Screen_Position;
+    /*
+     * Speed is multiplied by the direction
+     * to give the character velocity. The bigger it is, 
+     * the faster the character goes. [SerializeField] 
+     * allows us to adjust this in the inspector.
+     */
+    [SerializeField] public float Speed;
+
 
     /*
         get_Player_Position() is a getter function
@@ -32,21 +40,13 @@ public class MainCharacter : MonoBehaviour
         player will be utilizing.
     */
     protected Joystick joystick;
-    
-    /*
-        animator is the Animator utlitiy
-        attached to our object.
-    */
+
+/*
+    animator is the Animator utlitiy
+    attached to our object.
+*/
     public Animator animator;
 
-    /*
-        We will use x_Velocity and y_Velocity to
-        control out players speed in either direciton.
-        [SerializeField] allows us to adjust this in
-        the inspector.
-    */
-    [SerializeField] public float x_Velocity;
-    [SerializeField] public float y_Velocity;
 
     private void Start()
     {
@@ -81,13 +81,12 @@ public class MainCharacter : MonoBehaviour
             Initializing our character's velocity in either
             direction. This can also be changed from the inspector.
         */
-        x_Velocity = 4;
-        y_Velocity = 4;
+        Speed = 1;
     }
 
     protected void Move_Player()
     {
-        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(joystick.Horizontal * x_Velocity, joystick.Vertical * y_Velocity);
+        gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(joystick.Horizontal * Speed, joystick.Vertical * Speed);
     }
 
     void Update()
