@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class NPC : Hurtable
 {
+    public void BeginIdle()
+    {
+        throw new System.NotImplementedException();
+    }
+    public void BeginFlee(Hurtable target)
+    {
+        throw new System.NotImplementedException();
+    }
+    public void BeginAttack(Hurtable target)
+    {
+        throw new System.NotImplementedException();
+    }
     // Start is called before the first frame update
     void Start()
     {
