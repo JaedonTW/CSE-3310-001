@@ -18,7 +18,7 @@ public class BasicBaddieScript : Enemy
         body.AddForce(dF);
         if(0.05>Random.Range(0f, 1f))
         {
-            weapon.Attack();
+            weapon.Use();
         }
     }
 }

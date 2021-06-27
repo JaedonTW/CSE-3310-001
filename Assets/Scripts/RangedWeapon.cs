@@ -6,7 +6,7 @@ public class RangedWeapon : Weapon
 {
     public Bullet bullet_type;
     public int bullet_count;
-    public override void Attack()
+    public override void Use()
     {
         //
         float bullet_place_distance = 0.5f;

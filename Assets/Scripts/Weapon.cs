@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     public Rigidbody2D body;
-    public abstract void Attack();
+    public abstract void Use();
     // Start is called before the first frame update
     void Start()
     {
