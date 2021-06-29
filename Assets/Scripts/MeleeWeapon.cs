@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MeleeWeapon : Weapon
 {
+    public int range;
+    public int damage;
     public override void Use()
     {
         throw new System.NotImplementedException();

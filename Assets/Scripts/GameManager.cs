@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     {
         throw new System.NotImplementedException();
     }
-    public void ToMainMenu(int level)
+    public void ToMainMenu()
     {
         throw new System.NotImplementedException();
     }
