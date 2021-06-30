@@ -25,7 +25,7 @@ public class MainCharacter : Hurtable
 
     /*
         get_Player_Position() is a getter function
-        that will allow other objects to reference 
+        that will allow other objects to referencanue 
         the player's on-screen position, without having access
         to the player_Position_Screen variable.
     */
