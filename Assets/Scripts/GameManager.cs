@@ -5,9 +5,17 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public Enemy[] enemies;
-    public PlayerScript player;
+    public MainCharacter player;
     public Friendly[] friendlies;
-    public int current_level = 0;
+    public int CurrentLevel { get; private set; } = 0;
+    public void StartLevel(int level)
+    {
+        throw new System.NotImplementedException();
+    }
+    public void ToMainMenu()
+    {
+        throw new System.NotImplementedException();
+    }
     // Start is called before the first frame update
     void Start()
     {

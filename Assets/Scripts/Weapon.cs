@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicBaddieScript : Enemy
+public abstract class Weapon : MonoBehaviour
 {
+    public Rigidbody2D body;
+    public abstract void Use();
     // Start is called before the first frame update
     void Start()
     {
@@ -13,12 +15,6 @@ public class BasicBaddieScript : Enemy
     // Update is called once per frame
     void Update()
     {
-        Vector2 dF = Random.insideUnitCircle;
-        dF.Scale(new Vector2(4f,4f));
-        body.AddForce(dF);
-        if(0.05>Random.Range(0f, 1f))
-        {
-            weapon.Use();
-        }
+        
     }
 }

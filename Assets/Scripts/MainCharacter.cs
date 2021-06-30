@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainCharacter : MonoBehaviour
+public class MainCharacter : Hurtable
 {
     /*
         player_Position_Screen represents the

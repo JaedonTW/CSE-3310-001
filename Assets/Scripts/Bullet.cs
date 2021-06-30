@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public int damage;
     //public Collider2D collider;
     public Rigidbody2D body;
     // Start is called before the first frame update
@@ -22,7 +23,7 @@ public class Bullet : MonoBehaviour
     {
         Hurtable from = collision.collider.GetComponentInParent<Hurtable>();
         if(from != null)
-            from.ChangeHealth(-1);
+            from.ChangeHealth(-damage);
         Destroy(this.gameObject);
     }
 }
