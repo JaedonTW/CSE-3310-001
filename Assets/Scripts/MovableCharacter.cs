@@ -31,7 +31,7 @@ public class MovableCharacter : Hurtable
     // private variables
     // max magnetude should be walkingSpeed.
     private Vector2 MovingVector { get; set; }
-    protected bool IsMoving { get; private set; }
+    public bool IsMoving { get; private set; }
     //
     public enum AnimationTypes : byte
     {
@@ -116,6 +116,7 @@ public class MovableCharacter : Hurtable
         for (int i = 0; i < clips.Length; i++)
             if (clips[i] != null)
             {
+                clips[i].legacy = false;
                 print("Replacing: " + ((AnimationTypes)i).ToString());
                 overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(oldClips[i], clips[i]));
             }

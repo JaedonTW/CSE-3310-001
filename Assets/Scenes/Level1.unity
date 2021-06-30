@@ -1069,6 +1069,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7001580742072967856, guid: 40435dc0bde537242bd13f4cb902502d,
+        type: 3}
+      propertyPath: m_Animation
+      value: 
+      objectReference: {fileID: 7400000, guid: 0089ab65a283ddf4ea0d74f69795c47a, type: 2}
+    - target: {fileID: 7001580742072967856, guid: 40435dc0bde537242bd13f4cb902502d,
+        type: 3}
+      propertyPath: m_Animations.Array.data[0]
+      value: 
+      objectReference: {fileID: 7400000, guid: 0089ab65a283ddf4ea0d74f69795c47a, type: 2}
     - target: {fileID: 7001580742072967859, guid: 40435dc0bde537242bd13f4cb902502d,
         type: 3}
       propertyPath: m_Name
@@ -1078,7 +1088,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300008, guid: 9c90c7df5cde2644b8e30b3c7aeda9bc,
+      objectReference: {fileID: 21300002, guid: 9c90c7df5cde2644b8e30b3c7aeda9bc,
         type: 3}
     - target: {fileID: 7001580742072967870, guid: 40435dc0bde537242bd13f4cb902502d,
         type: 3}

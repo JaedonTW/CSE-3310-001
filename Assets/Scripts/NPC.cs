@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Assets.Scripts.AI;
 
 public class NPC : MovableCharacter
 {
@@ -13,7 +14,7 @@ public class NPC : MovableCharacter
         ATTACKING,
     }
     Vector2 KnownLocation { get; set; }
-    List<Vector2> Path { get; set; } = new List<Vector2>();
+    Stack<IAtomicNPCAction> PlannedActions { get; } = new Stack<IAtomicNPCAction>();
     NPCState CurrentState { get; set; }
     public void SetNPCState(NPCState state)
     {
@@ -40,12 +41,12 @@ public class NPC : MovableCharacter
         switch(CurrentState)
         {
             case NPCState.IDLING:
-                if(Path.Count == 0)
+                if(PlannedActions.Count == 0)
                 {
                     if (Sqr(body.position.x - KnownLocation.x) + Sqr(body.position.y - KnownLocation.y) > idleRadius * idleRadius)
                     {
-                        Path.Add(new Vector2(KnownLocation.x - body.position.x, KnownLocation.y - body.position.y));
-                        WalkInDirection(Path[0]);
+                        PlannedActions.Push(new NPCMoveAction(KnownLocation));
+                        PlannedActions.Push(new NPCDelayAction(60));
                     }
                     else
                     {
@@ -68,29 +69,21 @@ public class NPC : MovableCharacter
                             destination.y = m * (destination.x - body.position.x) + body.position.y;
                             // now, the current destination is on the radius of our idle area.
                         }
-                        Path.Add(destination);
-                        WalkInDirection(dir);
+                        PlannedActions.Push(new NPCMoveAction(destination));
+                        PlannedActions.Push(new NPCDelayAction(60));
                     }
                 }
                 break;
             default:
                 break;
         }
-        if(Path.Count > 0)
-        {
-            var cur = Path[0];
-            if (Sqr(cur.x - body.position.x) + Sqr(cur.y - body.position.y) < walkingSpeed/* this choice is arbetrary*/)
-                Path.RemoveAt(0);
-            if(Path.Count > 0)
-                WalkInDirection(new Vector2(Path[0].x - body.position.x,Path[0].y - body.position.y).normalized);
-        }
+        if (PlannedActions.Count > 0)
+            PlannedActions.Peek().ExecuteAction(PlannedActions, this);
         base.Update();   
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        SetIdle();
-        if (Path.Count > 0)
-            Path.RemoveAt(0);
+        PlannedActions.Peek().HandleCollision(PlannedActions, this, collision);
     }
     // atomic actions
     // atomic actions are the smallest actions

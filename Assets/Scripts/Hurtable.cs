@@ -8,7 +8,7 @@ public class Hurtable : MonoBehaviour
     public int health;
     public Weapon weapon;
     // private variables
-    protected Rigidbody2D body;
+    internal Rigidbody2D body;
     // public methods
     public virtual void Kill()
     {
