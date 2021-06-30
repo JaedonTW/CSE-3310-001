@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Hurtable : MonoBehaviour
 {
+    // public variables
     public int health;
     public Weapon weapon;
-    public Rigidbody2D body;
+    // private variables
+    protected Rigidbody2D body;
+    // public methods
     public virtual void Kill()
     {
         Destroy(this.gameObject);
@@ -17,15 +20,10 @@ public class Hurtable : MonoBehaviour
         if (health <= 0)
             Kill();
     }
+    // protected methods
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        body = GetComponent<Rigidbody2D>();
     }
 }

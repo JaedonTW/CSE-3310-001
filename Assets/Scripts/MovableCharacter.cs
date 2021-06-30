@@ -29,8 +29,9 @@ public class MovableCharacter : Hurtable
     // Prefab input params:
     public Animator anim;
     // private variables
-    private float MovingDirection { get; set; }
-    private bool IsMoving { get; set; }
+    // max magnetude should be walkingSpeed.
+    private Vector2 MovingVector { get; set; }
+    protected bool IsMoving { get; private set; }
     //
     public enum AnimationTypes : byte
     {
@@ -47,36 +48,38 @@ public class MovableCharacter : Hurtable
     public void SetIdle()
     {
         IsMoving = false;
+        body.velocity = Vector2.zero;
         ChangeAnimation(AnimationTypes.IDLE);
     }
     public void SetSit()
     {
         IsMoving = false;
+        body.velocity = Vector2.zero;
         ChangeAnimation(AnimationTypes.SIT);
     }
     /// <summary>
-    /// 
+    /// Should have a magnetude of at most 1.  Will be scaled with walking speed.
     /// </summary>
     /// <param name="angle">Angle of movement in radians</param>
-    public void WalkInDirection(float angle)
+    public void WalkInDirection(Vector2 dir)
     {
-        MovingDirection = angle;
+        if (dir.sqrMagnitude == 0)
+            return;
+        MovingVector = new Vector2(walkingSpeed*dir.x,walkingSpeed*dir.y);
 
         IsMoving = true;
-        // ensures the angle falls in the interval [0,2*pi]
-        angle %= 2 * Mathf.PI;
-        // converts the angle to fall in the interval [0,4] then converts to an AnimationType
-        AnimationTypes index = (AnimationTypes)(Mathf.RoundToInt(angle * 2 / Mathf.PI) + (int)AnimationTypes.WALK_RIGHT);
-
-        // animating
-        ChangeAnimation(index);
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+            ChangeAnimation(dir.x > 0 ? AnimationTypes.WALK_RIGHT : AnimationTypes.WALK_LEFT);
+        else
+            ChangeAnimation(dir.y > 0 ? AnimationTypes.WALK_UP: AnimationTypes.WALK_DOWN);
     }
     // private Methods
     private void ChangeAnimation(AnimationTypes type) =>
         anim.SetInteger("AnimationType", (int)type);
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         var clips = new AnimationClip[]
         {
             idleClip,
@@ -122,9 +125,9 @@ public class MovableCharacter : Hurtable
         //
     }
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (IsMoving)
-            body.velocity = new Vector2(Mathf.Cos(MovingDirection) * walkingSpeed, Mathf.Sin(MovingDirection) * walkingSpeed);
+            body.velocity = MovingVector;
     }
 }
