@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hurtable : MonoBehaviour
 {
-    protected int health;
+    public int health;
     public Weapon weapon;
     public Rigidbody2D body;
     public virtual void Kill()

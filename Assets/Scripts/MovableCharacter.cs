@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovementHandler : MonoBehaviour
+public class MovableCharacter : Hurtable
 {
     // Input Params:
     // animation
@@ -31,7 +31,6 @@ public class CharacterMovementHandler : MonoBehaviour
     // private variables
     private float MovingDirection { get; set; }
     private bool IsMoving { get; set; }
-    private Rigidbody2D Rigid { get; set; }
     //
     public enum AnimationTypes : byte
     {
@@ -45,10 +44,15 @@ public class CharacterMovementHandler : MonoBehaviour
     }
 
     // Public animation methods
-    public void StopWalking()
+    public void SetIdle()
     {
         IsMoving = false;
         ChangeAnimation(AnimationTypes.IDLE);
+    }
+    public void SetSit()
+    {
+        IsMoving = false;
+        ChangeAnimation(AnimationTypes.SIT);
     }
     /// <summary>
     /// 
@@ -68,19 +72,17 @@ public class CharacterMovementHandler : MonoBehaviour
         ChangeAnimation(index);
     }
     // private Methods
-    private void ChangeAnimation(AnimationTypes type)
-    {
+    private void ChangeAnimation(AnimationTypes type) =>
         anim.SetInteger("AnimationType", (int)type);
-    }
     // Start is called before the first frame update
     void Start()
     {
         var clips = new AnimationClip[]
         {
             idleClip,
+            walkRightClip,
             walkUpClip,
             walkLeftClip,
-            walkRightClip,
             walkDownClip,
             sitClip,
             dieClip,
@@ -88,10 +90,9 @@ public class CharacterMovementHandler : MonoBehaviour
         var oldNameFilters = new string[]
         {
             "IDLE",
-            "UP",
-            "LEFT",
             "RIGHT",
             "UP",
+            "LEFT",
             "DOWN",
             "SIT",
             "DIE"
@@ -111,20 +112,19 @@ public class CharacterMovementHandler : MonoBehaviour
         var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(oldClips.Length);
         for (int i = 0; i < clips.Length; i++)
             if (clips[i] != null)
+            {
+                print("Replacing: " + ((AnimationTypes)i).ToString());
                 overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(oldClips[i], clips[i]));
+            }
         // replacing old clips and pushing.
         aoc.ApplyOverrides(overrides);
         anim.runtimeAnimatorController = aoc;
         //
-        Rigid = GetComponent<Rigidbody2D>();
     }
-
     // Update is called once per frame
     void Update()
     {
         if (IsMoving)
-            Rigid.velocity = new Vector2(Mathf.Cos(MovingDirection) * walkingSpeed, Mathf.Sin(MovingDirection) * walkingSpeed);
-        if(Random.Range(0f,1f) < 0.1)
-            WalkInDirection(Random.Range(0,Mathf.PI*2));
+            body.velocity = new Vector2(Mathf.Cos(MovingDirection) * walkingSpeed, Mathf.Sin(MovingDirection) * walkingSpeed);
     }
 }
