@@ -23,11 +23,11 @@ public class CharacterMovementHandler : MonoBehaviour
     /// Required
     /// </summary>
     public AnimationClip walkDownClip;
-    public AnimationClip sitDownClip;
+    public AnimationClip sitClip;
     public AnimationClip dieClip;
     public float walkingSpeed;
     // Prefab input params:
-    public Animation anim;
+    public Animator anim;
     // private variables
     private float MovingDirection { get; set; }
     private bool IsMoving { get; set; }
@@ -40,7 +40,7 @@ public class CharacterMovementHandler : MonoBehaviour
         WALK_UP,
         WALK_LEFT,
         WALK_DOWN,
-        SIT_DOWN,
+        SIT,
         DIE
     }
 
@@ -48,8 +48,7 @@ public class CharacterMovementHandler : MonoBehaviour
     public void StopWalking()
     {
         IsMoving = false;
-        if (!ChangeAnimation(AnimationTypes.IDLE))
-            ChangeAnimation(AnimationTypes.SIT_DOWN);
+        ChangeAnimation(AnimationTypes.IDLE);
     }
     /// <summary>
     /// 
@@ -66,21 +65,12 @@ public class CharacterMovementHandler : MonoBehaviour
         AnimationTypes index = (AnimationTypes)(Mathf.RoundToInt(angle * 2 / Mathf.PI) + (int)AnimationTypes.WALK_RIGHT);
 
         // animating
-        if (!ChangeAnimation(index))
-            throw new System.MissingFieldException("Error, animation for \"" + index.ToString() + "\" not found.  Ensure you are passing it into the prefab.");
+        ChangeAnimation(index);
     }
     // private Methods
-    private bool ChangeAnimation(AnimationTypes type)
+    private void ChangeAnimation(AnimationTypes type)
     {
-        
-        //print("ClipCount: " + anim.GetClipCount());
-        var str = type.ToString();
-        print("Setting Animation: " + str);
-        if (anim.GetClip(str) == null)
-            return false;
-        anim.Play(str, PlayMode.StopAll);
-        print("Animation is playing: " + anim.isPlaying);
-        return true;
+        anim.SetInteger("AnimationType", (int)type);
     }
     // Start is called before the first frame update
     void Start()
@@ -92,15 +82,40 @@ public class CharacterMovementHandler : MonoBehaviour
             walkLeftClip,
             walkRightClip,
             walkDownClip,
-            sitDownClip,
+            sitClip,
             dieClip,
         };
+        var oldNameFilters = new string[]
+        {
+            "IDLE",
+            "UP",
+            "LEFT",
+            "RIGHT",
+            "UP",
+            "DOWN",
+            "SIT",
+            "DIE"
+        };
+        AnimatorOverrideController aoc = new AnimatorOverrideController(anim.runtimeAnimatorController);
+        // Getting old (generic) clips in the correct order.
+        AnimationClip[] oldClips = new AnimationClip[clips.Length];
+        
+        foreach(AnimationClip old in aoc.animationClips)
+            for(int i = 0; i < oldNameFilters.Length; i++)
+                if(old.name.ToUpper().Contains(oldNameFilters[i]))
+                {
+                    oldClips[i] = old;
+                    break;
+                }
+        // building replacement pairs
+        var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(oldClips.Length);
         for (int i = 0; i < clips.Length; i++)
             if (clips[i] != null)
-            {
-                //clips[i].legacy = false;
-                anim.AddClip(clips[i], ((AnimationTypes)i).ToString());
-            }
+                overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(oldClips[i], clips[i]));
+        // replacing old clips and pushing.
+        aoc.ApplyOverrides(overrides);
+        anim.runtimeAnimatorController = aoc;
+        //
         Rigid = GetComponent<Rigidbody2D>();
     }
 
@@ -109,7 +124,7 @@ public class CharacterMovementHandler : MonoBehaviour
     {
         if (IsMoving)
             Rigid.velocity = new Vector2(Mathf.Cos(MovingDirection) * walkingSpeed, Mathf.Sin(MovingDirection) * walkingSpeed);
-        else
-            WalkInDirection(Mathf.PI);
+        if(Random.Range(0f,1f) < 0.1)
+            WalkInDirection(Random.Range(0,Mathf.PI*2));
     }
 }

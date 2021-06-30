@@ -713,7 +713,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484630644}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3287bb22fe877894da60133374b17b27, type: 3}
   m_Name: 
@@ -723,7 +723,7 @@ MonoBehaviour:
   walkLeftClip: {fileID: 7400000, guid: c5bb1b4fda87f82418b3183058ac0c1b, type: 2}
   walkRightClip: {fileID: 7400000, guid: d2c40cd472aeb5d4e966ac4acc25c632, type: 2}
   walkDownClip: {fileID: 7400000, guid: 68f8442727d1dfb49bf4be329757a8de, type: 2}
-  sitDownClip: {fileID: 0}
+  sitClip: {fileID: 0}
   dieClip: {fileID: 0}
   walkingSpeed: 1
   anim: {fileID: 484630647}
@@ -788,7 +788,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 484630644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.79, y: -0.82, z: -0.03890044}
+  m_LocalPosition: {x: 1.65, y: 1.98, z: -0.03890044}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
