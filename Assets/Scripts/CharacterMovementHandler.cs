@@ -72,10 +72,14 @@ public class CharacterMovementHandler : MonoBehaviour
     // private Methods
     private bool ChangeAnimation(AnimationTypes type)
     {
+        
+        //print("ClipCount: " + anim.GetClipCount());
         var str = type.ToString();
+        print("Setting Animation: " + str);
         if (anim.GetClip(str) == null)
             return false;
         anim.Play(str, PlayMode.StopAll);
+        print("Animation is playing: " + anim.isPlaying);
         return true;
     }
     // Start is called before the first frame update
@@ -93,7 +97,10 @@ public class CharacterMovementHandler : MonoBehaviour
         };
         for (int i = 0; i < clips.Length; i++)
             if (clips[i] != null)
+            {
+                //clips[i].legacy = false;
                 anim.AddClip(clips[i], ((AnimationTypes)i).ToString());
+            }
         Rigid = GetComponent<Rigidbody2D>();
     }
 
@@ -101,8 +108,8 @@ public class CharacterMovementHandler : MonoBehaviour
     void Update()
     {
         if (IsMoving)
-            Rigid.velocity.Set(Mathf.Cos(MovingDirection) * walkingSpeed, Mathf.Sin(MovingDirection) * walkingSpeed);
-        if (Random.Range(0f, 1f) < 0.01)
-            WalkInDirection(Random.Range(0, Mathf.PI * 2));
+            Rigid.velocity = new Vector2(Mathf.Cos(MovingDirection) * walkingSpeed, Mathf.Sin(MovingDirection) * walkingSpeed);
+        else
+            WalkInDirection(Mathf.PI);
     }
 }
