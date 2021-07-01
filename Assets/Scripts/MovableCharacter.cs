@@ -1,38 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// A class for encapsulating all characters that move and need animations for doing so.
+/// </summary>
 public class MovableCharacter : Hurtable
 {
-    // Input Params:
-    // animation
+    // Parameters that should be supplied in unity.
+    // The following AnimationClips are required.
     public AnimationClip idleClip;
-    /// <summary>
-    /// Required
-    /// </summary>
     public AnimationClip walkUpClip;
-    /// <summary>
-    /// Required
-    /// </summary>
     public AnimationClip walkLeftClip;
-    /// <summary>
-    /// Required
-    /// </summary>
     public AnimationClip walkRightClip;
-    /// <summary>
-    /// Required
-    /// </summary>
     public AnimationClip walkDownClip;
+    
+    // The remaining clips are not require, but should be supplied if they will be needed.
     public AnimationClip sitClip;
     public AnimationClip dieClip;
+
+    /// <summary>
+    /// The max walking speed of the MovableCharacter
+    /// </summary>
     public float walkingSpeed;
-    // Prefab input params:
-    public Animator anim;
-    // private variables
+    
+    // This marks the end of the inputs to be supplied in unity.
+    // properties
     // max magnetude should be walkingSpeed.
+    private Animator Anim { get; set; }
+    /// <summary>
+    /// The MovingVector for the player.  Should have a magnetude less than or equal to walkingSpeed.
+    /// </summary>
     private Vector2 MovingVector { get; set; }
     public bool IsMoving { get; private set; }
-    //
+    /// <summary>
+    /// The various types of animations a MovableCharacter can perform.
+    /// </summary>
     public enum AnimationTypes : byte
     {
         IDLE = 0,
@@ -45,12 +47,18 @@ public class MovableCharacter : Hurtable
     }
 
     // Public animation methods
+    /// <summary>
+    /// Sets the MovableCharacter to the Idle animation and stops it from moving.
+    /// </summary>
     public void SetIdle()
     {
         IsMoving = false;
         body.velocity = Vector2.zero;
         ChangeAnimation(AnimationTypes.IDLE);
     }
+    /// <summary>
+    /// Sets the MovableCharacter to the Sit animation and stops it from moving.
+    /// </summary>
     public void SetSit()
     {
         IsMoving = false;
@@ -74,12 +82,18 @@ public class MovableCharacter : Hurtable
             ChangeAnimation(dir.y > 0 ? AnimationTypes.WALK_UP: AnimationTypes.WALK_DOWN);
     }
     // private Methods
+    /// <summary>
+    /// Changes the current animation to the animation type specified.
+    /// </summary>
+    /// <param name="type">Desired Animation</param>
     private void ChangeAnimation(AnimationTypes type) =>
-        anim.SetInteger("AnimationType", (int)type);
+        Anim.SetInteger("AnimationType", (int)type);
     // Start is called before the first frame update
     protected override void Start()
     {
         base.Start();
+        
+        // Puts the supplied clips into an array to make processing easier.
         var clips = new AnimationClip[]
         {
             idleClip,
@@ -90,6 +104,7 @@ public class MovableCharacter : Hurtable
             sitClip,
             dieClip,
         };
+        // A set of filters to find the corrosponding generic animations.
         var oldNameFilters = new string[]
         {
             "IDLE",
@@ -100,10 +115,13 @@ public class MovableCharacter : Hurtable
             "SIT",
             "DIE"
         };
-        AnimatorOverrideController aoc = new AnimatorOverrideController(anim.runtimeAnimatorController);
-        // Getting old (generic) clips in the correct order.
+        // Getting the animator.
+        Anim = GetComponent<Animator>();
+
+        // replacing old animations
+        AnimatorOverrideController aoc = new AnimatorOverrideController(Anim.runtimeAnimatorController);
+        // Getting old (generic) clips in the same order as the enum "AnimationTypes".
         AnimationClip[] oldClips = new AnimationClip[clips.Length];
-        
         foreach(AnimationClip old in aoc.animationClips)
             for(int i = 0; i < oldNameFilters.Length; i++)
                 if(old.name.ToUpper().Contains(oldNameFilters[i]))
@@ -111,6 +129,7 @@ public class MovableCharacter : Hurtable
                     oldClips[i] = old;
                     break;
                 }
+
         // building replacement pairs
         var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(oldClips.Length);
         for (int i = 0; i < clips.Length; i++)
@@ -122,7 +141,7 @@ public class MovableCharacter : Hurtable
             }
         // replacing old clips and pushing.
         aoc.ApplyOverrides(overrides);
-        anim.runtimeAnimatorController = aoc;
+        Anim.runtimeAnimatorController = aoc;
         //
     }
     // Update is called once per frame
