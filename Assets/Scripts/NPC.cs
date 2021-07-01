@@ -2,27 +2,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.AI;
-
+/// <summary>
+/// A class to encapsulate all non-player characters
+/// </summary>
 public class NPC : MovableCharacter
 {
     // params
+    /// <summary>
+    /// When idling, the radius of the area the NPC is to remain in.
+    /// NOTE: input parameter
+    /// </summary>
     public float idleRadius;
-    public enum NPCState : byte
+    /// <summary>
+    /// The different protocols an NPC could be following.
+    /// </summary>
+    public enum NPCProtocol : byte
     {
         IDLING = 0,
         FLEEING,
         ATTACKING,
     }
+    /// <summary>
+    /// Represents the current location the NPC is currently idling around or going to.  
+    /// Could probably be deprecated and replaced entirely with atomic actions since 
+    ///   atomic actions can create new atomic actions.
+    /// </summary>
     Vector2 KnownLocation { get; set; }
+    /// <summary>
+    /// The current stack of atomic actions being performed by this NPC.
+    /// Executed from top to bottom.
+    /// </summary>
     Stack<IAtomicNPCAction> PlannedActions { get; } = new Stack<IAtomicNPCAction>();
-    NPCState CurrentState { get; set; }
-    public void SetNPCState(NPCState state)
+    /// <summary>
+    /// The current Protocol being followed by this NPC.
+    /// </summary>
+    NPCProtocol CurrentState { get; set; }
+    public void SetNPCState(NPCProtocol state)
     {
         switch(state)
         {
-            case NPCState.IDLING:
+            case NPCProtocol.IDLING:
                 KnownLocation = body.position;
-                CurrentState = NPCState.IDLING;
+                CurrentState = NPCProtocol.IDLING;
                 break;
             default:
                 throw new System.NotImplementedException();
@@ -33,22 +54,27 @@ public class NPC : MovableCharacter
     protected override void Start()
     {
         base.Start();
-        SetNPCState(NPCState.IDLING);
+        // automatically sets the npc to idling.
+        SetNPCState(NPCProtocol.IDLING);
     }
     // Update is called once per frame
     protected override void Update()
     {
         switch(CurrentState)
         {
-            case NPCState.IDLING:
+            case NPCProtocol.IDLING:
+                // When idling, the NPC alternates between walking to a random location within the idle area and standing still.
                 if(PlannedActions.Count == 0)
                 {
+                    // If the NPC has somehow left the bounds of the area it is 
+                    //   supposed to be idling in, we have it go 
+                    //   straight to the center of the area (KnownLocation).
                     if (Sqr(body.position.x - KnownLocation.x) + Sqr(body.position.y - KnownLocation.y) > idleRadius * idleRadius)
                     {
                         PlannedActions.Push(new NPCMoveAction(KnownLocation));
                         PlannedActions.Push(new NPCDelayAction(60));
                     }
-                    else
+                    else// We find a new destination within the idle area for this NPC to go to next.
                     {
                         var dir = Random.insideUnitCircle;
                         WalkInDirection(dir);
@@ -77,17 +103,22 @@ public class NPC : MovableCharacter
             default:
                 break;
         }
+        // If there are any actions on the 'PlannedActions' stack, we perform the top one.
         if (PlannedActions.Count > 0)
             PlannedActions.Peek().ExecuteAction(PlannedActions, this);
         base.Update();   
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
+        // When a collision occurs, we have the current AtomicAction figure out how to respond.
         PlannedActions.Peek().HandleCollision(PlannedActions, this, collision);
     }
-    // atomic actions
-    // atomic actions are the smallest actions
     // private helper functions
+    /// <summary>
+    /// Sometimes you just need a square.
+    /// </summary>
+    /// <param name="n"></param>
+    /// <returns></returns>
     private float Sqr(float n) => n * n;
 
 }
