@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts.AI
@@ -15,6 +14,12 @@ namespace Assets.Scripts.AI
         /// <param name="actionStack"></param>
         /// <param name="c"></param>
         void ExecuteAction(Stack<IAtomicNPCAction> actionStack,MovableCharacter c);
+        /// <summary>
+        /// Handles a collision, this is needed because collisions will be handled differently depending on which action is currently being performed.
+        /// </summary>
+        /// <param name="actionStack"></param>
+        /// <param name="c"></param>
+        /// <param name="col"></param>
         void HandleCollision(Stack<IAtomicNPCAction> actionStack, MovableCharacter c, Collision2D col);
     }
     /// <summary>
