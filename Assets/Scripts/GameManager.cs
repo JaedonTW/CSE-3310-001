@@ -42,35 +42,26 @@ public class GameManager : MonoBehaviour
             we have not yet found the KeyValuePair. For
             this reason, found will always start as false.
         */
-        bool found = false;
-
-        foreach(KeyValuePair<string,int> s in door_Order) 
-        { 
-            if(door_Name == s.Key && correct_Doors_Entered == s.Value && found == false) 
-            {
-                correct_Doors_Entered++;
-                found = true;
-            }
-        }
-
-        /*
-            If the user enters the wrong door, 
-            the correct_Door_Counter starts back
-            at 0.
-        */
-        if(found == false) 
+        
+        // We check if the door entered was the correct one. 
+        if (door_Order[door_Name] == correct_Doors_Entered)
         {
+            // If the door enterd was correct, we increment and
+            //   check if all of the correct doors were entered.
+            if(++correct_Doors_Entered == 5)
+                /*
+                    If all correct doors were entered,
+                    you may pass to the next stage.
+                */
+                Debug.Log("YOU WIN !!!\n");
+        }
+        else
+            /*
+                If the user enters the wrong door, 
+                the correct_Door_Counter starts back
+                at 0.
+            */
             correct_Doors_Entered = 0;
-        }
-
-        /*
-            If all correct doors were entered,
-            you may pass to the next stage.
-        */
-        if(correct_Doors_Entered == 5) 
-        {
-            Debug.Log("YOU WIN !!!\n");
-        }
     }
 
     void Start()
