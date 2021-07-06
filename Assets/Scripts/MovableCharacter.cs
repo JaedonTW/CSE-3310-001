@@ -21,7 +21,7 @@ public class MovableCharacter : Hurtable
     /// <summary>
     /// The max walking speed of the MovableCharacter
     /// </summary>
-    public float walkingSpeed;
+    public float walkingSpeed = 1;
     
     // This marks the end of the inputs to be supplied in unity.
     // properties
@@ -92,7 +92,8 @@ public class MovableCharacter : Hurtable
     protected override void Start()
     {
         base.Start();
-        
+        if (walkingSpeed <= 0)
+            print("Warn: You have the walking speed for your MovableCharacter at < " + transform.position.x + ", " + transform.position.y + "> set to " + walkingSpeed + ", is this intentional?");
         // Puts the supplied clips into an array to make processing easier.
         var clips = new AnimationClip[]
         {
