@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public HUD hud;
     public Enemy[] enemies;
     public MainCharacter player;
     public Friendly[] friendlies;
@@ -83,11 +82,5 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-        hud.setData(player);
-=======
-        
-        
->>>>>>> a29339388766c0eec6dbad555af9eef0e7092fae
     }
 }
