@@ -5,8 +5,24 @@ using TMPro;
 
 public class Door : MonoBehaviour
 {
+    /*
+        door_Order is a SortedDictionary that we will use to
+        determine the order in which Harris must enter the doors
+        to finish level 2. He must go through the Hand Door once,
+        the Lasso Door twice, and lastly the Mouth Door once.
+    */
+    SortedDictionary<string, int> door_Order = new SortedDictionary<string, int>()
+    {
+        {"Viper",0},
+        {"Reed",1},
+        {"Water Ripple",2},
+        {"Vulture",3},
+        {"Lion", 4}
+    };
+    
     public Animator animator;
     public TextMeshProUGUI textMeshPro;
+    private GameManager manager;
 
     /*
         The following boolean will be
@@ -38,21 +54,29 @@ public class Door : MonoBehaviour
     {
         Change_Door_State();
 
+        /*
+            The gameObject's tag is the name of
+            the door defined in the inspector.
+        */
+        manager.Track_Door_Order(door_Order,gameObject.tag);
+
         if(isOpen == true) 
         {
-            textMeshPro.GetComponent<TextMeshProUGUI>().text = gameObject.tag + " is opened!";
+            //textMeshPro.GetComponent<TextMeshProUGUI>().text = gameObject.tag + " is opened!";
+            Debug.Log("OPENING!\n");
         }
 
         else
         {
-            textMeshPro.GetComponent<TextMeshProUGUI>().text = gameObject.tag + " is closed!";
+            Debug.Log("CLOSING\n");
+            //textMeshPro.GetComponent<TextMeshProUGUI>().text = gameObject.tag + " is closed!";
         }
-
     }
 
     
     void Start()
     {
+        manager = FindObjectOfType<GameManager>();
         /*
             The door will start off
             closed.
