@@ -4,10 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Gun Door
-  - Library Door
-  - Mansion Door
-  - Key Door
+  - Viper
+  - Lion
+  - Vulture
+  - Reed
+  - Water Ripple
   layers:
   - Default
   - TransparentFX
