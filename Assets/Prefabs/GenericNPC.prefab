@@ -125,7 +125,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300002, guid: 9c90c7df5cde2644b8e30b3c7aeda9bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -178,5 +178,4 @@ MonoBehaviour:
   sitClip: {fileID: 7400000, guid: 54afe59043eae294998671620bdaca13, type: 2}
   dieClip: {fileID: 0}
   walkingSpeed: 1
-  anim: {fileID: 3221812215500873477}
   idleRadius: 4
