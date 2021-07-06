@@ -124,6 +124,11 @@ PrefabInstance:
       propertyPath: walkingSpeed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 7001580741210496732, guid: 40435dc0bde537242bd13f4cb902502d,
+        type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7001580742072967859, guid: 40435dc0bde537242bd13f4cb902502d,
         type: 3}
       propertyPath: m_Name
@@ -462,6 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7acd6981c65771047801a1382f5adc91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hud: {fileID: 0}
   enemies:
   - {fileID: 0}
   player: {fileID: 0}
