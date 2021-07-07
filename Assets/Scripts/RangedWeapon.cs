@@ -5,7 +5,6 @@ using UnityEngine;
 public class RangedWeapon : Weapon
 {
     public Bullet bullet_type;
-    public int bullet_count;
     public override void Use(float angle)
     {
         //
@@ -17,13 +16,14 @@ public class RangedWeapon : Weapon
         position = new Vector3(bullet_place_distance * Mathf.Cos(angle) + position.x, bullet_place_distance * Mathf.Sin(angle) + position.y);
         Bullet b = Instantiate(bullet_type, position, rotation, body.transform);
         //angle = b.transform.rotation.eulerAngles.z;
+        b.ignoring = ignoring;
         b.body.velocity = new Vector2(init_velocity * Mathf.Cos(angle), init_velocity * Mathf.Sin(angle));
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame

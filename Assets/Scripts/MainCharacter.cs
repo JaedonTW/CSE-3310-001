@@ -17,7 +17,6 @@ public class MainCharacter : MovableCharacter
     /// </summary>
     protected Camera cam;
     //
-    GraphicRaycaster rc;
     protected override void Start()
     {
         base.Start();
@@ -26,9 +25,6 @@ public class MainCharacter : MovableCharacter
         cam = FindObjectOfType<Camera>();
         // setting the camera to be focused on the MainCharacter (player)
         cam.transform.position = new Vector3(body.position.x, body.position.y, cam.transform.position.z);
-
-        //
-        rc = GetComponent<GraphicRaycaster>();
     }
     protected override void Update()
     {

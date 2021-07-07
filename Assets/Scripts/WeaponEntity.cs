@@ -12,6 +12,7 @@ public class WeaponEntity : MonoBehaviour
         {
             mainCharacter.weapon = weapon;
             weapon.body = mainCharacter.body;
+            weapon.ignoring = mainCharacter;
             Destroy(gameObject);
         }
     }

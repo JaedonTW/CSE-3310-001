@@ -27,6 +27,7 @@ public class Bullet : MonoBehaviour
             if (ignoring == from)
                 return;
             else from.ChangeHealth(-damage);
+        print("Destroying bullet");
         Destroy(this.gameObject);
     }
 }
