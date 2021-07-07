@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 /// <summary>
 /// The class that corrosponds to the main character object.
 /// </summary>
@@ -13,16 +15,20 @@ public class MainCharacter : MovableCharacter
     /// <summary>
     /// Transformation for the main camera.
     /// </summary>
-    protected Transform cam;
-
+    protected Camera cam;
+    //
+    GraphicRaycaster rc;
     protected override void Start()
     {
         base.Start();
         // Getthing the joystick and camera objects
         joystick = FindObjectOfType<Joystick>();
-        cam = FindObjectOfType<Camera>().transform;
+        cam = FindObjectOfType<Camera>();
         // setting the camera to be focused on the MainCharacter (player)
-        cam.position = new Vector3(body.position.x, body.position.y, cam.position.z);
+        cam.transform.position = new Vector3(body.position.x, body.position.y, cam.transform.position.z);
+
+        //
+        rc = GetComponent<GraphicRaycaster>();
     }
     protected override void Update()
     {
@@ -38,6 +44,33 @@ public class MainCharacter : MovableCharacter
         // this is done after getting user input to improve response time.
         base.Update();
         // moving the camera to keep up with the MainCharacter (player).
-        cam.position = new Vector3(body.position.x, body.position.y, cam.position.z);
+        cam.transform.position = new Vector3(body.position.x, body.position.y, cam.transform.position.z);
+
+        // dealing with user input
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            // Mouse0 has been pressed.
+            if(weapon != null && !EventSystem.current.IsPointerOverGameObject())
+            {
+                // Mouse is not over a game object such as the joystick.
+                var pos = Input.mousePosition;
+                var playerScreenPos = cam.WorldToScreenPoint(body.transform.position);
+                var angle = Mathf.Atan2(pos.y - playerScreenPos.y, pos.x - playerScreenPos.x);
+                weapon.Use(angle);
+            }
+        }
+        else
+            for (int i = 0; i < Input.touchCount; i++)
+            {
+                Touch t = Input.GetTouch(i);
+                // checking if is over game object
+                if (!EventSystem.current.IsPointerOverGameObject(t.fingerId))
+                {
+                    print("Is not in a bad place!");
+                    break;
+                }
+                else
+                    print("Is in bad place...");
+            }
     }
 }

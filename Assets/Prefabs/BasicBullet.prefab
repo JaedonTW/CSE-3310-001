@@ -92,7 +92,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.005}
@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bbc82762d7ac584fb05bffac47d5ee1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   body: {fileID: 2080686416135592275}
 --- !u!50 &2080686416135592275
 Rigidbody2D:

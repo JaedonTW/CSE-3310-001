@@ -127,20 +127,20 @@ public class MovableCharacter : Hurtable
             for(int i = 0; i < oldNameFilters.Length; i++)
                 if(old.name == oldNameFilters[i])
                 {
-                    print("Found \"" + oldNameFilters[i] + "\"");
+                    //print("Found \"" + oldNameFilters[i] + "\"");
                     oldClips[i] = old;
                     break;
                 }
 
         // building replacement pairs
         var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(oldClips.Length);
-        print(136);
+        //print(136);
         for (int i = 0; i < clips.Length; i++)
             if (clips[i] != null)
             {
-                print(clips[i].name);
+                //print(clips[i].name);
                 clips[i].legacy = false;
-                print("Replacing: " + ((AnimationTypes)i).ToString());
+                //print("Replacing: " + ((AnimationTypes)i).ToString());
                 overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(oldClips[i], clips[i]));
             }
         // replacing old clips and pushing.

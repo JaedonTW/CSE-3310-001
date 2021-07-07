@@ -6,7 +6,7 @@ public class MeleeWeapon : Weapon
 {
     public int range;
     public int damage;
-    public override void Use()
+    public override void Use(float angle)
     {
         throw new System.NotImplementedException();
     }

@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
     public int damage;
     //public Collider2D collider;
     public Rigidbody2D body;
+    internal Hurtable ignoring;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +20,13 @@ public class Bullet : MonoBehaviour
         body.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(body.velocity.y, body.velocity.x)*180/Mathf.PI);
     }
     //
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Hurtable from = collision.collider.GetComponentInParent<Hurtable>();
-        if(from != null)
-            from.ChangeHealth(-damage);
+        Hurtable from = collision.GetComponentInParent<Hurtable>();
+        if (from != null)
+            if (ignoring == from)
+                return;
+            else from.ChangeHealth(-damage);
         Destroy(this.gameObject);
     }
 }
