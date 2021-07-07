@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7001580742072967870}
   - component: {fileID: 7001580742072967871}
-  - component: {fileID: 7001580742072967856}
   - component: {fileID: 7001580742072967857}
   - component: {fileID: 7001580742072967869}
   - component: {fileID: 7001580742072967868}
@@ -57,22 +56,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!111 &7001580742072967856
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7001580742072967859}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 7ffa5ca0c470ba549b7635d2913b1408, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 7ffa5ca0c470ba549b7635d2913b1408, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!58 &7001580742072967857
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -170,12 +153,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 4
   weapon: {fileID: 0}
-  idleClip: {fileID: 0}
-  walkUpClip: {fileID: 0}
-  walkLeftClip: {fileID: 0}
-  walkRightClip: {fileID: 0}
-  walkDownClip: {fileID: 0}
+  idleClip: {fileID: 7400000, guid: a5b74ec8f8cc6764da9a844e6b259f3e, type: 2}
+  walkUpClip: {fileID: 7400000, guid: df6dfa91a884f294da0476922bbed1bb, type: 2}
+  walkLeftClip: {fileID: 7400000, guid: c5bb1b4fda87f82418b3183058ac0c1b, type: 2}
+  walkRightClip: {fileID: 7400000, guid: d2c40cd472aeb5d4e966ac4acc25c632, type: 2}
+  walkDownClip: {fileID: 7400000, guid: 68f8442727d1dfb49bf4be329757a8de, type: 2}
   sitClip: {fileID: 0}
   dieClip: {fileID: 0}
   walkingSpeed: 1
-  anim: {fileID: 7001580742072967868}

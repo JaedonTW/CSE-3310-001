@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3221812215500873479}
   - component: {fileID: 3221812215500873478}
-  - component: {fileID: 3221812215500873481}
   - component: {fileID: 3221812215500873480}
   - component: {fileID: 3221812215500873476}
   - component: {fileID: 3221812215500873477}
@@ -57,22 +56,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!111 &3221812215500873481
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3221812215500873482}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0089ab65a283ddf4ea0d74f69795c47a, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 0089ab65a283ddf4ea0d74f69795c47a, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!58 &3221812215500873480
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -125,7 +108,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300002, guid: 9c90c7df5cde2644b8e30b3c7aeda9bc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -178,5 +161,4 @@ MonoBehaviour:
   sitClip: {fileID: 7400000, guid: 54afe59043eae294998671620bdaca13, type: 2}
   dieClip: {fileID: 0}
   walkingSpeed: 1
-  anim: {fileID: 3221812215500873477}
   idleRadius: 4

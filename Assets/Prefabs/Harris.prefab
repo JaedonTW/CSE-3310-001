@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 9082367559566651780}
   - component: {fileID: 9082367559566651783}
   - component: {fileID: 9082367559566651778}
-  - component: {fileID: 9082367559566651776}
   - component: {fileID: 9082367559566651779}
   m_Layer: 0
-  m_Name: MainCharacter
+  m_Name: Harris
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -95,10 +94,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a073c168330c70488c846dfc295479f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   weapon: {fileID: 0}
-  body: {fileID: 0}
-  Speed: 4
-  animator: {fileID: 0}
+  idleClip: {fileID: 7400000, guid: a5b74ec8f8cc6764da9a844e6b259f3e, type: 2}
+  walkUpClip: {fileID: 7400000, guid: df6dfa91a884f294da0476922bbed1bb, type: 2}
+  walkLeftClip: {fileID: 7400000, guid: c5bb1b4fda87f82418b3183058ac0c1b, type: 2}
+  walkRightClip: {fileID: 7400000, guid: d2c40cd472aeb5d4e966ac4acc25c632, type: 2}
+  walkDownClip: {fileID: 7400000, guid: 68f8442727d1dfb49bf4be329757a8de, type: 2}
+  sitClip: {fileID: 0}
+  dieClip: {fileID: 0}
+  walkingSpeed: 1
 --- !u!50 &9082367559566651778
 Rigidbody2D:
   serializedVersion: 4
@@ -120,21 +125,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!111 &9082367559566651776
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9082367559566651782}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: d2c40cd472aeb5d4e966ac4acc25c632, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 0
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!95 &9082367559566651779
 Animator:
   serializedVersion: 3
