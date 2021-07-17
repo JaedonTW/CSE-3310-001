@@ -8,8 +8,7 @@ public class Door : MonoBehaviour
     /*
         door_Order is a SortedDictionary that we will use to
         determine the order in which Harris must enter the doors
-        to finish level 2. He must go through the Hand Door once,
-        the Lasso Door twice, and lastly the Mouth Door once.
+        to finish level 2. 
     */
     SortedDictionary<string, int> door_Order = new SortedDictionary<string, int>()
     {
