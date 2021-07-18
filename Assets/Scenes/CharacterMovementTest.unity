@@ -123,6 +123,11 @@ PrefabInstance:
         type: 3}
       propertyPath: walkRightClip
       value: 
+      objectReference: {fileID: 7400000, guid: d2c40cd472aeb5d4e966ac4acc25c632, type: 2}
+    - target: {fileID: 7001580741210496732, guid: 40435dc0bde537242bd13f4cb902502d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7001580742072967859, guid: 40435dc0bde537242bd13f4cb902502d,
         type: 3}
@@ -324,6 +329,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GenericNPC
+      objectReference: {fileID: 0}
+    - target: {fileID: 5592540229107104573, guid: bb0c0b7b3adcdba4da8e4932b34eae2a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bb0c0b7b3adcdba4da8e4932b34eae2a, type: 3}

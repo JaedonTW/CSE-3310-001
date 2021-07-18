@@ -108,36 +108,39 @@ public class MovableCharacter : Hurtable
         // A set of filters to find the corrosponding generic animations.
         var oldNameFilters = new string[]
         {
-            "IDLE",
-            "RIGHT",
-            "UP",
-            "LEFT",
-            "DOWN",
-            "SIT",
-            "DIE"
+            "GenericIdle",
+            "GenericWalkRight",
+            "GenericWalkUp",
+            "GenericWalkLeft",
+            "GenericWalkDown",
+            "GenericSit",
+            "GenericDie"
         };
         // Getting the animator.
         Anim = GetComponent<Animator>();
-
+        
         // replacing old animations
         AnimatorOverrideController aoc = new AnimatorOverrideController(Anim.runtimeAnimatorController);
         // Getting old (generic) clips in the same order as the enum "AnimationTypes".
         AnimationClip[] oldClips = new AnimationClip[clips.Length];
         foreach(AnimationClip old in aoc.animationClips)
             for(int i = 0; i < oldNameFilters.Length; i++)
-                if(old.name.ToUpper().Contains(oldNameFilters[i]))
+                if(old.name == oldNameFilters[i])
                 {
+                    //print("Found \"" + oldNameFilters[i] + "\"");
                     oldClips[i] = old;
                     break;
                 }
 
         // building replacement pairs
         var overrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(oldClips.Length);
+        //print(136);
         for (int i = 0; i < clips.Length; i++)
             if (clips[i] != null)
             {
+                //print(clips[i].name);
                 clips[i].legacy = false;
-                print("Replacing: " + ((AnimationTypes)i).ToString());
+                //print("Replacing: " + ((AnimationTypes)i).ToString());
                 overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(oldClips[i], clips[i]));
             }
         // replacing old clips and pushing.

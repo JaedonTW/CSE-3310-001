@@ -10,14 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 3221812215500873479}
   - component: {fileID: 3221812215500873478}
-  - component: {fileID: 3221812215500873481}
   - component: {fileID: 3221812215500873480}
   - component: {fileID: 3221812215500873476}
   - component: {fileID: 3221812215500873477}
   - component: {fileID: 5592540229107104573}
   m_Layer: 0
   m_Name: GenericNPC
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -57,22 +56,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!111 &3221812215500873481
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3221812215500873482}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 0089ab65a283ddf4ea0d74f69795c47a, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 0089ab65a283ddf4ea0d74f69795c47a, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!58 &3221812215500873480
 CircleCollider2D:
   m_ObjectHideFlags: 0
