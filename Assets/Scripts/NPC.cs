@@ -48,7 +48,6 @@ public class NPC : MovableCharacter
             default:
                 throw new System.NotImplementedException();
         }
-        
     }
     // Start is called before the first frame update
     protected override void Start()
@@ -56,6 +55,7 @@ public class NPC : MovableCharacter
         base.Start();
         // automatically sets the npc to idling.
         SetNPCState(NPCProtocol.IDLING);
+        // mainCharacter starts off by not being in range of the Friendly NPC
     }
     // Update is called once per frame
     protected override void Update()
@@ -106,7 +106,7 @@ public class NPC : MovableCharacter
         // If there are any actions on the 'PlannedActions' stack, we perform the top one.
         if (PlannedActions.Count > 0)
             PlannedActions.Peek().ExecuteAction(PlannedActions, this);
-        base.Update();   
+        base.Update();
     }
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
@@ -120,5 +120,10 @@ public class NPC : MovableCharacter
     /// <param name="n"></param>
     /// <returns></returns>
     private float Sqr(float n) => n * n;
+
+
+    private TextBox textBox;
+    
+
 
 }

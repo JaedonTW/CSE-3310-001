@@ -9,6 +9,20 @@ using UnityEngine.UI;
 public class MainCharacter : MovableCharacter
 {
     /// <summary>
+    /// mainCharacter will have sanity which depends
+    /// on if friendlies are saved/killed.
+    /// </summary>
+    [SerializeField] protected int insanity;
+
+    /// <summary>
+    /// Getter function for insanity.
+    /// </summary>
+    public int Get_Insanity() 
+    {
+        return insanity;
+    }
+
+    /// <summary>
     /// Joystick to be used to control the movement of the main character.
     /// </summary>
     protected Joystick joystick;
@@ -16,9 +30,11 @@ public class MainCharacter : MovableCharacter
     /// Transformation for the main camera.
     /// </summary>
     protected Camera cam;
-    //
+    
     protected override void Start()
     {
+        // Setting insanity to 50 for example
+        insanity = 50;
         base.Start();
         // Getthing the joystick and camera objects
         joystick = FindObjectOfType<Joystick>();
@@ -68,5 +84,11 @@ public class MainCharacter : MovableCharacter
                 else
                     print("Is in bad place...");
             }
+    
+        
+    
+    
     }
+
+
 }
