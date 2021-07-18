@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.6100373, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -54117,7 +54117,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2790c66575090584db851e78acaeb9b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 563393144}
+  health_Gauge: {fileID: 560880435}
+  insanity_Gauge: {fileID: 444220541}
 --- !u!114 &1724218978
 MonoBehaviour:
   m_ObjectHideFlags: 0

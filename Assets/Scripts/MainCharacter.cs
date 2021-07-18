@@ -30,7 +30,7 @@ public class MainCharacter : MovableCharacter
     /// Transformation for the main camera.
     /// </summary>
     protected Camera cam;
-    //
+    
     protected override void Start()
     {
         // Setting insanity to 50 for example
@@ -84,5 +84,11 @@ public class MainCharacter : MovableCharacter
                 else
                     print("Is in bad place...");
             }
+    
+        
+    
+    
     }
+
+
 }
