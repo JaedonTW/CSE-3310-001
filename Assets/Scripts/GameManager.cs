@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.AI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,8 @@ public class GameManager : MonoBehaviour
     public MainCharacter player;
     public Friendly[] friendlies;
     public int CurrentLevel { get; private set; } = 0;
-    
+    public bool[,] PathMap { get; private set; }
+    public Vector2 MapOffset { get; private set; }
     /*
         correct_Doors_Entered will hold the number of
         doors entered in a row by the user. The user 
