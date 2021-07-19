@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
@@ -65,11 +66,38 @@ public class GameManager : MonoBehaviour
             */
             correct_Doors_Entered = 0;
     }
-
+    void OnMapLoad()
+    {
+        // initializing the 'PathMap' and the 'MapOffset'
+        // getting walls
+        var tilemaps = FindObjectsOfType<Tilemap>();
+        Tilemap walls = null;
+        foreach(var tilemap in tilemaps)
+            if(tilemap.name == "Walls")
+            {
+                walls = tilemap;
+                break;
+            }
+        if (walls == null)
+            throw new MissingComponentException("There must be a 'Tilemap' component named 'Walls'.");
+        // setting up PathMap
+        var bounds = walls.cellBounds;
+        var tiles = walls.GetTilesBlock(bounds);
+        PathMap = new bool[bounds.x, bounds.y];
+        for (int i = 0; i < bounds.x; i++)
+            for (int j = 0; j < bounds.y; j++)
+                if (tiles[i + j * bounds.x] == null)
+                    PathMap[i, j] = true;
+        // getting offset from the world to the center of Cell[0,0]
+        // we do it like this so that each grid position will corrospond to the center of that tile.
+        MapOffset = new Vector2(walls.transform.position.x + walls.cellSize.x * 0.5f,
+            walls.transform.position.y + walls.cellSize.y * 0.5f);
+    }
     void Start()
     {
         correct_Doors_Entered = 0;
-        
+
+        OnMapLoad();
     }
 
     // Update is called once per frame
