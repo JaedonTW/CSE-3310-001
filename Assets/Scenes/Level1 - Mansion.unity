@@ -6715,8 +6715,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.3190075, y: -3.300919, z: 0.15039062}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2083286507}
+  m_Children: [{fileID: 2083286507}]
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7318,6 +7317,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1621032814}
     m_Modifications:
+    - target: {fileID: 462365955466266894, guid: 2338a8be44fb8f345af537d0e3ca2b8e,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 557806359085808700, guid: 2338a8be44fb8f345af537d0e3ca2b8e,
         type: 3}
       propertyPath: m_Name
