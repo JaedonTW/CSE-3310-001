@@ -9,6 +9,7 @@ TagManager:
   - Vulture
   - Reed
   - Water Ripple
+  - NPC
   layers:
   - Default
   - TransparentFX
