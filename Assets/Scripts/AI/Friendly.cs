@@ -13,12 +13,7 @@ namespace Assets.Scripts.AI
             the friendly and the main character in each
             direction.
         */
-        float friendly_XPos;
-        float friendly_YPOS;
-        float mainCharacter_XPos;
-        float mainCharacter_YPos;
-        float x_Val;
-        float y_Val;
+
 
         /*
             instantiation_Distance is the furthest distance

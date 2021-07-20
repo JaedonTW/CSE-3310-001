@@ -21,10 +21,10 @@ public class GameManager : MonoBehaviour
     private int correct_Doors_Entered;
 
     /*
-    Check_Distance uses the famed Distance Formula
-    to check the distance between two entities. 
-    If the distance is less than or equal to 5 world units, 
-    the Pop-up Text Box will spawn.
+        Check_Distance uses the famed Distance Formula
+        to check the distance between two entities. 
+        If the distance is less than or equal to 5 world units, 
+        the Pop-up Text Box will spawn.
     */
     public bool Check_Distance(Transform obj1, Transform obj2)
     {
@@ -35,19 +35,14 @@ public class GameManager : MonoBehaviour
 
         float x_Val = Mathf.Sqrt(Mathf.Pow(obj1_XPos - obj2_XPos, 2));
         float y_Val = Mathf.Sqrt(Mathf.Pow(obj1_YPos - obj2_YPos, 2));
-        float instantiation_Distance = 5;
-
-        Debug.Log(Mathf.Sqrt(x_Val + y_Val));
+        float instantiation_Distance = 1.25f;
 
         if (Mathf.Sqrt(x_Val + y_Val) <= instantiation_Distance)
         {
             return true;
         }
 
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
 

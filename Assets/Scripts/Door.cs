@@ -21,19 +21,14 @@ public class Door : MonoBehaviour
     /*
         Change_Door_State() will be used to set the
         correct boolean variables regarding the state
-        of the door.
+        of the door. Rather than having a conditional,
+        we can use the unary not operator to change the
+        state to it's opposite boolean value.
     */
     protected void Change_Door_State()
     {
-        if (isOpen == false)
-        {
-            isOpen = true;
-        }
-
-        else
-        {
-            isOpen = false;
-        }
+        isOpen = !isOpen;
+        animator.SetBool("isOpen", isOpen);
     }
 
     /*
@@ -45,8 +40,10 @@ public class Door : MonoBehaviour
     {
         return isOpen;
     }
+
     private void OnMouseDown()
     {
+        Debug.Log("Clcicked bool: " + isOpen);
         Change_Door_State();
     }
 
@@ -59,13 +56,12 @@ public class Door : MonoBehaviour
         mainCharacter = FindObjectOfType<MainCharacter>();
 
         // The door will begin closed.
-        isOpen = false;
+        animator.SetBool("isOpen", false);
     }
 
     private void Update()
     {
-        // Check for animation update every frame.
-        animator.SetBool("isOpen", isOpen);
+
         
     }
 }
