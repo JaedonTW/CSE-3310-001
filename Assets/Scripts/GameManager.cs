@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public Friendly[] friendlies;
     public int CurrentLevel { get; private set; } = 0;
     public Tilemap Walls { get; private set; }
-    public CultistManager CultistCoordinator { get; set; }
+    public CultistManager CultistCoordinator { get; set; } = new CultistManager();
     /*
         correct_Doors_Entered will hold the number of
         doors entered in a row by the user. The user 
@@ -115,6 +115,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+
         correct_Doors_Entered = 0;
 
         OnMapLoad();

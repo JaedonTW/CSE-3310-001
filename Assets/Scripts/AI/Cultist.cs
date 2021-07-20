@@ -8,6 +8,11 @@ namespace Assets.Scripts.AI
 {
     class Cultist : Enemy
     {
+        protected override void Start()
+        {
+            base.Start();
+            Manager.CultistCoordinator.RegisterCultist(this);
+        }
         protected override void InitializeAttack()
         {
             Manager.CultistCoordinator.JoinAttack(this);

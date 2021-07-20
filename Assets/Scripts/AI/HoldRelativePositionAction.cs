@@ -35,7 +35,7 @@ namespace Assets.Scripts.AI
 
         public void HandleCollision(Stack<IAtomicNPCAction> actionStack, Enemy c, Collision2D col)
         {
-            // we do nothing
+            actionStack.Push(new GoToPositionAction(Reference.body.position + Displacement));
         }
     }
 }

@@ -9,9 +9,9 @@ namespace Assets.Scripts.AI
 {
     public class CultistManager
     {
-        float AngleOffset { get; set; }
-        List<Cultist> AttackingCultists { get; set; }
-        HashSet<Cultist> Cultists { get; set; }
+        float AngleOffset { get; set; } = 0;
+        List<Cultist> AttackingCultists { get; set; } = new List<Cultist>();
+        HashSet<Cultist> Cultists { get; set; } = new HashSet<Cultist>();
         internal void RegisterCultist(Cultist cultist)
         {
             Cultists.Add(cultist);
@@ -52,8 +52,12 @@ namespace Assets.Scripts.AI
         internal void LeaveAttack(Cultist cultist)
         {
             AttackingCultists.Remove(cultist);
-            if(AttackingCultists.Count > 0)
+            if (AttackingCultists.Count > 0)
+            {
+                cultist.PlannedActions.Clear();
+                cultist.PlannedActions.Push(new GoToPositionStreamAction(cultist.Manager.player));
                 ResetPositions();
+            }
             else
                 foreach (var c in Cultists)
                 {
