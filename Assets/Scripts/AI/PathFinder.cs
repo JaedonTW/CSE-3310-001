@@ -34,7 +34,7 @@ namespace Assets.Scripts.AI
             }
             public Node prev;
             float heuristicCost;
-            public float Heuristic { set { heuristicCost = value + cost; } }
+            public float Heuristic { set { heuristicCost = value; } }
             public float cost;
             public int x;
             public int y;
