@@ -43,6 +43,8 @@ namespace Assets.Scripts.AI
         /// <returns>a list of intermediate locations in reverse order, or null if no path exists</returns>
         public static Vector2Int[] GeneratePath(Vector2Int start, Vector2Int end, bool[,] pathMap)
         {
+            if (end.x < 0 || end.y < 0 || end.x >= pathMap.GetLength(0) || end.y >= pathMap.GetLength(1) || !pathMap[end.x, end.y])
+                return null;
             var fringe = new List<Node>((int)(start - end).magnitude);
             bool[,] crossedMap = new bool[pathMap.GetLength(0), pathMap.GetLength(1)];
             fringe.Add(new Node(start));

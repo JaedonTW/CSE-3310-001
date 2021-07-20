@@ -27,7 +27,7 @@ namespace Assets.Scripts.AI
             var diff = new Vector2(Destination.x - pos.x, Destination.y - pos.y);
             // If the distance between 'c' and the destination is less then the distance travelled
             //   in a unit of time, then we consider this action complete and pop it from the stack.
-            if (diff.sqrMagnitude < c.walkingSpeed * c.walkingSpeed)
+            if (diff.sqrMagnitude < 0.1)
                 actionStack.Pop();
             // If 'c' is not already moving, we have it move towards the destionation.
             else if (!c.IsMoving)
@@ -37,6 +37,7 @@ namespace Assets.Scripts.AI
 
         public void HandleCollision(Stack<IAtomicNPCAction> actionStack, Enemy thisNPC, Collision2D col)
         {
+            MonoBehaviour.print("Handling collision");
             // Checking if it just another character because 
             //   if that is the case, we just proceed without making any changes.
             var otherm = col.otherCollider.GetComponentInParent<MovableCharacter>();
@@ -54,7 +55,13 @@ namespace Assets.Scripts.AI
                     from, 
                     VectorFToI(Destination - origin), 
                     thisNPC.Manager.PathMap);
-
+                // If it is impossible to get to the desired location (as indicated by a null value),
+                //   we just pop off of the stack and let the higher portion of the AI handle this.
+                if(gridPositions == null)
+                {
+                    actionStack.Pop();
+                    return;
+                }
                 // building path plan based on grid positions.
                 foreach (var p in gridPositions)
                     actionStack.Push(new GoToPositionAction(p + origin));

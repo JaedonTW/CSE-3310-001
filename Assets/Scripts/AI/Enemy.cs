@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.AI
 {
@@ -18,15 +19,14 @@ namespace Assets.Scripts.AI
         /// </summary>
         public float viewDistance;
         public float optimalFightDistance;
-        private float ViewDistanceSquared { get; set; }
-        internal EnemyState State { get; set; }
+        internal EnemyState State { get; set; } = EnemyState.Wandering;
         protected Vector2 KnownPlayerLocation { get; private set; }
-        Hurtable MainCharacter { get; set; }
+        Hurtable MainCharacter => Manager.player;
         // Start is called before the first frame update
         protected override void Start()
         {
             base.Start();
-            ViewDistanceSquared = viewDistance * viewDistance;
+            //MainCharacter = Manager.player;
         }
         protected abstract void InitializeAttack();
         /// <summary>
@@ -38,11 +38,23 @@ namespace Assets.Scripts.AI
         protected override void Update()
         {
             base.Update();
-            if (ViewDistanceSquared >= (MainCharacter.body.position - body.position).sqrMagnitude)
+            // the player is within the view range, so we need to check if the player is within line of sight.
+            
+            var hits = Physics2D.RaycastAll(body.position, MainCharacter.body.position - body.position, viewDistance);
+            foreach (var hit in hits)
             {
-                // the player is within the view range, so we need to check if the player is within line of sight.
-                var hit = Physics2D.Raycast(body.position, MainCharacter.body.position);
-                if(hit.collider.gameObject.tag == "Player")
+                if (hit.collider.gameObject.tag == "View Blocker")
+                {
+                    if (State == EnemyState.HasLineOfSight)
+                    {
+                        State = EnemyState.Pursuing;
+                        // In this case, we just lost line of sight and thus start pursuing.
+                        print("Looking for player");
+                        PlannedActions.Push(new GoToPositionAction(KnownPlayerLocation));
+                    }
+                    break;
+                }
+                if (hit.collider.gameObject.tag == "Player")
                 {
                     // we have line of sight.
                     KnownPlayerLocation = MainCharacter.body.position;
@@ -55,25 +67,28 @@ namespace Assets.Scripts.AI
                         //   2. Update the state
                         //   3. Let the derivitive class decide how it would like to attack.
                         State = EnemyState.HasLineOfSight;
+                        print("Player spotted!");
                         PlannedActions.Clear();
                         InitializeAttack();
                     }
+                    break;
                 }
             }
             if (PlannedActions.Count > 0)
                 PlannedActions.Peek().ExecuteAction(PlannedActions, this);
-            else if(State == EnemyState.HasLineOfSight)
+            else
             {
-                State = EnemyState.Pursuing;
-                // In this case, we just lost line of sight and thus start pursuing.
-                
-                PlannedActions.Push(new GoToPositionAction(KnownPlayerLocation));
+                //print("wandering");
+                State = EnemyState.Wandering;
+                PlannedActions.Push(new RestAction(60));
+                PlannedActions.Push(new GoToPositionAction(Random.insideUnitCircle + body.position));
             }
         }
         protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
-            // When a collision occurs, we have the current AtomicAction figure out how to respond.
-            PlannedActions.Peek().HandleCollision(PlannedActions, this, collision);
+            if(PlannedActions.Count > 0)
+                // When a collision occurs, we have the current AtomicAction figure out how to respond.
+                PlannedActions.Peek().HandleCollision(PlannedActions, this, collision);
         }
     }
 }

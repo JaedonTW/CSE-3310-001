@@ -111,15 +111,18 @@ public class GameManager : MonoBehaviour
         // setting up PathMap
         var bounds = walls.cellBounds;
         var tiles = walls.GetTilesBlock(bounds);
-        PathMap = new bool[bounds.x, bounds.y];
-        for (int i = 0; i < bounds.x; i++)
-            for (int j = 0; j < bounds.y; j++)
-                if (tiles[i + j * bounds.x] == null)
+        PathMap = new bool[bounds.xMax - bounds.xMin, bounds.yMax - bounds.yMin];
+        for (int i = 0; i < PathMap.GetLength(0); i++)
+            for (int j = 0; j < PathMap.GetLength(1); j++)
+                if (tiles[i + j * PathMap.GetLength(0)] == null)
                     PathMap[i, j] = true;
         // getting offset from the world to the center of Cell[0,0]
         // we do it like this so that each grid position will corrospond to the center of that tile.
         MapOffset = new Vector2(walls.transform.position.x + walls.cellSize.x * 0.5f,
             walls.transform.position.y + walls.cellSize.y * 0.5f);
+
+        // getting a reference to the MainCharacter
+        player = FindObjectOfType<MainCharacter>();
     }
     void Start()
     {
