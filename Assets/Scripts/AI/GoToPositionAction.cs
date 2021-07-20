@@ -12,15 +12,19 @@ namespace Assets.Scripts.AI
         /// <summary>
         /// The destionation being travelled to.
         /// </summary>
-        Vector2 Destination { get; }
+        internal virtual Vector2 Destination { get; }
         /// <summary>
         /// A move action for an NPC.
         /// </summary>
         public GoToPositionAction(Vector2 destination)
         {
             Destination = destination;
-            MonoBehaviour.print("Creating GoToPositionAction");
         }
+        /// <summary>
+        /// A move action for an NPC.
+        /// </summary>
+        public GoToPositionAction()
+        { }
         public void ExecuteAction(Stack<IAtomicNPCAction> actionStack, Enemy c)
         {
             // current position

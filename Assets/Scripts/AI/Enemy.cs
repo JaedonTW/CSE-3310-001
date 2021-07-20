@@ -37,7 +37,7 @@ namespace Assets.Scripts.AI
         /// The current stack of atomic actions being performed by this NPC.
         /// Executed from top to bottom.
         /// </summary>
-        protected Stack<IAtomicNPCAction> PlannedActions { get; } = new Stack<IAtomicNPCAction>();
+        internal Stack<IAtomicNPCAction> PlannedActions { get; } = new Stack<IAtomicNPCAction>();
         // Update is called once per frame
         protected override void Update()
         {
