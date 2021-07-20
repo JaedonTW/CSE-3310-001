@@ -19,7 +19,6 @@ public class Instantiate : MonoBehaviour
     {
         // Find reference to the Friendly object.
         friendly = FindObjectOfType<Friendly>();
-        
     }
 
     // Update is called once per frame

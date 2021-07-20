@@ -49,7 +49,6 @@ public class Puzzle_Door : Door
 
         // The door will begin closed.
         isOpen = false;
-
     }
 
     void Update()

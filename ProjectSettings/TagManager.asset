@@ -10,6 +10,7 @@ TagManager:
   - Reed
   - Water Ripple
   - NPC
+  - Front_Door
   layers:
   - Default
   - TransparentFX
