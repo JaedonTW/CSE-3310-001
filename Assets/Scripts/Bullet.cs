@@ -7,7 +7,7 @@ public class Bullet : MonoBehaviour
     public int damage;
     //public Collider2D collider;
     public Rigidbody2D body;
-    internal Hurtable ignoring;
+    internal Hurtable.DamegeGroups ignoring;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +24,9 @@ public class Bullet : MonoBehaviour
     {
         Hurtable from = collision.GetComponentInParent<Hurtable>();
         if (from != null)
-            if (ignoring == from)
+            if (ignoring == from.DamageGroup)
                 return;
             else from.ChangeHealth(-damage);
-        print("Destroying bullet");
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
 }

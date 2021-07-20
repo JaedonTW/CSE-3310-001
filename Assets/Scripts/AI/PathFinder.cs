@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.AI
 {
@@ -11,7 +12,12 @@ namespace Assets.Scripts.AI
     {
         class Node
         {
-            public Node(Vector2Int v)
+            public Node(int posX, int posY)
+            {
+                x = posX;
+                y = posY;
+            }
+            public Node(Vector3Int v)
             {
                 x = v.x;
                 y = v.y;
@@ -28,11 +34,32 @@ namespace Assets.Scripts.AI
             }
             public Node prev;
             float heuristicCost;
+            public float Heuristic { set { heuristicCost = value + cost; } }
             public float cost;
             public int x;
             public int y;
             public static bool operator <(Node a, Node b) => a.heuristicCost < b.heuristicCost;
             public static bool operator >(Node a, Node b) => a.heuristicCost > b.heuristicCost;
+            public static bool operator ==(Node a, Node b)
+            {
+                if (ReferenceEquals(a, null))
+                    return ReferenceEquals(b, null);
+                if (ReferenceEquals(b, null))
+                    return false;
+                return a.x == b.x && a.y == b.y;
+            }
+            public static bool operator !=(Node a, Node b)
+            {
+                if (ReferenceEquals(a, null))
+                    return !ReferenceEquals(b, null);
+                if (ReferenceEquals(b, null))
+                    return true;
+                return a.x != b.x || a.y != b.y;
+            }
+            public override string ToString()
+            {
+                return "< " + x + ", " + y + " >";
+            }
         }
         /// <summary>
         /// 
@@ -41,17 +68,18 @@ namespace Assets.Scripts.AI
         /// <param name="end"></param>
         /// <param name="pathMap">An element is set to true when it has a clear path</param>
         /// <returns>a list of intermediate locations in reverse order, or null if no path exists</returns>
-        public static Vector2Int[] GeneratePath(Vector2Int start, Vector2Int end, bool[,] pathMap)
+        public static Vector2Int[] GeneratePath(Vector3Int start, Vector3Int end, Tilemap Walls)
         {
-            if (end.x < 0 || end.y < 0 || end.x >= pathMap.GetLength(0) || end.y >= pathMap.GetLength(1) || !pathMap[end.x, end.y])
+            if (!Walls.cellBounds.Contains(end) || Walls.HasTile(end))
                 return null;
             var fringe = new List<Node>((int)(start - end).magnitude);
-            bool[,] crossedMap = new bool[pathMap.GetLength(0), pathMap.GetLength(1)];
+            bool[,] crossedMap = new bool[Walls.cellBounds.xMax - Walls.cellBounds.xMin, Walls.cellBounds.yMax - Walls.cellBounds.yMin];
             fringe.Add(new Node(start));
             var diagonalCost = Mathf.Sqrt(2);
             Node node;
             while (fringe.Count > 0)
             {
+                MonoBehaviour.print("fringe length: " + fringe.Count);
                 node = fringe[0];
                 if (node.x == end.x && node.y == end.y)
                 {
@@ -63,6 +91,7 @@ namespace Assets.Scripts.AI
                         dupe = dupe.prev;
                         count++;
                     }
+                    MonoBehaviour.print("Path found, length = " + count);
                     Vector2Int[] positions = new Vector2Int[count];
                     for(int i = 0; i < count; i++)
                     {
@@ -72,27 +101,56 @@ namespace Assets.Scripts.AI
                     return positions;
                 }
                 fringe.RemoveAt(0);
-                crossedMap[node.x, node.y] = true;
+                if (crossedMap[node.x - Walls.cellBounds.xMin,node.y - Walls.cellBounds.yMin])
+                {
+                    MonoBehaviour.print("We already have: " + node);
+                    continue;
+                }
+                crossedMap[node.x - Walls.cellBounds.xMin, node.y - Walls.cellBounds.yMin] = true;
+                bool PathMap(int x, int y) => !Walls.HasTile(new Vector3Int(x, y, 0));
+                /*
+                bool PathMap(int x, int y)
+                {
+                    /*
+                    for (int i = Walls.cellBounds.xMin; i <= Walls.cellBounds.xMax; i++)
+                        for (int j = Walls.cellBounds.yMin; j <= Walls.cellBounds.yMax; j++)
+                            if (Walls.HasTile(new Vector3Int(i, j, 0)))
+                                throw null;
+                                *//*
+                    if(Walls.HasTile(new Vector3Int(x, y, 0)))
+                    {
+                        MonoBehaviour.print("Wall found!");
+                        return false;
+                    }
+                    return true;
+                }
+                */
                 // getting new possible nodes
-                for (int x = Mathf.Max(0, node.x - 1); x < Mathf.Min(pathMap.GetLength(0), node.x + 2); x++)
-                    for (int y = Mathf.Max(0, node.y - 1); y < Mathf.Min(pathMap.GetLength(1), node.y + 2); y++)
-                        if(!crossedMap[x,y] && pathMap[x,y])
+                for (int x = node.x - 1; x <= node.x + 1; x++)
+                    for (int y = node.y - 1; y <= node.y + 1; y++)
+                    {
+                        
+                        if (!crossedMap[x-Walls.cellBounds.xMin,y - Walls.cellBounds.yMin] && PathMap(x, y))
                         {
+                            var newNode = new Node(x, y);
                             float cost;
                             if (x == node.x || y == node.y)
                                 cost = 1;
                             // making sure we will not run into any corners.
-                            else if (pathMap[node.x, y] && pathMap[x, node.y])
+                            else if (PathMap(node.x, y) && PathMap(x, node.y))
                                 cost = diagonalCost;
                             else continue;
                             cost += node.cost;
-                            var newNode = new Node(
-                                x, y,
-                                node,
-                                cost,
-                                Mathf.Sqrt(Sqr(x - end.x) + Sqr(y - end.y))
-                                );
+                            newNode.prev = node;
+                            newNode.cost = cost;
+                            newNode.Heuristic = Mathf.Sqrt(Sqr(x - end.x) + Sqr(y - end.y));
+                            int i = 0;
+                            for (; i < fringe.Count && newNode > fringe[i]; i++) ;
+                            MonoBehaviour.print("Adding to fringe.");
+                            fringe.Insert(i, newNode);
                         }
+                    }
+                MonoBehaviour.print("END");
             }
             return null;
         }

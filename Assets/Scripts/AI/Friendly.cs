@@ -35,6 +35,8 @@ namespace Assets.Scripts.AI
 
             // Find the reference to the mainCharacter object
             mainCharacter = FindObjectOfType<MainCharacter>();
+
+            DamageGroup = DamegeGroups.Friendly;
         }
 
         // Update is called once per frame

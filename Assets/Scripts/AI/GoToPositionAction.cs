@@ -19,6 +19,7 @@ namespace Assets.Scripts.AI
         public GoToPositionAction(Vector2 destination)
         {
             Destination = destination;
+            MonoBehaviour.print("Creating GoToPositionAction");
         }
         public void ExecuteAction(Stack<IAtomicNPCAction> actionStack, Enemy c)
         {
@@ -32,7 +33,6 @@ namespace Assets.Scripts.AI
             // If 'c' is not already moving, we have it move towards the destionation.
             else if (!c.IsMoving)
                 c.WalkInDirection(new Vector2(Destination.x - pos.x, Destination.y - pos.y).normalized);
-
         }
 
         public void HandleCollision(Stack<IAtomicNPCAction> actionStack, Enemy thisNPC, Collision2D col)
@@ -47,14 +47,12 @@ namespace Assets.Scripts.AI
                 //   so we need to generate a proper path to the destination.
                 // removing old 'GoToPositionAction' (aka this)
                 actionStack.Pop();
-                Vector2Int VectorFToI(Vector2 original) => 
-                    new Vector2Int(Mathf.FloorToInt(original.x), Mathf.FloorToInt(original.y));
-                var origin = thisNPC.Manager.MapOffset;
-                var from = VectorFToI(thisNPC.body.position - origin);
+                var from = thisNPC.Manager.Walls.WorldToCell(thisNPC.body.position);
+                var to = thisNPC.Manager.Walls.WorldToCell(Destination);
                 Vector2Int[] gridPositions = PathFinder.GeneratePath(
                     from, 
-                    VectorFToI(Destination - origin), 
-                    thisNPC.Manager.PathMap);
+                    to, 
+                    thisNPC.Manager.Walls);
                 // If it is impossible to get to the desired location (as indicated by a null value),
                 //   we just pop off of the stack and let the higher portion of the AI handle this.
                 if(gridPositions == null)
@@ -64,10 +62,20 @@ namespace Assets.Scripts.AI
                 }
                 // building path plan based on grid positions.
                 foreach (var p in gridPositions)
-                    actionStack.Push(new GoToPositionAction(p + origin));
+                {
+                    actionStack.Push(new GoToPositionAction(thisNPC.Manager.Walls.GetCellCenterWorld((Vector3Int)p)));
+                }
+                var last = thisNPC.Manager.Walls.GetCellCenterWorld((Vector3Int)gridPositions[0]);
+                for (int i = 1; i < gridPositions.Length; i++)
+                {
+                    var current = thisNPC.Manager.Walls.GetCellCenterWorld((Vector3Int)gridPositions[i]);
+                    Debug.DrawLine(last, current, Color.red, 50, false);
+                    last = current;
+                }
+                Debug.DrawLine(last, thisNPC.body.position, Color.red, 50, false);
                 // finally, we will go to the center of the tile we are currently on
                 // to ensure movements are smooth
-                actionStack.Push(new GoToPositionAction(from + origin));
+                actionStack.Push(new GoToPositionAction(thisNPC.Manager.Walls.GetCellCenterWorld((Vector3Int)from)));
             }
         }
     }

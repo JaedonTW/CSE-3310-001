@@ -69,9 +69,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.03, y: -0.27}
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.23
 --- !u!212 &8693141397622866977
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
-  weapon: {fileID: 0}
+  weapon: {fileID: 7189779559881689676, guid: ce023659ba54b024cb3baaafdf03cecd, type: 3}
   idleClip: {fileID: 7400000, guid: 5d78da1e6702394458d83acb35a0d736, type: 2}
   walkUpClip: {fileID: 7400000, guid: 44b2f4a90a3c1f945a209efc2403c7da, type: 2}
   walkLeftClip: {fileID: 7400000, guid: 44b2f4a90a3c1f945a209efc2403c7da, type: 2}

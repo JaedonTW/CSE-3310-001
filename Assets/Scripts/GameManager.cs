@@ -10,8 +10,7 @@ public class GameManager : MonoBehaviour
     public MainCharacter player;
     public Friendly[] friendlies;
     public int CurrentLevel { get; private set; } = 0;
-    public bool[,] PathMap { get; private set; }
-    public Vector2 MapOffset { get; private set; }
+    public Tilemap Walls { get; private set; }
     /*
         correct_Doors_Entered will hold the number of
         doors entered in a row by the user. The user 
@@ -108,18 +107,7 @@ public class GameManager : MonoBehaviour
             }
         if (walls == null)
             throw new MissingComponentException("There must be a 'Tilemap' component named 'Walls'.");
-        // setting up PathMap
-        var bounds = walls.cellBounds;
-        var tiles = walls.GetTilesBlock(bounds);
-        PathMap = new bool[bounds.xMax - bounds.xMin, bounds.yMax - bounds.yMin];
-        for (int i = 0; i < PathMap.GetLength(0); i++)
-            for (int j = 0; j < PathMap.GetLength(1); j++)
-                if (tiles[i + j * PathMap.GetLength(0)] == null)
-                    PathMap[i, j] = true;
-        // getting offset from the world to the center of Cell[0,0]
-        // we do it like this so that each grid position will corrospond to the center of that tile.
-        MapOffset = new Vector2(walls.transform.position.x + walls.cellSize.x * 0.5f,
-            walls.transform.position.y + walls.cellSize.y * 0.5f);
+        Walls = walls;
 
         // getting a reference to the MainCharacter
         player = FindObjectOfType<MainCharacter>();

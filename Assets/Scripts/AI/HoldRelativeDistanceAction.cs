@@ -30,6 +30,8 @@ namespace Assets.Scripts.AI
                 var curr = (c.body.position - Reference.body.position).sqrMagnitude;
                 if (curr > DistanceSquared)
                     c.WalkInDirection((Reference.body.position - c.body.position).normalized);
+                else
+                    c.SetIdle();
             }
         }
 

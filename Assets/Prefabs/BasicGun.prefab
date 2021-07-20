@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 0}
+  ignoring: {fileID: 0}
+  rechargeTime: 60
   bullet_type: {fileID: 7393211476796925181, guid: 55459d452d3eb494a995bb087507dbce,
     type: 3}
-  bullet_count: 5
