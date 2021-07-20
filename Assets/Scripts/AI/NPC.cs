@@ -15,7 +15,11 @@ namespace Assets.Scripts.AI
         internal GameManager Manager { get; private set; }
         // private helper functions
         private TextBox textBox;
-
+        protected override void Start()
+        {
+            base.Start();
+            Manager = FindObjectOfType<GameManager>();
+        }
 
 
     }
