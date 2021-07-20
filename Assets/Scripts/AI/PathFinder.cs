@@ -73,7 +73,7 @@ namespace Assets.Scripts.AI
             if (!Walls.cellBounds.Contains(end))
                 return null;
             var fringe = new List<Node>((int)(start - end).magnitude);
-            HashSet<Node> crossedMap = new HashSet<Node>();
+            bool[,] crossedMap = new bool[Walls.cellBounds.xMax - Walls.cellBounds.xMin, Walls.cellBounds.yMax - Walls.cellBounds.yMin];
             fringe.Add(new Node(start));
             var diagonalCost = Mathf.Sqrt(2);
             Node node;
@@ -101,13 +101,14 @@ namespace Assets.Scripts.AI
                     return positions;
                 }
                 fringe.RemoveAt(0);
-                if (crossedMap.Contains(node))
+                if (crossedMap[node.x - Walls.cellBounds.xMin,node.y - Walls.cellBounds.yMin])
                 {
                     MonoBehaviour.print("We already have: " + node);
                     continue;
                 }
-                crossedMap.Add(node);
-                //bool PathMap(int x, int y) => Walls.GetTile(new Vector3Int(x, y, 1)) == null;
+                crossedMap[node.x - Walls.cellBounds.xMin, node.y - Walls.cellBounds.yMin] = true;
+                bool PathMap(int x, int y) => !Walls.HasTile(new Vector3Int(x, y, 0));
+                /*
                 bool PathMap(int x, int y)
                 {
                     /*
@@ -115,7 +116,7 @@ namespace Assets.Scripts.AI
                         for (int j = Walls.cellBounds.yMin; j <= Walls.cellBounds.yMax; j++)
                             if (Walls.HasTile(new Vector3Int(i, j, 0)))
                                 throw null;
-                                */
+                                *//*
                     if(Walls.HasTile(new Vector3Int(x, y, 0)))
                     {
                         MonoBehaviour.print("Wall found!");
@@ -123,13 +124,15 @@ namespace Assets.Scripts.AI
                     }
                     return true;
                 }
+                */
                 // getting new possible nodes
                 for (int x = node.x - 1; x <= node.x + 1; x++)
                     for (int y = node.y - 1; y <= node.y + 1; y++)
                     {
-                        var newNode = new Node(x, y);
-                        if (!crossedMap.Contains(newNode) && PathMap(x, y))
+                        
+                        if (!crossedMap[x-Walls.cellBounds.xMin,y - Walls.cellBounds.yMin] && PathMap(x, y))
                         {
+                            var newNode = new Node(x, y);
                             float cost;
                             if (x == node.x || y == node.y)
                                 cost = 1;

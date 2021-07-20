@@ -72,7 +72,7 @@ namespace Assets.Scripts.AI
                     Debug.DrawLine(last, current, Color.red, 50, false);
                     last = current;
                 }
-                Debug.DrawLine(last, thisNPC.Manager.Walls.GetCellCenterWorld((Vector3Int)from), Color.red, 50, false);
+                Debug.DrawLine(last, thisNPC.body.position, Color.red, 50, false);
                 // finally, we will go to the center of the tile we are currently on
                 // to ensure movements are smooth
                 actionStack.Push(new GoToPositionAction(thisNPC.Manager.Walls.GetCellCenterWorld((Vector3Int)from)));
