@@ -47,35 +47,13 @@ namespace Assets.Scripts.AI
         // Update is called once per frame
         void Update()
         {
-            Check_Distance();
+            
         }
 
         private void OnMouseDown()
         {
         }
 
-        /*
-            Check_Distance uses the famed Distance Formula
-            to check the distance between the Friendly NPC
-            and the mainCharacter. If the distance is less
-            than or equal to 5 world units, the Pop-up
-            Text Box will spawn.
-        */
-        public void Check_Distance()
-        {
-            friendly_XPos = gameObject.transform.position.x;
-            friendly_YPOS = gameObject.transform.position.y;
-            mainCharacter_XPos = mainCharacter.transform.position.x;
-            mainCharacter_YPos = mainCharacter.transform.position.y;
 
-            x_Val = Mathf.Sqrt(Mathf.Pow(friendly_XPos - mainCharacter_XPos, 2));
-            y_Val = Mathf.Sqrt(Mathf.Pow(friendly_YPOS - mainCharacter_YPos, 2));
-
-            if (Mathf.Sqrt(x_Val + y_Val) <= instantiation_Distance)
-            {
-                instantiate.Spawn_Text_Box();
-                Debug.Log("Close Close Close");
-            }
-        }
     }
 }

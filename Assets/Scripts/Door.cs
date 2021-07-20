@@ -8,6 +8,7 @@ public class Door : MonoBehaviour
     public Animator animator;
     public TextMeshProUGUI textMeshPro;
     protected GameManager manager;
+    private MainCharacter mainCharacter;
 
     /*
         The following boolean will be
@@ -16,6 +17,7 @@ public class Door : MonoBehaviour
         the proper animation to be played.
     */
     protected bool isOpen;
+
     /*
         Change_Door_State() will be used to set the
         correct boolean variables regarding the state
@@ -33,11 +35,28 @@ public class Door : MonoBehaviour
             isOpen = false;
         }
     }
-    
+
+    /*
+        Get_Door_State is a simple getter funciton
+        that other objects can use to access the state
+        of the door; opened or closed.
+    */
+    public bool Get_Door_State() 
+    {
+        return isOpen;
+    }
+    private void OnMouseDown()
+    {
+        Change_Door_State();
+    }
+
     private void Start()
     {
         // Find reference to the GameManager object.
         manager = FindObjectOfType<GameManager>();
+
+        // Find reference to the MainCharacter object.
+        mainCharacter = FindObjectOfType<MainCharacter>();
 
         // The door will begin closed.
         isOpen = false;
@@ -47,5 +66,6 @@ public class Door : MonoBehaviour
     {
         // Check for animation update every frame.
         animator.SetBool("isOpen", isOpen);
+        
     }
 }

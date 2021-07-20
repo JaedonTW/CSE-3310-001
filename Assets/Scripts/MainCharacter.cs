@@ -37,7 +37,8 @@ public class MainCharacter : MovableCharacter
         insanity = 50;
         base.Start();
         DamageGroup = DamegeGroups.Player;
-        // Getthing the joystick and camera objects
+
+        // Getting the joystick and camera objects
         joystick = FindObjectOfType<Joystick>();
         cam = FindObjectOfType<Camera>();
         // setting the camera to be focused on the MainCharacter (player)
