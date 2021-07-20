@@ -2271,7 +2271,7 @@ GameObject:
   - component: {fileID: 1065959425}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: View Blocker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7991,9 +7991,39 @@ PrefabInstance:
       propertyPath: instantiate
       value: 
       objectReference: {fileID: 2083286508}
-    m_RemovedComponents: [{fileID: 5592540229107104573, guid: bb0c0b7b3adcdba4da8e4932b34eae2a,
-        type: 3}]
+    m_RemovedComponents:
+    - {fileID: 5592540229107104573, guid: bb0c0b7b3adcdba4da8e4932b34eae2a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bb0c0b7b3adcdba4da8e4932b34eae2a, type: 3}
+--- !u!1 &1716988494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3221812215500873482, guid: bb0c0b7b3adcdba4da8e4932b34eae2a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1716988493}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1716988495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1716988494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c8891f2624a75c40955a2fb9d590152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  weapon: {fileID: 7189779559881689676, guid: ce023659ba54b024cb3baaafdf03cecd, type: 3}
+  idleClip: {fileID: 7400000, guid: 5d78da1e6702394458d83acb35a0d736, type: 2}
+  walkUpClip: {fileID: 7400000, guid: 44b2f4a90a3c1f945a209efc2403c7da, type: 2}
+  walkLeftClip: {fileID: 7400000, guid: 44b2f4a90a3c1f945a209efc2403c7da, type: 2}
+  walkRightClip: {fileID: 7400000, guid: a49abc61679dd1e4b85ec374dc55bad8, type: 2}
+  walkDownClip: {fileID: 7400000, guid: a49abc61679dd1e4b85ec374dc55bad8, type: 2}
+  sitClip: {fileID: 0}
+  dieClip: {fileID: 0}
+  walkingSpeed: 2
+  viewDistance: 10000
+  optimalFightDistance: 3
 --- !u!1001 &1913807337
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8093,36 +8123,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fdaa5357c55da84c92400109165bb24, type: 3}
---- !u!1 &1716988494 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3221812215500873482, guid: bb0c0b7b3adcdba4da8e4932b34eae2a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1716988493}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1716988495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716988494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c8891f2624a75c40955a2fb9d590152, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 5
-  weapon: {fileID: 0}
-  idleClip: {fileID: 7400000, guid: 5d78da1e6702394458d83acb35a0d736, type: 2}
-  walkUpClip: {fileID: 7400000, guid: 44b2f4a90a3c1f945a209efc2403c7da, type: 2}
-  walkLeftClip: {fileID: 7400000, guid: 44b2f4a90a3c1f945a209efc2403c7da, type: 2}
-  walkRightClip: {fileID: 7400000, guid: a49abc61679dd1e4b85ec374dc55bad8, type: 2}
-  walkDownClip: {fileID: 7400000, guid: a49abc61679dd1e4b85ec374dc55bad8, type: 2}
-  sitClip: {fileID: 0}
-  dieClip: {fileID: 0}
-  walkingSpeed: 2
-  viewDistance: 10000
-  optimalFightDistance: 3
 --- !u!1 &1943421019
 GameObject:
   m_ObjectHideFlags: 0
