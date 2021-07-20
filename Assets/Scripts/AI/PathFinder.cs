@@ -70,7 +70,7 @@ namespace Assets.Scripts.AI
         /// <returns>a list of intermediate locations in reverse order, or null if no path exists</returns>
         public static Vector2Int[] GeneratePath(Vector3Int start, Vector3Int end, Tilemap Walls)
         {
-            if (!Walls.cellBounds.Contains(end))
+            if (!Walls.cellBounds.Contains(end) || Walls.HasTile(end))
                 return null;
             var fringe = new List<Node>((int)(start - end).magnitude);
             bool[,] crossedMap = new bool[Walls.cellBounds.xMax - Walls.cellBounds.xMin, Walls.cellBounds.yMax - Walls.cellBounds.yMin];
