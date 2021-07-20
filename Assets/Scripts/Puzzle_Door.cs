@@ -28,18 +28,6 @@ public class Puzzle_Door : Door
             the door defined in the inspector.
         */
         manager.Track_Door_Order(door_Order, gameObject.tag);
-
-        if (isOpen == true)
-        {
-            // Sound Maybe ?
-            Debug.Log("OPENING!\n");
-        }
-
-        else
-        {
-            Debug.Log("CLOSING\n");
-            // Sound Maybe ?
-        }
     }
 
     void Start()
@@ -48,11 +36,11 @@ public class Puzzle_Door : Door
         manager = FindObjectOfType<GameManager>();
 
         // The door will begin closed.
-        isOpen = false;
+        animator.SetBool("isOpen", false);
     }
 
     void Update()
     {
-        animator.SetBool("isOpen", isOpen);
+       
     }
 }

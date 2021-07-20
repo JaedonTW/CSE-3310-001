@@ -34,19 +34,14 @@ public class GameManager : MonoBehaviour
 
         float x_Val = Mathf.Sqrt(Mathf.Pow(obj1_XPos - obj2_XPos, 2));
         float y_Val = Mathf.Sqrt(Mathf.Pow(obj1_YPos - obj2_YPos, 2));
-        float instantiation_Distance = 5;
-
-        Debug.Log(Mathf.Sqrt(x_Val + y_Val));
+        float instantiation_Distance = 1.25f;
 
         if (Mathf.Sqrt(x_Val + y_Val) <= instantiation_Distance)
         {
             return true;
         }
 
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
 
