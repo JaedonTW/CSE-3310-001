@@ -5,17 +5,8 @@ using UnityEngine;
 public abstract class Weapon : MonoBehaviour
 {
     public Rigidbody2D body;
-    public Hurtable ignoring;
+    public Hurtable.DamegeGroups ignoring;
+    public int rechargeTime;
     public abstract void Use(float angle);
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void Tick();
 }

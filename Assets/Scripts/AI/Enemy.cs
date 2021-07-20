@@ -26,6 +26,10 @@ namespace Assets.Scripts.AI
         protected override void Start()
         {
             base.Start();
+            weapon = Instantiate(weapon);
+            weapon.body = body;
+            DamageGroup = DamegeGroups.Enemy;
+            weapon.ignoring = DamegeGroups.Enemy;
             //MainCharacter = Manager.player;
         }
         protected abstract void InitializeAttack();
@@ -37,7 +41,9 @@ namespace Assets.Scripts.AI
         // Update is called once per frame
         protected override void Update()
         {
+            weapon.Tick();
             base.Update();
+            
             // the player is within the view range, so we need to check if the player is within line of sight.
             
             var hits = Physics2D.RaycastAll(body.position, MainCharacter.body.position - body.position, viewDistance);
@@ -56,6 +62,9 @@ namespace Assets.Scripts.AI
                 }
                 if (hit.collider.gameObject.tag == "Player")
                 {
+                    var dx = MainCharacter.body.position - body.position;
+                    //print("Using weapon");
+                    weapon.Use(Mathf.Atan2(dx.y, dx.x));
                     // we have line of sight.
                     KnownPlayerLocation = MainCharacter.body.position;
                     // TODO have attacks take place

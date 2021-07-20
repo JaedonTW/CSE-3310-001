@@ -36,6 +36,7 @@ public class MainCharacter : MovableCharacter
         // Setting insanity to 50 for example
         insanity = 50;
         base.Start();
+        DamageGroup = DamegeGroups.Player;
         // Getthing the joystick and camera objects
         joystick = FindObjectOfType<Joystick>();
         cam = FindObjectOfType<Camera>();

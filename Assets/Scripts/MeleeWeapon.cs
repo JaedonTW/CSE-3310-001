@@ -28,6 +28,10 @@ public class MeleeWeapon : Weapon
         spriteRenderer.enabled = true;
         RemainingTime = speed;
     }
+    public override void Tick()
+    {
+        
+    }
     /// <summary>
     /// 
     /// </summary>
