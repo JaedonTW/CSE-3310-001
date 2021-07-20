@@ -17,7 +17,7 @@ public class Instantiate : MonoBehaviour
     
     void Start()
     {
-        // Find reference to the friendly object in the scene
+        // Find reference to the Friendly object.
         friendly = FindObjectOfType<Friendly>();
         
     }
