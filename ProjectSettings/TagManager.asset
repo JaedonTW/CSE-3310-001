@@ -12,6 +12,7 @@ TagManager:
   - NPC
   - NPC
   - View Blocker
+  - Front_Door
   layers:
   - Default
   - TransparentFX
