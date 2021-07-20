@@ -9,9 +9,12 @@ namespace Assets.Scripts.AI
 {
     public class CultistManager
     {
+        const int TeleportCooldownTicks = 60*20;
+        const float ProbabilityOfSuccessfulTeleport = 0.25f;
+        int TeleportCooldownTicksRemaining { get; set; }
         float AngleOffset { get; set; } = 0;
         List<Cultist> AttackingCultists { get; set; } = new List<Cultist>();
-        HashSet<Cultist> Cultists { get; set; } = new HashSet<Cultist>();
+        List<Cultist> Cultists { get; set; } = new List<Cultist>();
         internal void RegisterCultist(Cultist cultist)
         {
             Cultists.Add(cultist);
@@ -34,6 +37,7 @@ namespace Assets.Scripts.AI
         {
             if (AttackingCultists.Count == 0)
             {
+                TeleportCooldownTicksRemaining = TeleportCooldownTicks;
                 // initializing offset
                 var dx = cultist.Manager.player.body.position - cultist.body.position;
                 AngleOffset = Mathf.Atan2(dx.y,dx.x);
@@ -64,6 +68,24 @@ namespace Assets.Scripts.AI
                     c.PlannedActions.Clear();
                     c.PlannedActions.Push(new GoToPositionAction(cultist.Manager.player.body.position));
                 }
+        }
+        internal void Tick()
+        {
+            if (TeleportCooldownTicksRemaining == 0)
+            {
+                foreach (var c in Cultists)
+                    if (!AttackingCultists.Contains(c))
+                    {
+                        TeleportCooldownTicksRemaining = TeleportCooldownTicks;
+                        if (UnityEngine.Random.Range(0, 1) < ProbabilityOfSuccessfulTeleport)
+                        {
+                            MonoBehaviour.print("Teleporting...");
+                            c.transform.position = c.Manager.player.transform.position;
+                        }
+                    }
+            }
+            else
+                TeleportCooldownTicksRemaining--;
         }
     }
 }
