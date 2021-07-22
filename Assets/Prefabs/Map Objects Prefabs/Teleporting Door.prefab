@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 111771234590555970}
   - component: {fileID: 95435023857849652}
   - component: {fileID: 61077433797420272}
-  - component: {fileID: 114142287248607646}
+  - component: {fileID: 114117507092533532}
   m_Layer: 0
-  m_Name: Door
+  m_Name: Teleporting Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 6802496447558870765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.335856, y: 12.3, z: 5.8071055}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 3
-  m_Sprite: {fileID: 21300000, guid: bb3055f5dc543ce43a9c4665fae92b50, type: 3}
+  m_Sprite: {fileID: 21300196, guid: 200985eb627b6f94fb3ef0b926119f2b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -92,9 +92,8 @@ Animation:
   m_GameObject: {fileID: 6802496447558870765}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 1965dcfb12c2e68458a8601884750df1, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 1965dcfb12c2e68458a8601884750df1, type: 2}
+  m_Animation: {fileID: 7400000, guid: 943be347ce11ba84799238cdd5d7e72d, type: 2}
+  m_Animations: []
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -109,7 +108,7 @@ Animator:
   m_GameObject: {fileID: 6802496447558870765}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3da621dd85734774aa5040b79dc54fac, type: 2}
+  m_Controller: {fileID: 9100000, guid: c7ea6d90cd4079649b0b13d53945126a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -135,7 +134,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.95, y: 0.64}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.95, y: 0.64}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -144,7 +143,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.0001, y: 0.0001}
   m_EdgeRadius: 0
---- !u!114 &114142287248607646
+--- !u!114 &114117507092533532
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,8 +152,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6802496447558870765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d3186f4affe7e8479f504a3fd964243, type: 3}
+  m_Script: {fileID: 11500000, guid: 6475871a92282f14695050fa8628918e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 95435023857849652}
+  animator: {fileID: 0}
   textMeshPro: {fileID: 0}
