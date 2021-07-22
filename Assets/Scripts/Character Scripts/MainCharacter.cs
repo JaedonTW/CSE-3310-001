@@ -8,6 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class MainCharacter : MovableCharacter
 {
+    public List<Weapon> CurrentWeapons { get; set; } = new List<Weapon>();
     /// <summary>
     /// mainCharacter will have sanity which depends
     /// on if friendlies are saved/killed.
