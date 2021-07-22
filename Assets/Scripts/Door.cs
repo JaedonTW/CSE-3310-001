@@ -5,23 +5,10 @@ using TMPro;
 
 public class Door : MonoBehaviour
 {
-    /*
-        door_Order is a SortedDictionary that we will use to
-        determine the order in which Harris must enter the doors
-        to finish level 2. 
-    */
-    SortedDictionary<string, int> door_Order = new SortedDictionary<string, int>()
-    {
-        {"Viper",0},
-        {"Reed",1},
-        {"Water Ripple",2},
-        {"Vulture",3},
-        {"Lion", 4}
-    };
-    
     public Animator animator;
     public TextMeshProUGUI textMeshPro;
-    private GameManager manager;
+    protected GameManager manager;
+    private MainCharacter mainCharacter;
 
     /*
         The following boolean will be
@@ -29,64 +16,52 @@ public class Door : MonoBehaviour
         either opened or closed, which will trigger
         the proper animation to be played.
     */
-    private bool isOpen;
+    protected bool isOpen;
 
     /*
         Change_Door_State() will be used to set the
         correct boolean variables regarding the state
-        of the door.
+        of the door. Rather than having a conditional,
+        we can use the unary not operator to change the
+        state to it's opposite boolean value.
     */
-    void Change_Door_State() 
+    protected void Change_Door_State()
     {
-        if (isOpen == false) 
-        {
-            isOpen = true;
-        }
+        isOpen = !isOpen;
+        animator.SetBool("isOpen", isOpen);
+    }
 
-        else 
-        {
-            isOpen = false;
-        }
+    /*
+        Get_Door_State is a simple getter funciton
+        that other objects can use to access the state
+        of the door; opened or closed.
+    */
+    public bool Get_Door_State() 
+    {
+        return isOpen;
     }
 
     private void OnMouseDown()
     {
+        Debug.Log("Clcicked bool: " + isOpen);
         Change_Door_State();
-
-        /*
-            The gameObject's tag is the name of
-            the door defined in the inspector.
-        */
-        manager.Track_Door_Order(door_Order,gameObject.tag);
-
-        if(isOpen == true) 
-        {
-            //textMeshPro.GetComponent<TextMeshProUGUI>().text = gameObject.tag + " is opened!";
-            Debug.Log("OPENING!\n");
-        }
-
-        else
-        {
-            Debug.Log("CLOSING\n");
-            //textMeshPro.GetComponent<TextMeshProUGUI>().text = gameObject.tag + " is closed!";
-        }
     }
 
-    
-    void Start()
+    private void Start()
     {
+        // Find reference to the GameManager object.
         manager = FindObjectOfType<GameManager>();
-        /*
-            The door will start off
-            closed.
-        */
-        isOpen = false;
 
+        // Find reference to the MainCharacter object.
+        mainCharacter = FindObjectOfType<MainCharacter>();
+
+        // The door will begin closed.
+        animator.SetBool("isOpen", false);
     }
 
-    
-    void Update()
+    private void Update()
     {
-        animator.SetBool("isOpen",isOpen);
+
+        
     }
 }

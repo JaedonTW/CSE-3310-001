@@ -9,6 +9,10 @@ TagManager:
   - Vulture
   - Reed
   - Water Ripple
+  - NPC
+  - NPC
+  - View Blocker
+  - Front_Door
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.AI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,9 +17,8 @@ public class Instantiate : MonoBehaviour
     
     void Start()
     {
-        // Find reference to the friendly object in the scene
+        // Find reference to the Friendly object.
         friendly = FindObjectOfType<Friendly>();
-        
     }
 
     // Update is called once per frame

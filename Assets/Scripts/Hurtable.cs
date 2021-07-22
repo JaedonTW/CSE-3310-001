@@ -6,7 +6,14 @@ using UnityEngine;
 /// </summary>
 public class Hurtable : MonoBehaviour
 {
+    public enum DamegeGroups : byte
+    {
+        Player = 0,
+        Enemy,
+        Friendly,
+    }
     // public variables
+    public DamegeGroups DamageGroup { get; internal set; }
     /// <summary>
     /// The current health of this object, is input parameter.
     /// </summary>

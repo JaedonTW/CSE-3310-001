@@ -8,6 +8,7 @@ using UnityEngine.UI;
 /// </summary>
 public class MainCharacter : MovableCharacter
 {
+    public List<Weapon> CurrentWeapons { get; set; } = new List<Weapon>();
     /// <summary>
     /// mainCharacter will have sanity which depends
     /// on if friendlies are saved/killed.
@@ -36,7 +37,9 @@ public class MainCharacter : MovableCharacter
         // Setting insanity to 50 for example
         insanity = 50;
         base.Start();
-        // Getthing the joystick and camera objects
+        DamageGroup = DamegeGroups.Player;
+
+        // Getting the joystick and camera objects
         joystick = FindObjectOfType<Joystick>();
         cam = FindObjectOfType<Camera>();
         // setting the camera to be focused on the MainCharacter (player)

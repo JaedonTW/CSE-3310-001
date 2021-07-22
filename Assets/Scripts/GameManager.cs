@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.AI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 
 public class GameManager : MonoBehaviour
@@ -9,7 +11,8 @@ public class GameManager : MonoBehaviour
     public MainCharacter player;
     public Friendly[] friendlies;
     public int CurrentLevel { get; private set; } = 0;
-    
+    public Tilemap Walls { get; private set; }
+    public CultistManager CultistCoordinator { get; set; } = new CultistManager();
     /*
         correct_Doors_Entered will hold the number of
         doors entered in a row by the user. The user 
@@ -17,10 +20,33 @@ public class GameManager : MonoBehaviour
         finish the level.
     */
     private int correct_Doors_Entered;
-    
-    
 
-    
+    /*
+        Check_Distance uses the famed Distance Formula
+        to check the distance between two entities. 
+        If the distance is less than or equal to 5 world units, 
+        the Pop-up Text Box will spawn.
+    */
+    public bool Check_Distance(Transform obj1, Transform obj2)
+    {
+        float obj1_XPos = obj1.transform.position.x;
+        float obj1_YPos = obj1.transform.position.y;
+        float obj2_XPos = obj2.transform.position.x;
+        float obj2_YPos = obj2.transform.position.y;
+
+        float x_Val = Mathf.Sqrt(Mathf.Pow(obj1_XPos - obj2_XPos, 2));
+        float y_Val = Mathf.Sqrt(Mathf.Pow(obj1_YPos - obj2_YPos, 2));
+        float instantiation_Distance = 1.25f;
+
+        if (Mathf.Sqrt(x_Val + y_Val) <= instantiation_Distance)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+
     public void StartLevel(int level)
     {
         throw new System.NotImplementedException();
@@ -64,15 +90,36 @@ public class GameManager : MonoBehaviour
             */
             correct_Doors_Entered = 0;
     }
+    void OnMapLoad()
+    {
+        // initializing the 'PathMap' and the 'MapOffset'
+        // getting walls
+        var tilemaps = FindObjectsOfType<Tilemap>();
+        Tilemap walls = null;
+        foreach(var tilemap in tilemaps)
+            if(tilemap.name == "Walls")
+            {
+                walls = tilemap;
+                break;
+            }
+        if (walls == null)
+            throw new MissingComponentException("There must be a 'Tilemap' component named 'Walls'.");
+        Walls = walls;
 
+        // getting a reference to the MainCharacter
+        player = FindObjectOfType<MainCharacter>();
+    }
     void Start()
     {
+
         correct_Doors_Entered = 0;
-        
+
+        OnMapLoad();
     }
 
     // Update is called once per frame
     void Update()
     {
+        CultistCoordinator.Tick();
     }
 }
