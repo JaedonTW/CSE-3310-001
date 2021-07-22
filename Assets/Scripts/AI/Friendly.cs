@@ -21,7 +21,11 @@ namespace Assets.Scripts.AI
             a pop-up box is instantiated.
         */
         [SerializeField] float instantiation_Distance;
-
+        public float probabilityOfGivingGun = 1;
+        /// <summary>
+        /// The minimal distance to interact with and save this friendly
+        /// </summary>
+        protected const float MaxInteractionDistanceSqrd = 1.75f*1.75f;
         protected MainCharacter mainCharacter;
         private Instantiate instantiate;
 
@@ -47,8 +51,22 @@ namespace Assets.Scripts.AI
 
         private void OnMouseDown()
         {
+            if((Manager.player.body.position - body.position).sqrMagnitude <= MaxInteractionDistanceSqrd)
+            {
+                // we handle giving the player a weapon.
+                // First, we use a random check to see if the weapon is successfuly given.
+                if(probabilityOfGivingGun == 1 || Random.Range(0,1f) < probabilityOfGivingGun)
+                {
+                    // now that we know that we are given the player our weapon, we make sure the player does not already ahve it.
+                    if(!Manager.player.CurrentWeapons.Contains(weapon))
+                    {
+                        Manager.player.CurrentWeapons.Add(weapon);
+                        // TODO: indicate to the player that they have been given a new weapon here...
+                        // TODO: run despawn sequence here.  For now, we will just delete the friendly.
+                        Destroy(gameObject);
+                    }
+                }
+            }
         }
-
-
     }
 }
