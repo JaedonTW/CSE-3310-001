@@ -1,2 +1,0 @@
-Created character prefab
-Created joystick prefab
