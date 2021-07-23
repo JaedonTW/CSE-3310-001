@@ -6,16 +6,12 @@ public class RangedWeapon : Weapon
 {
 
     public Bullet bullet_type;
-    private int RechargeTicksRemaining { get; set; }
     /// <summary>
     /// The action for actually firing the weapon, overrides method in 'Weapon'
     /// </summary>
     /// <param name="angle">angle to be fired at in radians</param>
-    public override void Use(float angle)
+    protected override void Use(float angle, Hurtable target)
     {
-        if (RechargeTicksRemaining > 0)
-            return;
-        RechargeTicksRemaining = rechargeTime;
         //
         float bullet_place_distance = 0.5f;
         //
@@ -27,13 +23,5 @@ public class RangedWeapon : Weapon
         //angle = b.tra nsform.rotation.eulerAngles.z;
         b.ignoring = ignoring;
         b.body.velocity = new Vector2(init_velocity * Mathf.Cos(angle), init_velocity * Mathf.Sin(angle));
-    }
-    /// <summary>
-    /// An updater method to be called every tick and maintains the weapon recharge counter.
-    /// </summary>
-    public override void Tick()
-    {
-        if (RechargeTicksRemaining > 0)
-            RechargeTicksRemaining--;
     }
 }

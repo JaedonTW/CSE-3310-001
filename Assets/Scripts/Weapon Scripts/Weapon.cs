@@ -6,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public abstract class Weapon : MonoBehaviour
 {
+    private int RechargeTicksRemaining { get; set; }
     /// <summary>
     /// ID for this weapon
     /// </summary>
@@ -22,15 +23,27 @@ public abstract class Weapon : MonoBehaviour
     /// The amount of time required for this weapon to recharge.
     /// </summary>
     public int rechargeTime;
+    protected abstract void Use(float angle, Hurtable target);
     /// <summary>
     /// A method for firing/attacking with this method
     /// </summary>
     /// <param name="angle">The angle to be attacking at</param>
-    public abstract void Use(float angle);
+    public void AttemptUse(float angle, Hurtable target = null)
+    {
+        if(RechargeTicksRemaining == 0)
+        {
+            RechargeTicksRemaining = rechargeTime;
+            Use(angle,target);
+        }
+    }
     /// <summary>
     /// Iterates the weapon, to be called each tick.
     /// </summary>
-    public abstract void Tick();
+    public void Tick()
+    {
+        if (RechargeTicksRemaining > 0)
+            RechargeTicksRemaining--;
+    }
     /// <summary>
     /// Checks if 'a' and 'b' have the same ID.
     /// </summary>

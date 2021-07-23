@@ -44,7 +44,7 @@ public class MovableCharacter : Hurtable
     // This marks the end of the inputs to be supplied in unity.
     // properties
     // max magnetude should be walkingSpeed.
-    public Animator Anim { get; set; }
+    private Animator Anim { get; set; }
     /// <summary>
     /// The MovingVector for the player.  Should have a magnetude less than or equal to walkingSpeed.
     /// </summary>
@@ -160,7 +160,7 @@ public class MovableCharacter : Hurtable
             if (clips[i] != null)
             {
                 //print(clips[i].name);
-                clips[i].legacy = false;
+                //clips[i].legacy = false;
                 //print("Replacing: " + ((AnimationTypes)i).ToString());
                 overrides.Add(new KeyValuePair<AnimationClip, AnimationClip>(oldClips[i], clips[i]));
             }
@@ -174,5 +174,7 @@ public class MovableCharacter : Hurtable
     {
         if (IsMoving)
             body.velocity = MovingVector;
+        if (weapon != null)
+            weapon.Tick();
     }
 }

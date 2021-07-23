@@ -12,6 +12,8 @@ namespace Assets.Scripts.AI
         {
             base.Start();
             Manager.CultistCoordinator.RegisterCultist(this);
+            weapon = Instantiate(weapon);
+            weapon.body = body;
         }
         protected override void InitializeAttack() =>
             Manager.CultistCoordinator.JoinAttack(this);

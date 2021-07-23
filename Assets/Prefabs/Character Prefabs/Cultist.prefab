@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  weapon: {fileID: 7189779559881689676, guid: ce023659ba54b024cb3baaafdf03cecd, type: 3}
+  weapon: {fileID: 5185300421061613899, guid: 3707a3420e1dc4c4a96f55e218e39519, type: 3}
   idleClip: {fileID: 7400000, guid: 39c2e703da7a73a4aa3119adb5cd7376, type: 2}
   walkUpClip: {fileID: 7400000, guid: ce17535e84aaba74f8173aa39020c29c, type: 2}
   walkLeftClip: {fileID: 7400000, guid: 41c327eeecbc7be4bbf38cb2e23d8674, type: 2}
@@ -141,7 +141,7 @@ MonoBehaviour:
   walkDownClip: {fileID: 7400000, guid: 39c2e703da7a73a4aa3119adb5cd7376, type: 2}
   sitClip: {fileID: 0}
   dieClip: {fileID: 0}
-  walkingSpeed: 5
+  walkingSpeed: 1
   viewDistance: 10
   optimalFightDistance: 2
 --- !u!95 &4561685283525778103

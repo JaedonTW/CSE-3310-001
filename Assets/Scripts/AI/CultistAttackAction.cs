@@ -7,11 +7,11 @@ using UnityEngine;
 
 namespace Assets.Scripts.AI
 {
-    class HoldRelativePositionAction : IAtomicNPCAction
+    class CultistAttackAction : IAtomicNPCAction
     {
         MovableCharacter Reference { get; }
         Vector2 Displacement { get; }
-        public HoldRelativePositionAction(MovableCharacter reference, Vector2 displacement)
+        public CultistAttackAction(MovableCharacter reference, Vector2 displacement)
         {
             Reference = reference;
             Displacement = displacement;

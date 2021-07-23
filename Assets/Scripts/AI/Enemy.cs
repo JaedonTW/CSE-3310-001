@@ -51,7 +51,6 @@ namespace Assets.Scripts.AI
         // Update is called once per frame
         protected override void Update()
         {
-            weapon.Tick();
             base.Update();
             
             // the player is within the view range, so we need to check if the player is within line of sight.
@@ -74,7 +73,7 @@ namespace Assets.Scripts.AI
                 {
                     var dx = MainCharacter.body.position - body.position;
                     //print("Using weapon");
-                    weapon.Use(Mathf.Atan2(dx.y, dx.x));
+                    weapon.AttemptUse(Mathf.Atan2(dx.y, dx.x),MainCharacter);
                     // we have line of sight.
                     KnownPlayerLocation = MainCharacter.body.position;
                     // TODO have attacks take place

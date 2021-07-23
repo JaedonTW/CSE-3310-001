@@ -42,7 +42,7 @@ public class Hurtable : MonoBehaviour
     /// A function for changing the health of this object
     /// </summary>
     /// <param name="change">The change in health</param>
-    public void ChangeHealth(int change)
+    public virtual void ChangeHealth(int change)
     {
         health += change;
         if (health <= 0)

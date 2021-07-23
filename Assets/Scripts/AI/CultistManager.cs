@@ -27,7 +27,7 @@ namespace Assets.Scripts.AI
             {
                 var c = AttackingCultists[i];
                 c.PlannedActions.Clear();
-                c.PlannedActions.Push(new HoldRelativePositionAction(c.Manager.player,
+                c.PlannedActions.Push(new CultistAttackAction(c.Manager.player,
                     new Vector2(Mathf.Cos(theta) * c.optimalFightDistance, Mathf.Sin(theta) * c.optimalFightDistance)
                     ));
                 theta += dtheta;
