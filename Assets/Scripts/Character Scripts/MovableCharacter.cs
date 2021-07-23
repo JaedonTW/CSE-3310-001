@@ -44,7 +44,7 @@ public class MovableCharacter : Hurtable
     // This marks the end of the inputs to be supplied in unity.
     // properties
     // max magnetude should be walkingSpeed.
-    private Animator Anim { get; set; }
+    public Animator Anim { get; set; }
     /// <summary>
     /// The MovingVector for the player.  Should have a magnetude less than or equal to walkingSpeed.
     /// </summary>

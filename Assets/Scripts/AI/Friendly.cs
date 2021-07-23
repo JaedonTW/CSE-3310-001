@@ -5,6 +5,7 @@ namespace Assets.Scripts.AI
 {
     public class Friendly : NPC
     {
+        public GameObject despawnAnimation;
         /*
             Below are the floating point values used 
             to store the main character's position, as
@@ -29,8 +30,9 @@ namespace Assets.Scripts.AI
         protected MainCharacter mainCharacter;
         private Instantiate instantiate;
 
-        void Start()
+        protected override void Start()
         {
+            base.Start();
             // initialize instantiation_Distance
             instantiation_Distance = 1.75f;
 
@@ -41,31 +43,31 @@ namespace Assets.Scripts.AI
             mainCharacter = FindObjectOfType<MainCharacter>();
 
             DamageGroup = DamegeGroups.Friendly;
+            SetSit();
         }
-
-        // Update is called once per frame
-        void Update()
+        private void AttemptGivePlayerWeapon()
         {
-            
+            // we handle giving the player a weapon.
+            // First, we use a random check to see if the weapon is successfuly given.
+            if (probabilityOfGivingGun == 1 || Random.Range(0, 1f) < probabilityOfGivingGun)
+                // now that we know that we are given the player our weapon, we make sure the player does not already have it.
+                if (!Manager.player.CurrentWeapons.Contains(weapon))
+                    // TODO: indicate to the player that they have been given a new weapon here...
+                    Manager.player.CurrentWeapons.Add(weapon);
         }
-
+        public override void OnDeath()
+        {
+            AttemptGivePlayerWeapon();
+            base.OnDeath();
+        }
         private void OnMouseDown()
         {
             if((Manager.player.body.position - body.position).sqrMagnitude <= MaxInteractionDistanceSqrd)
             {
-                // we handle giving the player a weapon.
-                // First, we use a random check to see if the weapon is successfuly given.
-                if(probabilityOfGivingGun == 1 || Random.Range(0,1f) < probabilityOfGivingGun)
-                {
-                    // now that we know that we are given the player our weapon, we make sure the player does not already ahve it.
-                    if(!Manager.player.CurrentWeapons.Contains(weapon))
-                    {
-                        Manager.player.CurrentWeapons.Add(weapon);
-                        // TODO: indicate to the player that they have been given a new weapon here...
-                        // TODO: run despawn sequence here.  For now, we will just delete the friendly.
-                        Destroy(gameObject);
-                    }
-                }
+                AttemptGivePlayerWeapon();
+                var despawn = Instantiate(despawnAnimation,transform.parent);
+                despawn.transform.position = transform.position;
+                Destroy(gameObject);
             }
         }
     }
