@@ -6,11 +6,30 @@ using UnityEngine;
 /// </summary>
 public abstract class Weapon : MonoBehaviour
 {
+    /// <summary>
+    /// ID for this weapon
+    /// </summary>
     public sbyte ID = -1;
+    /// <summary>
+    /// Rigid body that this weapon is attached to.
+    /// </summary>
     public Rigidbody2D body;
+    /// <summary>
+    /// The weapon class that this weapon is not supposed to deal damage to.
+    /// </summary>
     public Hurtable.DamegeGroups ignoring;
+    /// <summary>
+    /// The amount of time required for this weapon to recharge.
+    /// </summary>
     public int rechargeTime;
+    /// <summary>
+    /// A method for firing/attacking with this method
+    /// </summary>
+    /// <param name="angle">The angle to be attacking at</param>
     public abstract void Use(float angle);
+    /// <summary>
+    /// Iterates the weapon, to be called each tick.
+    /// </summary>
     public abstract void Tick();
     /// <summary>
     /// Checks if 'a' and 'b' have the same ID.
