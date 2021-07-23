@@ -8,9 +8,7 @@ namespace Assets.Scripts.AI
 {
     class Mobster : Enemy
     {
-        protected override void InitializeAttack()
-        {
+        protected override void InitializeAttack() =>
             PlannedActions.Push(new HoldRelativeDistanceAction(Manager.player,optimalFightDistance));
-        }
     }
 }

@@ -62,7 +62,7 @@ namespace Assets.Scripts.AI
             }
         }
         /// <summary>
-        /// 
+        /// Generates a path from 'start' to 'end' using Greedy search.
         /// </summary>
         /// <param name="start"></param>
         /// <param name="end"></param>
@@ -70,16 +70,20 @@ namespace Assets.Scripts.AI
         /// <returns>a list of intermediate locations in reverse order, or null if no path exists</returns>
         public static Vector2Int[] GeneratePath(Vector3Int start, Vector3Int end, Tilemap Walls)
         {
+            // NOTE: greedy searched was used because for our maps this will typically be less computationally intensive then A*
+            //   and only slightly less efficient as greedy is optimal when transitions costs are uniform and our transition 
+            //   costs are almost uniform.
+            // Making sure we are not trying to get somewhere inside of a wall or off of the map
             if (!Walls.cellBounds.Contains(end) || Walls.HasTile(end))
                 return null;
             var fringe = new List<Node>((int)(start - end).magnitude);
+            // an array to hold already visited locations, as repeat visits will be useless and should be auto discarded
             bool[,] crossedMap = new bool[Walls.cellBounds.xMax - Walls.cellBounds.xMin, Walls.cellBounds.yMax - Walls.cellBounds.yMin];
             fringe.Add(new Node(start));
             var diagonalCost = Mathf.Sqrt(2);
             Node node;
             while (fringe.Count > 0)
             {
-                MonoBehaviour.print("fringe length: " + fringe.Count);
                 node = fringe[0];
                 if (node.x == end.x && node.y == end.y)
                 {
@@ -91,7 +95,6 @@ namespace Assets.Scripts.AI
                         dupe = dupe.prev;
                         count++;
                     }
-                    MonoBehaviour.print("Path found, length = " + count);
                     Vector2Int[] positions = new Vector2Int[count];
                     for(int i = 0; i < count; i++)
                     {
@@ -102,29 +105,9 @@ namespace Assets.Scripts.AI
                 }
                 fringe.RemoveAt(0);
                 if (crossedMap[node.x - Walls.cellBounds.xMin,node.y - Walls.cellBounds.yMin])
-                {
-                    MonoBehaviour.print("We already have: " + node);
                     continue;
-                }
                 crossedMap[node.x - Walls.cellBounds.xMin, node.y - Walls.cellBounds.yMin] = true;
                 bool PathMap(int x, int y) => !Walls.HasTile(new Vector3Int(x, y, 0));
-                /*
-                bool PathMap(int x, int y)
-                {
-                    /*
-                    for (int i = Walls.cellBounds.xMin; i <= Walls.cellBounds.xMax; i++)
-                        for (int j = Walls.cellBounds.yMin; j <= Walls.cellBounds.yMax; j++)
-                            if (Walls.HasTile(new Vector3Int(i, j, 0)))
-                                throw null;
-                                *//*
-                    if(Walls.HasTile(new Vector3Int(x, y, 0)))
-                    {
-                        MonoBehaviour.print("Wall found!");
-                        return false;
-                    }
-                    return true;
-                }
-                */
                 // getting new possible nodes
                 for (int x = node.x - 1; x <= node.x + 1; x++)
                     for (int y = node.y - 1; y <= node.y + 1; y++)
@@ -146,11 +129,9 @@ namespace Assets.Scripts.AI
                             newNode.Heuristic = Mathf.Sqrt(Sqr(x - end.x) + Sqr(y - end.y));
                             int i = 0;
                             for (; i < fringe.Count && newNode > fringe[i]; i++) ;
-                            MonoBehaviour.print("Adding to fringe.");
                             fringe.Insert(i, newNode);
                         }
                     }
-                MonoBehaviour.print("END");
             }
             return null;
         }

@@ -87,11 +87,5 @@ public class MainCharacter : MovableCharacter
                 else
                     print("Is in bad place...");
             }
-    
-        
-    
-    
     }
-
-
 }

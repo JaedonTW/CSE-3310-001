@@ -18,7 +18,13 @@ namespace Assets.Scripts.AI
         /// The max distance this enemy can see.
         /// </summary>
         public float viewDistance;
+        /// <summary>
+        /// The prefered distance to be from the player when fighting.
+        /// </summary>
         public float optimalFightDistance;
+        /// <summary>
+        /// The current state of the AI at this moment, see UML for details
+        /// </summary>
         internal EnemyState State { get; set; } = EnemyState.Wandering;
         protected Vector2 KnownPlayerLocation { get; private set; }
         Hurtable MainCharacter => Manager.player;
@@ -32,6 +38,10 @@ namespace Assets.Scripts.AI
             weapon.ignoring = DamegeGroups.Enemy;
             //MainCharacter = Manager.player;
         }
+        /// <summary>
+        /// Called when this enemy gains line of sight with the player.
+        /// Initializes the attack as defined by the attack protocol in the derivative class.
+        /// </summary>
         protected abstract void InitializeAttack();
         /// <summary>
         /// The current stack of atomic actions being performed by this NPC.

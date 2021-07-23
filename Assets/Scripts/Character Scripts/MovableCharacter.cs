@@ -7,15 +7,33 @@ using UnityEngine;
 public class MovableCharacter : Hurtable
 {
     // Parameters that should be supplied in unity.
-    // The following AnimationClips are required.
+    /// <summary>
+    /// The IDLE animation clip
+    /// </summary>
     public AnimationClip idleClip;
+    /// <summary>
+    /// The walking up animation clip
+    /// </summary>
     public AnimationClip walkUpClip;
+    /// <summary>
+    /// The walking left animation clip
+    /// </summary>
     public AnimationClip walkLeftClip;
+    /// <summary>
+    /// The walking right animation clip
+    /// </summary>
     public AnimationClip walkRightClip;
+    /// <summary>
+    /// The walking down animation clip
+    /// </summary>
     public AnimationClip walkDownClip;
-    
-    // The remaining clips are not require, but should be supplied if they will be needed.
+    /// <summary>
+    /// The sitting animation clip
+    /// </summary>
     public AnimationClip sitClip;
+    /// <summary>
+    /// The dying animation clip
+    /// </summary>
     public AnimationClip dieClip;
 
     /// <summary>
@@ -31,6 +49,9 @@ public class MovableCharacter : Hurtable
     /// The MovingVector for the player.  Should have a magnetude less than or equal to walkingSpeed.
     /// </summary>
     private Vector2 MovingVector { get; set; }
+    /// <summary>
+    /// Set to true when this MovableCharacter is walking
+    /// </summary>
     public bool IsMoving { get; private set; }
     /// <summary>
     /// The various types of animations a MovableCharacter can perform.

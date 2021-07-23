@@ -13,9 +13,7 @@ namespace Assets.Scripts.AI
             base.Start();
             Manager.CultistCoordinator.RegisterCultist(this);
         }
-        protected override void InitializeAttack()
-        {
+        protected override void InitializeAttack() =>
             Manager.CultistCoordinator.JoinAttack(this);
-        }
     }
 }

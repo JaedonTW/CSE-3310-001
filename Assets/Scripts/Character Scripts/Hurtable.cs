@@ -6,6 +6,9 @@ using UnityEngine;
 /// </summary>
 public class Hurtable : MonoBehaviour
 {
+    /// <summary>
+    /// The different classes of characters that can be damaged
+    /// </summary>
     public enum DamegeGroups : byte
     {
         Player = 0,
@@ -29,16 +32,16 @@ public class Hurtable : MonoBehaviour
     internal Rigidbody2D body;
     // public methods
     /// <summary>
-    /// A placeholder function for the death event.
+    /// A method to be called when this 'Hurtable' is damaged.
     /// </summary>
     public virtual void OnDeath()
     {
-        Destroy(this.gameObject);
+        Destroy(gameObject);
     }
     /// <summary>
     /// A function for changing the health of this object
     /// </summary>
-    /// <param name="change"></param>
+    /// <param name="change">The change in health</param>
     public void ChangeHealth(int change)
     {
         health += change;
