@@ -8,7 +8,8 @@ public class Door : MonoBehaviour
     public Animator animator;
     public TextMeshProUGUI textMeshPro;
     protected GameManager manager;
-    private MainCharacter mainCharacter;
+    protected MainCharacter mainCharacter;
+    protected MainCamera mainCamera;
 
     /*
         The following boolean will be
@@ -29,6 +30,15 @@ public class Door : MonoBehaviour
     {
         isOpen = !isOpen;
         animator.SetBool("isOpen", isOpen);
+
+        /*
+            Note for Andrew: You cannot do the following,
+            animator.SetBool("isOpen",!isOpen) to
+            switch the door state; you must set a boolean
+            before hand as done above. I tried for quite sometime to do it
+            this way, but it just would not work. Feel free to delete this comment
+            when seen.
+        */
     }
 
     /*
@@ -43,7 +53,6 @@ public class Door : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Debug.Log("Clcicked bool: " + isOpen);
         Change_Door_State();
     }
 
@@ -55,13 +64,14 @@ public class Door : MonoBehaviour
         // Find reference to the MainCharacter object.
         mainCharacter = FindObjectOfType<MainCharacter>();
 
-        // The door will begin closed.
+        // Find reference to the MainCamera object.
+        mainCamera = FindObjectOfType<MainCamera>();
+
+        // The door will begin in the closed state.
         animator.SetBool("isOpen", false);
     }
 
     private void Update()
     {
-
-        
     }
 }

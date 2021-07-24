@@ -6,14 +6,7 @@ using UnityEngine.Tilemaps;
 
 public class Puzzle_Door : Door
 {
-    public MainCharacter mainCharacter;
-
-    Vector2 xBound;
-
-    /*
-        Defining a reference to all possible cell positions to be teleported to.
-    */
-    private List<Vector3> teleport_Location;
+    private Teleport teleport;
 
     /*
         door_Order is a SortedDictionary that we will use to
@@ -29,23 +22,12 @@ public class Puzzle_Door : Door
         {"Lion", 4}
     };
 
-    void Fill_Teleport_Locations() 
-    {
-    
-    }
-
-    void Teleport_Character() 
-    {
-        
-
-    
-    }
-
     private void OnMouseDown()
     {
         Change_Door_State();
-        Teleport_Character();
-
+        //mainCamera.Fade_To_Black();
+        teleport.Teleport_Character();
+        
         /*
             The gameObject's tag is the name of
             the door defined in the inspector.
@@ -53,25 +35,20 @@ public class Puzzle_Door : Door
         manager.Track_Door_Order(door_Order, gameObject.tag);
     }
 
-
-
     void Start()
     {
-        // Find reference to the GameManager object.
-        manager = FindObjectOfType<GameManager>();
-
+        // Find reference to the Teleport object.
+        teleport = FindObjectOfType<Teleport>();
+        
         // The door will begin closed.
-        animator.SetBool("isOpen", false);
-
-        xBound = new Vector2(-14f, 30f);
-
-        mainCharacter = FindObjectOfType<MainCharacter>();
+        animator.SetBool("isOpen", false);   
     }
 
     void Update()
     {
-        // Disregard, just testing something.
-        mainCharacter.transform.position = new Vector2(Random.Range(xBound.x, xBound.y), -5);
-       
+        /*
+            This is in update just to test for a bit.
+        */
+        mainCamera.Fade_To_Black();
     }
 }
