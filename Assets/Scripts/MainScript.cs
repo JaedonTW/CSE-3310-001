@@ -23,20 +23,24 @@ public class MainScript : MonoBehaviour
 
     public void Play()
     {
+        Debug.Log("Switch");
         MainUI.SetActive(false);
-       // LevelSelectUI.SetActive(true);
+        LevelSelectUI.SetActive(true);
     }
     public void Act1()
     {
-        SceneManager.LoadScene("0");
+        Debug.Log("Level1");
+        SceneManager.LoadScene("Level1 - Mansion");
     }
     public void Act2()
     {
-        SceneManager.LoadScene("2");
+        Debug.Log("Level2");
+        SceneManager.LoadScene("Level2 - Library");
     }
     public void Act3()
     {
-        SceneManager.LoadScene("");
+        Debug.Log("Level3");
+        SceneManager.LoadScene("Level3 - Boss");
     }
 }
 
