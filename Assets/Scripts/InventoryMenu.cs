@@ -9,16 +9,14 @@ public class InventoryMenu : MonoBehaviour
     public static bool GameIsPaused = false;
     public GameObject pauseMenuUI;
     public Button InventoryButton;
+    public GameObject weaponSelectUI;
     // Update is called once per frame
     void Start()
     {
         pauseMenuUI.SetActive(false);
+        weaponSelectUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
-    }
-    void Update()
-    {
-        
     }
      void Resume()
     {
@@ -36,6 +34,11 @@ public class InventoryMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+     public void WeaponSelect()
+    {
+        weaponSelectUI.SetActive(true);
+        pauseMenuUI.SetActive(false);
+    }
     public void clicked()
     {
         if (GameIsPaused)
@@ -46,6 +49,22 @@ public class InventoryMenu : MonoBehaviour
         {
             Pause();
         }
+    }
+
+    public void Weapon1()
+    {
+        weaponSelectUI.SetActive(false);
+        Time.timeScale = 1f;
+    }
+    public void Weapon2()
+    {
+        weaponSelectUI.SetActive(false);
+        Time.timeScale = 1f;
+    }
+    public void Weapon3()
+    {
+        weaponSelectUI.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
 
