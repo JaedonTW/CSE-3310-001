@@ -7,9 +7,7 @@ using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
-    public Enemy[] enemies;
     public MainCharacter player;
-    public Friendly[] friendlies;
     public int CurrentLevel { get; private set; } = 0;
     public Tilemap Walls { get; private set; }
     public CultistManager CultistCoordinator { get; set; } = new CultistManager();
