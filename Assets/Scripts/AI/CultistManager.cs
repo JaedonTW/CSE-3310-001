@@ -28,7 +28,7 @@ namespace Assets.Scripts.AI
                 var c = AttackingCultists[i];
                 c.PlannedActions.Clear();
                 c.PlannedActions.Push(new CultistAttackAction(c.Manager.player,
-                    new Vector2(Mathf.Cos(theta) * c.optimalFightDistance, Mathf.Sin(theta) * c.optimalFightDistance)
+                    new Vector2(Mathf.Cos(theta) * c.OptimalFightDistance, Mathf.Sin(theta) * c.OptimalFightDistance)
                     ));
                 theta += dtheta;
             }
@@ -71,7 +71,7 @@ namespace Assets.Scripts.AI
         }
         internal void Tick()
         {
-            if (TeleportCooldownTicksRemaining == 0)
+            if (TeleportCooldownTicksRemaining == 0 && AttackingCultists.Count > 0)
             {
                 foreach (var c in Cultists)
                     if (!AttackingCultists.Contains(c))
@@ -82,6 +82,7 @@ namespace Assets.Scripts.AI
                             MonoBehaviour.print("Teleporting...");
                             c.transform.position = c.Manager.player.transform.position;
                         }
+                        break;
                     }
             }
             else

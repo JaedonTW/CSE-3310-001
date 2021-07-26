@@ -8,6 +8,7 @@ namespace Assets.Scripts.AI
 {
     class Cultist : Enemy
     {
+        internal override float OptimalFightDistance => 1f;
         protected override void Start()
         {
             base.Start();

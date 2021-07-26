@@ -142,7 +142,7 @@ MonoBehaviour:
   sitClip: {fileID: 0}
   dieClip: {fileID: 0}
   walkingSpeed: 1
-  viewDistance: 10
+  viewDistance: 50
   optimalFightDistance: 2
 --- !u!95 &4561685283525778103
 Animator:

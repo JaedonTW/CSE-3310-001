@@ -103,7 +103,14 @@ public class GameManager : MonoBehaviour
         if (walls == null)
             throw new MissingComponentException("There must be a 'Tilemap' component named 'Walls'.");
         Walls = walls;
-
+        //
+        var config = FindObjectOfType<MapConfiguration>();
+        if (config == null)
+            Debug.LogWarning("Missing 'MapConfiguration' object.");
+        else
+        {
+            Spawner.SpawnEnemies(config);
+        }
         // getting a reference to the MainCharacter
         player = FindObjectOfType<MainCharacter>();
     }
@@ -111,7 +118,6 @@ public class GameManager : MonoBehaviour
     {
 
         correct_Doors_Entered = 0;
-
         OnMapLoad();
     }
 

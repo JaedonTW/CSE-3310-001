@@ -13,20 +13,19 @@ namespace Assets.Scripts.AI
     }
     public abstract class Enemy : NPC
     {
-        
-        /// <summary>
-        /// The max distance this enemy can see.
-        /// </summary>
-        public float viewDistance;
         /// <summary>
         /// The prefered distance to be from the player when fighting.
         /// </summary>
-        public float optimalFightDistance;
+        internal virtual float OptimalFightDistance { get; }
         /// <summary>
         /// The current state of the AI at this moment, see UML for details
         /// </summary>
         internal EnemyState State { get; set; } = EnemyState.Wandering;
         protected Vector2 KnownPlayerLocation { get; private set; }
+        /// <summary>
+        /// The max distance this enemy can see.
+        /// </summary>
+        const int ViewDistance = 10;
         Hurtable MainCharacter => Manager.player;
         // Start is called before the first frame update
         protected override void Start()
@@ -52,10 +51,11 @@ namespace Assets.Scripts.AI
         protected override void Update()
         {
             base.Update();
-            
+
+
             // the player is within the view range, so we need to check if the player is within line of sight.
-            
-            var hits = Physics2D.RaycastAll(body.position, MainCharacter.body.position - body.position, viewDistance);
+            var dx = MainCharacter.body.position - body.position;
+            var hits = Physics2D.RaycastAll(body.position, dx, ViewDistance);
             foreach (var hit in hits)
             {
                 if (hit.collider.gameObject.tag == "View Blocker")
@@ -71,9 +71,8 @@ namespace Assets.Scripts.AI
                 }
                 if (hit.collider.gameObject.tag == "Player")
                 {
-                    var dx = MainCharacter.body.position - body.position;
                     //print("Using weapon");
-                    weapon.AttemptUse(Mathf.Atan2(dx.y, dx.x),MainCharacter);
+                    weapon.AttemptUse(Mathf.Atan2(dx.y, dx.x), MainCharacter);
                     // we have line of sight.
                     KnownPlayerLocation = MainCharacter.body.position;
                     // TODO have attacks take place

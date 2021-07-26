@@ -8,7 +8,8 @@ namespace Assets.Scripts.AI
 {
     class Mobster : Enemy
     {
+        internal override float OptimalFightDistance => 3f;
         protected override void InitializeAttack() =>
-            PlannedActions.Push(new HoldRelativeDistanceAction(Manager.player,optimalFightDistance));
+            PlannedActions.Push(new HoldRelativeDistanceAction(Manager.player,OptimalFightDistance));
     }
 }
