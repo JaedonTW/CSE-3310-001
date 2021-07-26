@@ -5,6 +5,8 @@ namespace Assets.Scripts.AI
 {
     public class Friendly : NPC
     {
+        private const int SanityDeathChange = -10;
+        private const int SanitySaveChange = 2;
         public GameObject despawnAnimation;
         /*
             Below are the floating point values used 
@@ -51,13 +53,14 @@ namespace Assets.Scripts.AI
             // First, we use a random check to see if the weapon is successfuly given.
             if (probabilityOfGivingGun == 1 || Random.Range(0, 1f) < probabilityOfGivingGun)
                 // now that we know that we are given the player our weapon, we make sure the player does not already have it.
-                if (!Manager.player.CurrentWeapons.Contains(weapon))
+                if (!Manager.player.HasWeapon[weapon.ID])
                     // TODO: indicate to the player that they have been given a new weapon here...
-                    Manager.player.CurrentWeapons.Add(weapon);
+                    Manager.player.HasWeapon[weapon.ID] = true;
         }
         public override void OnDeath()
         {
             AttemptGivePlayerWeapon();
+            Manager.player.ChangeSanity(SanityDeathChange);
             base.OnDeath();
         }
         private void OnMouseDown()
@@ -66,6 +69,7 @@ namespace Assets.Scripts.AI
             {
                 AttemptGivePlayerWeapon();
                 var despawn = Instantiate(despawnAnimation,transform.parent);
+                Manager.player.ChangeSanity(SanitySaveChange);
                 despawn.transform.position = transform.position;
                 Destroy(gameObject);
             }

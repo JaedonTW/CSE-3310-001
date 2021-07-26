@@ -129,6 +129,11 @@ PrefabInstance:
       propertyPath: health
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 7001580741210496732, guid: 40435dc0bde537242bd13f4cb902502d,
+        type: 3}
+      propertyPath: insanity
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7001580742072967856, guid: 40435dc0bde537242bd13f4cb902502d,
         type: 3}
       propertyPath: m_Enabled
@@ -2386,7 +2391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 528644243}
   InventoryButton: {fileID: 933680150}
-  weaponSelectUI: {fileID: 2114849675}
+  weaponSelectUI: {fileID: 0}
 --- !u!4 &873765139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7072575262302111909, guid: 2fdaa5357c55da84c92400109165bb24,
@@ -9647,10 +9652,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6a2448b9bbf109944b9e54bcdca48f2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Name: 
-  m_EditorClassIdentifier: 
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &2114849678

@@ -14,7 +14,8 @@ public class MainCharacter : MovableCharacter
     const int MeleeDamage = 1;
 
     // END PLAYER CONFIGURATION VARIABLES
-    public List<Weapon> CurrentWeapons { get; set; } = new List<Weapon>();
+    public Weapon[] Weapons;
+    public bool[] HasWeapon { get; } = new bool[3];
     /// <summary>
     /// mainCharacter will have sanity which depends
     /// on if friendlies are saved/killed.
@@ -24,9 +25,18 @@ public class MainCharacter : MovableCharacter
     /// <summary>
     /// Getter function for insanity.
     /// </summary>
-    public int Get_Insanity() 
+    public int GetInsanity() => insanity;
+    /// <summary>
+    /// Change function for insanity.
+    /// </summary>
+    public void ChangeSanity(int amount)
     {
-        return insanity;
+        insanity += amount;
+        if (insanity > 100)
+            insanity = 100;
+        else if (insanity < 0)
+            insanity = 0;
+
     }
 
     /// <summary>
@@ -38,6 +48,12 @@ public class MainCharacter : MovableCharacter
     /// Transformation for the main camera.
     /// </summary>
     protected Camera cam;
+    public void OnLevelEnd()
+    {
+        PlayerPrefs.SetInt("Insanity", GetInsanity());
+        for(int i = 0; i < HasWeapon.Length; i++)
+            PlayerPrefs.SetInt("Weapon " + i + " is unlocked", HasWeapon[i]? 1 : 0);
+    }
     public override void ChangeHealth(int change)
     {
         base.ChangeHealth(change);
@@ -45,8 +61,12 @@ public class MainCharacter : MovableCharacter
     }
     protected override void Start()
     {
-        // Setting insanity to 50 for example
-        insanity = 50;
+        // Loading data and setting initial values
+        insanity = PlayerPrefs.GetInt("Insanity",0);
+        for (int i = 0; i < HasWeapon.Length; i++)
+            HasWeapon[i] = PlayerPrefs.GetInt("Weapon " + i + " is unlocked",0) == 1;
+        health = 100;
+        //
         base.Start();
         DamageGroup = DamegeGroups.Player;
 

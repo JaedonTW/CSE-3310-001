@@ -20,7 +20,7 @@ public class HUD : MonoBehaviour
     private void update_Gauge() 
     {
         health_Gauge.sizeDelta = new Vector2(mainCharacter.health, health_Gauge.rect.height);
-        insanity_Gauge.sizeDelta = new Vector2(mainCharacter.Get_Insanity(), insanity_Gauge.rect.height);
+        insanity_Gauge.sizeDelta = new Vector2(mainCharacter.GetInsanity(), insanity_Gauge.rect.height);
     }
     
     /// <summary>
