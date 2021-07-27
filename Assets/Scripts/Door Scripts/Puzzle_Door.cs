@@ -22,6 +22,8 @@ public class Puzzle_Door : Door
         {"Lion", 4}
     };
 
+    
+
     /*
         When we select a teleporting door, we will
         execute the following subroutines.
