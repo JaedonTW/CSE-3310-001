@@ -13,6 +13,7 @@ TagManager:
   - NPC
   - View Blocker
   - Front_Door
+  - Lightning
   layers:
   - Default
   - TransparentFX
