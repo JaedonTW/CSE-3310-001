@@ -28,18 +28,26 @@ public class Puzzle_Door : Door
     */
     private void OnMouseDown()
     {
-        // Negate the value of the door state
+        // Negate the value of the door state; opening the door
         Change_Door_State();
 
         // Fade the camera out
-        mainCamera.StartCoroutine(mainCamera.Fade_Black(!isOpen));
+        mainCamera.StartCoroutine(mainCamera.Fade_Black(isOpen));
 
         // Teleport the main character to a random door
         mainCharacter.transform.position = teleport.Teleport_Character();
-        
+
+        // Fade the camera in
+        mainCamera.StartCoroutine(mainCamera.Fade_Black(!isOpen));
+
+        // Negate the value of the door state; closing the door
+        Change_Door_State();
+
         // Check if the character pressed the correct door in the correct order
         manager.Track_Door_Order(door_Order, gameObject.tag);
     }
+
+    
 
     void Start()
     {

@@ -30,18 +30,18 @@ public class MainCamera : MonoBehaviour
         when you first begin a level, when you enter a new room,
         or when you enter one of the puzzle doors.
     */
-    public IEnumerator Fade_Black(bool fade_In) 
+    public IEnumerator Fade_Black(bool isOpen) 
     {
-        // Fade_Interval signifies the 3 seconds it takes the camera to fade in/out of black
-        float Fade_Interval= 4f;
+        // Fade_Interval signifies the 2 seconds it takes the camera to fade in/out of black
+        float Fade_Interval= 2f;
         
         // Elapsed_Time signifies how much time has passed; will update each frame
         float Elapsed_Time = 0f;
         
         // If you need to fade out, run the following conditional
-        if (!fade_In) 
+        if (isOpen == true) 
         {
-            while (Elapsed_Time < Fade_Interval) 
+            while (Elapsed_Time < Fade_Interval)
             {
                 black_Fade.color = Color.Lerp(translucent, non_translucent, Elapsed_Time);
                 Elapsed_Time = Elapsed_Time + Time.deltaTime;
