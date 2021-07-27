@@ -22,16 +22,22 @@ public class Puzzle_Door : Door
         {"Lion", 4}
     };
 
+    /*
+        When we select a teleporting door, we will
+        execute the following subroutines.
+    */
     private void OnMouseDown()
     {
+        // Negate the value of the door state
         Change_Door_State();
-        //mainCamera.Fade_To_Black();
-        teleport.Teleport_Character();
+
+        // Fade the camera out
+        mainCamera.StartCoroutine(mainCamera.Fade_Black(!isOpen));
+
+        // Teleport the main character to a random door
+        mainCharacter.transform.position = teleport.Teleport_Character();
         
-        /*
-            The gameObject's tag is the name of
-            the door defined in the inspector.
-        */
+        // Check if the character pressed the correct door in the correct order
         manager.Track_Door_Order(door_Order, gameObject.tag);
     }
 
@@ -41,14 +47,19 @@ public class Puzzle_Door : Door
         teleport = FindObjectOfType<Teleport>();
         
         // The door will begin closed.
-        animator.SetBool("isOpen", false);   
+        animator.SetBool("isOpen", false);
+
+        // Find reference to the MainCamera object.
+        mainCamera = FindObjectOfType<MainCamera>();
+
+        // Find reference to the GameManager object.
+        manager = FindObjectOfType<GameManager>();
+
+        // Find reference to the MainCharacter object.
+        mainCharacter = FindObjectOfType<MainCharacter>();
     }
 
     void Update()
     {
-        /*
-            This is in update just to test for a bit.
-        */
-        mainCamera.Fade_To_Black();
     }
 }

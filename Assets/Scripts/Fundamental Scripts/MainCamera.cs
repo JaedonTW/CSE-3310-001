@@ -30,26 +30,49 @@ public class MainCamera : MonoBehaviour
         when you first begin a level, when you enter a new room,
         or when you enter one of the puzzle doors.
     */
-    public void Fade_To_Black(/*will put bool soon, not yet though*/) 
+    public IEnumerator Fade_Black(bool fade_In) 
     {
-        // Still working on this
-        //black_Fade.color = new Color(0, 0, 0, opacity);
+        // Fade_Interval signifies the 3 seconds it takes the camera to fade in/out of black
+        float Fade_Interval= 4f;
+        
+        // Elapsed_Time signifies how much time has passed; will update each frame
+        float Elapsed_Time = 0f;
+        
+        // If you need to fade out, run the following conditional
+        if (!fade_In) 
+        {
+            while (Elapsed_Time < Fade_Interval) 
+            {
+                black_Fade.color = Color.Lerp(translucent, non_translucent, Elapsed_Time);
+                Elapsed_Time = Elapsed_Time + Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        // Else, fade in
+        while (Elapsed_Time < Fade_Interval)
+        {
+            black_Fade.color = Color.Lerp(non_translucent, translucent, Elapsed_Time);
+            Elapsed_Time = Elapsed_Time + Time.deltaTime;
+            yield return null;
+        }
     }
 
     void Start()
     {
         mainCharacter = FindObjectOfType<MainCharacter>();
     }
-
-
-    float t = 0;
+    
     void Update()
     {
         /*
             Basic concept.
         */
         Camera.main.transform.position = new Vector3(mainCharacter.transform.position.x,mainCharacter.transform.position.y,Camera.main.transform.position.z);
-        black_Fade.color = Color.Lerp(translucent,non_translucent,t);
-        t += Time.deltaTime;
+        
+
+        /*t = 0;
+        black_Fade.color = Color.Lerp(non_translucent, translucent, t);
+        t += Time.deltaTime;*/
     }
 }
