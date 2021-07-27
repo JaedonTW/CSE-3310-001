@@ -16,7 +16,7 @@ public class Puzzle_Door : Door
     SortedDictionary<string, int> door_Order = new SortedDictionary<string, int>()
     {
         {"Viper",0},
-        {"Reed",1},
+        {"Lightning",1},
         {"Water Ripple",2},
         {"Vulture",3},
         {"Lion", 4}

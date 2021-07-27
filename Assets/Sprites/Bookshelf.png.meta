@@ -78,10 +78,10 @@ TextureImporter:
       name: Bookshelf_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 32
-        height: 32
+        width: 30
+        height: 8
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -89,7 +89,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9be30b773cbc1034796ad7eb68e8a42a
+      spriteID: bbe3592479dfc9548a9318aff5cc85c1
       vertices: []
       indices: 
       edges: []
@@ -98,10 +98,10 @@ TextureImporter:
       name: Bookshelf_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 34
         y: 0
-        width: 32
-        height: 32
+        width: 28
+        height: 28
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -109,7 +109,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d454dcb14b5090148a852b1fec6610cd
+      spriteID: 18f23b107c5f3664986431688450443c
       vertices: []
       indices: 
       edges: []
