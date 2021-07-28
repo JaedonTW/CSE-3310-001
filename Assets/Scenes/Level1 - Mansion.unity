@@ -2474,7 +2474,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 528644243}
   InventoryButton: {fileID: 933680150}
-  weaponSelectUI: {fileID: 0}
+  weaponSelectUI: {fileID: 2114849675}
 --- !u!4 &873765139 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7072575262302111909, guid: 2fdaa5357c55da84c92400109165bb24,
@@ -9611,7 +9611,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2114849676
 RectTransform:
   m_ObjectHideFlags: 0
