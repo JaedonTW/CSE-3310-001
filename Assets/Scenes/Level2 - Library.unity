@@ -51202,7 +51202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 1810848427}
   InventoryButton: {fileID: 548342392}
-  weaponSelectUI: {fileID: 0}
+  weaponSelectUI: {fileID: 802601465}
 --- !u!4 &2016558771 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4515492859824428348, guid: 6c5967f5925b5ba47bde92545d942c4f,
