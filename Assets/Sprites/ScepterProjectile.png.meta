@@ -1,9 +1,10 @@
 fileFormatVersion: 2
-guid: a0b12cf0be898924ca76aa8a697c495d
+guid: e0c880a8cf2c97b438945e0527c2b26f
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bookshelf_0
-    21300002: Bookshelf_1
+    21300000: ScepterProjectile_0
+    21300002: ScepterProjectile_1
+    21300004: ScepterProjectile_2
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -47,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,13 +76,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bookshelf_0
+      name: ScepterProjectile_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 30
-        height: 8
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -89,19 +90,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbe3592479dfc9548a9318aff5cc85c1
+      spriteID: 8ca7f4f6c09eeeb45a545a6c32b5b95f
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bookshelf_1
+      name: ScepterProjectile_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 16
         y: 0
-        width: 28
-        height: 28
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -109,7 +110,27 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18f23b107c5f3664986431688450443c
+      spriteID: 8b962ac50a198404b87ce26618e2ea2f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScepterProjectile_2
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82acc23cff324134e95db5bce274fd7e
       vertices: []
       indices: 
       edges: []
@@ -117,7 +138,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e099de64d051efe4a8fca90fe3e20aa8
+    spriteID: a2437fdce627d9e4fa08778405866da5
     vertices: []
     indices: 
     edges: []

@@ -16,7 +16,7 @@ public class Teleport : MonoBehaviour
     */
     public Vector2 Teleport_Character()
     {
-        Puzzle_Door puzzle_Door = puzzle_Doors[Random.Range(0, 6)];
+        Puzzle_Door puzzle_Door = puzzle_Doors[Random.Range(0, 5)];
         return new Vector2 (puzzle_Door.transform.position.x, puzzle_Door.transform.position.y -1);
     }
 

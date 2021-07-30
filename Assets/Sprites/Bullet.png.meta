@@ -1,9 +1,9 @@
 fileFormatVersion: 2
-guid: a0b12cf0be898924ca76aa8a697c495d
+guid: f5d2c18973f3ac24bb352a64c44f7f6b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bookshelf_0
-    21300002: Bookshelf_1
+    21300000: Bullet_0
+    21300002: Bullet_1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,13 +75,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bookshelf_0
+      name: Bullet_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 30
-        height: 8
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -89,19 +89,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbe3592479dfc9548a9318aff5cc85c1
+      spriteID: 05afb3eec8451bd409b1b396abcc5cf1
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bookshelf_1
+      name: Bullet_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 16
         y: 0
-        width: 28
-        height: 28
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -109,7 +109,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18f23b107c5f3664986431688450443c
+      spriteID: fe64a53786b490948a58f0631e8f1df7
       vertices: []
       indices: 
       edges: []
@@ -117,7 +117,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e099de64d051efe4a8fca90fe3e20aa8
+    spriteID: 9ef22f117c5ad444296519a9e5916689
     vertices: []
     indices: 
     edges: []

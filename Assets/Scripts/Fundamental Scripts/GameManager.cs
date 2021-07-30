@@ -116,7 +116,6 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-
         correct_Doors_Entered = 0;
         OnMapLoad();
     }

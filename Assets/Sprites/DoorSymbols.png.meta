@@ -1,9 +1,12 @@
 fileFormatVersion: 2
-guid: a0b12cf0be898924ca76aa8a697c495d
+guid: 05258554839b4074ebae77520604929b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Bookshelf_0
-    21300002: Bookshelf_1
+    21300000: DoorSymbols_0
+    21300002: DoorSymbols_1
+    21300004: DoorSymbols_2
+    21300006: DoorSymbols_3
+    21300008: DoorSymbols_4
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -75,13 +78,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Bookshelf_0
+      name: DoorSymbols_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 30
-        height: 8
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -89,19 +92,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bbe3592479dfc9548a9318aff5cc85c1
+      spriteID: 6d3b9e341639be94ca9f24f2e82cb8a8
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bookshelf_1
+      name: DoorSymbols_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 32
         y: 0
-        width: 28
-        height: 28
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -109,7 +112,67 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 18f23b107c5f3664986431688450443c
+      spriteID: 707766685e3b55e4b8846664b2f0e9f2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoorSymbols_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1bcd766e28d00d45b8652f6782ae65e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoorSymbols_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 550d1a5d5e7386747804cbc7136abf9f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DoorSymbols_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 274d6109331f16f4ca6c2c472dce3a42
       vertices: []
       indices: 
       edges: []
@@ -117,7 +180,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e099de64d051efe4a8fca90fe3e20aa8
+    spriteID: 4ef01b9a92998174db74cf08382e8dc4
     vertices: []
     indices: 
     edges: []
