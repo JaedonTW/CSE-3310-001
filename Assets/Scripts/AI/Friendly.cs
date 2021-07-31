@@ -49,13 +49,16 @@ namespace Assets.Scripts.AI
         }
         private void AttemptGivePlayerWeapon()
         {
+            float[] probability = { 1f, 0.5f, 0.25f };
             // we handle giving the player a weapon.
             // First, we use a random check to see if the weapon is successfuly given.
-            if (probabilityOfGivingGun == 1 || Random.Range(0, 1f) < probabilityOfGivingGun)
-                // now that we know that we are given the player our weapon, we make sure the player does not already have it.
-                if (!Manager.player.HasWeapon[weapon.ID])
-                    // TODO: indicate to the player that they have been given a new weapon here...
-                    Manager.player.HasWeapon[weapon.ID] = true;
+            for (int i = 0; i < Manager.player.HasWeapon.Length; i++)
+                if (!Manager.player.HasWeapon[i] && Random.Range(0f, 1f) < probability[i])
+                {
+                    print("Giving player weapen: " + i);
+                    Manager.player.HasWeapon[i] = true;
+                    return;
+                }
         }
         public override void OnDeath()
         {
