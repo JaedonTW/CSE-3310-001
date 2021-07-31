@@ -23,7 +23,8 @@ public class MainCharacter : MovableCharacter
     [SerializeField] protected int insanity;
     public void SetActiveWeapon(int ID)
     {
-        weapon = Weapons[ID];
+        if(HasWeapon[ID])
+            weapon = Weapons[ID];
     }
 
     /// <summary>
