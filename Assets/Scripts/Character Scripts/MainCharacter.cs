@@ -21,6 +21,10 @@ public class MainCharacter : MovableCharacter
     /// on if friendlies are saved/killed.
     /// </summary>
     [SerializeField] protected int insanity;
+    public void SetActiveWeapon(int ID)
+    {
+        weapon = Weapons[ID];
+    }
 
     /// <summary>
     /// Getter function for insanity.
