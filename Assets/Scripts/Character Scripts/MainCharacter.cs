@@ -36,14 +36,18 @@ public class MainCharacter : MovableCharacter
         Sanity += amount;
         if (Sanity > 100)
             Sanity = 100;
-        else if(Sanity < 50)
+        else if (Sanity < 50)
         {
             if (Sanity <= 0)
+            {
+                HUD.SetSanity(Sanity);
                 OnDeath();
+                return;
+            }
             else
                 InkSpawner.Start(this);
         }
-
+        HUD.SetSanity(Sanity);
     }
 
     /// <summary>
@@ -64,6 +68,7 @@ public class MainCharacter : MovableCharacter
     public override void ChangeHealth(int change)
     {
         base.ChangeHealth(change);
+        HUD.SetHealth(Health);
         print("Player health is now " + Health);
     }
     protected override void Start()
@@ -71,9 +76,9 @@ public class MainCharacter : MovableCharacter
         print("MainCharacter started");
         // Loading data and setting initial values
         Sanity = PlayerPrefs.GetInt("Sanity",75);
+        HUD.SetSanity(Sanity);
         for (int i = 0; i < HasWeapon.Length; i++)
             HasWeapon[i] = PlayerPrefs.GetInt("Weapon " + i + " is unlocked",0) == 1;
-        Health = 100;
         //
         base.Start();
         DamageGroup = DamegeGroups.Player;

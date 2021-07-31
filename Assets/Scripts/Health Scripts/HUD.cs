@@ -5,42 +5,26 @@ using UnityEngine.UI;
 
 public class HUD : MonoBehaviour
 {
+    [SerializeField]
+    private RectTransform healthGauge;
+    [SerializeField]
+    private RectTransform sanityGauge;
+    
+    static RectTransform HealthBar { get; set; }
+    static RectTransform SanityBar { get; set; }
     /// <summary>
-    /// Health and Insanity gauges are defined first.
+    /// Sets the onscreen value for the health meter where 100 is max and 0 is none.
     /// </summary>
-    public RectTransform health_Gauge;
-    public RectTransform insanity_Gauge;
-    
+    /// <param name="health">Desired health value.</param>
+    public static void SetHealth(int health) => HealthBar.transform.localScale = new Vector3(1f * health / 100, 1, 1);
     /// <summary>
-    /// update_Gauge will update both the health gauge,
-    /// as well as the insanity gauge by referencing the
-    /// integers in the Hurtable class which mainCharacter
-    /// inherits from.
-    /// </summary>    
-    private void update_Gauge() 
-    {
-        health_Gauge.sizeDelta = new Vector2(mainCharacter.Health, health_Gauge.rect.height);
-        insanity_Gauge.sizeDelta = new Vector2(mainCharacter.Sanity, insanity_Gauge.rect.height);
-    }
-    
-    /// <summary>
-    /// mainCharacter is present so we have a reference to
-    /// access the health, and insanity values.
+    /// Sets the onscreen value for the sanity meter where 100 is max and 0 is none.
     /// </summary>
-    MainCharacter mainCharacter;
-
-    private void Start()
+    /// <param name="health">Desired sanity value.</param>
+    public static void SetSanity(int health) => SanityBar.transform.localScale = new Vector3(1f * health / 100, 1, 1);
+    public void Start()
     {
-        mainCharacter = FindObjectOfType<MainCharacter>();
-    }
-
-    private void Update()
-    {
-        update_Gauge();
-    }
-    
-    public void setData(MainCharacter mainCharacter)
-    {
-         
+        HealthBar = healthGauge;
+        SanityBar = sanityGauge;
     }
 }
