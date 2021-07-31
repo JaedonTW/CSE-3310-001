@@ -27,7 +27,6 @@ public class RangedWeapon : Weapon
         {
             Vector3 position = new Vector3(body.position.x, body.position.y);
             position = new Vector3(bullet_place_distance * Mathf.Cos(theta) + position.x, bullet_place_distance * Mathf.Sin(theta) + position.y);
-            print("'bullet' is null: " + (bullet == null));
             Projectile b = Instantiate(bullet, position, Quaternion.identity, body.transform);
             //angle = b.tra nsform.rotation.eulerAngles.z;
             b.ignoring = ignoring;

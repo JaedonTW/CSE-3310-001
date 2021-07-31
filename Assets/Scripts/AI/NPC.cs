@@ -20,7 +20,5 @@ namespace Assets.Scripts.AI
             base.Start();
             Manager = FindObjectOfType<GameManager>();
         }
-
-
     }
 }

@@ -44,32 +44,8 @@ public class Projectile : MonoBehaviour
             return;
         }
         // destroys the bullet
-        print("Destroying " + gameObject.name);
         Destroy(gameObject);
     }
-    /*
-    private void OnTriggerEnter2D(Collider2D collider)
-    {
-        Hurtable from = collider.GetComponentInParent<Hurtable>();
-        // Checking if the object that was hit is hurtable
-        if (from != null)
-        {
-            // Runs the friendly fire check
-            if (ignoring == from.DamageGroup)
-                return;
-            // deals damage to contacting object
-            else from.ChangeHealth(-damage);
-        }
-        else if (--maxBounces > 0)
-        {
-            body.velocity = Vector3.Reflect(body.velocity, collider.normal);
-            //body.velocity = body.velocity.normalized * Speed;
-            return;
-        }
-        // destroys the bullet
-        Destroy(gameObject);
-    }
-    */
     private void OnCollisionStay2D(Collision2D collision)
     {
         body.velocity = body.velocity.normalized * Speed;
@@ -78,10 +54,5 @@ public class Projectile : MonoBehaviour
     {
         //FixDirection();
         body.velocity = body.velocity.normalized * Speed;
-    }
-    private void OnDestroy()
-    {
-        print("OnDestroy: " + gameObject.name);
-        Destroy(gameObject);
     }
 }

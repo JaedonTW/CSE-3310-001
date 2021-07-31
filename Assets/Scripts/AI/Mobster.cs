@@ -13,12 +13,12 @@ namespace Assets.Scripts.AI
             PlannedActions.Push(new HoldRelativeDistanceAction(Manager.player,OptimalFightDistance));
         public override void ChangeHealth(int change)
         {
-            base.ChangeHealth(change);
             if (state == EnemyState.Guarding)
             {
                 body.constraints = UnityEngine.RigidbodyConstraints2D.FreezeRotation;
                 state = EnemyState.Wandering;
             }
+            base.ChangeHealth(change);
         }
     }
 }

@@ -8,9 +8,9 @@ public class HealthItem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         MainCharacter mainCharacter = collision.GetComponentInParent<MainCharacter>();
-        if (mainCharacter != null && mainCharacter.health < 100)
+        if (mainCharacter != null && mainCharacter.Health < 100)
         {
-            mainCharacter.health = Mathf.Min(100, mainCharacter.health + healthValue);
+            mainCharacter.Health = Mathf.Min(100, mainCharacter.Health + healthValue);
             Destroy(gameObject);
         }
     }

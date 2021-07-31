@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.AI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -20,27 +21,28 @@ public class MainCharacter : MovableCharacter
     /// mainCharacter will have sanity which depends
     /// on if friendlies are saved/killed.
     /// </summary>
-    [SerializeField] protected int insanity;
+    public int Sanity { get; private set; }
+    public GameManager Manager { get; set; }
     public void SetActiveWeapon(int ID)
     {
         if(HasWeapon[ID])
             weapon = Weapons[ID];
     }
-
     /// <summary>
-    /// Getter function for insanity.
-    /// </summary>
-    public int GetInsanity() => insanity;
-    /// <summary>
-    /// Change function for insanity.
+    /// Change function for sanity.
     /// </summary>
     public void ChangeSanity(int amount)
     {
-        insanity += amount;
-        if (insanity > 100)
-            insanity = 100;
-        else if (insanity < 0)
-            insanity = 0;
+        Sanity += amount;
+        if (Sanity > 100)
+            Sanity = 100;
+        else if(Sanity < 50)
+        {
+            if (Sanity <= 0)
+                OnDeath();
+            else
+                InkSpawner.Start(this);
+        }
 
     }
 
@@ -55,23 +57,23 @@ public class MainCharacter : MovableCharacter
     protected Camera cam;
     public void OnLevelEnd()
     {
-        PlayerPrefs.SetInt("Insanity", GetInsanity());
+        PlayerPrefs.SetInt("Sanity", Sanity);
         for(int i = 0; i < HasWeapon.Length; i++)
             PlayerPrefs.SetInt("Weapon " + i + " is unlocked", HasWeapon[i]? 1 : 0);
     }
     public override void ChangeHealth(int change)
     {
         base.ChangeHealth(change);
-        print("Player health is now " + health);
+        print("Player health is now " + Health);
     }
     protected override void Start()
     {
         print("MainCharacter started");
         // Loading data and setting initial values
-        insanity = PlayerPrefs.GetInt("Insanity",0);
+        Sanity = PlayerPrefs.GetInt("Sanity",75);
         for (int i = 0; i < HasWeapon.Length; i++)
             HasWeapon[i] = PlayerPrefs.GetInt("Weapon " + i + " is unlocked",0) == 1;
-        health = 100;
+        Health = 100;
         //
         base.Start();
         DamageGroup = DamegeGroups.Player;
@@ -134,6 +136,9 @@ public class MainCharacter : MovableCharacter
             }
             if (rangeAttack && weapon != null)
                 weapon.AttemptUse(Mathf.Atan2(attacking.y,attacking.x));
+            // dealing with sanity
+            if (Sanity <= 50)
+                InkSpawner.Update(this,Manager.Walls,Manager.inkiePrefab);
         }
         // calling update for parent object.
         // this is done after getting user input to improve response time.

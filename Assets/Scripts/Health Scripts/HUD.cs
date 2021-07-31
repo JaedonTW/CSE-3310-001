@@ -19,8 +19,8 @@ public class HUD : MonoBehaviour
     /// </summary>    
     private void update_Gauge() 
     {
-        health_Gauge.sizeDelta = new Vector2(mainCharacter.health, health_Gauge.rect.height);
-        insanity_Gauge.sizeDelta = new Vector2(mainCharacter.GetInsanity(), insanity_Gauge.rect.height);
+        health_Gauge.sizeDelta = new Vector2(mainCharacter.Health, health_Gauge.rect.height);
+        insanity_Gauge.sizeDelta = new Vector2(mainCharacter.Sanity, insanity_Gauge.rect.height);
     }
     
     /// <summary>
@@ -31,9 +31,6 @@ public class HUD : MonoBehaviour
 
     private void Start()
     {
-        /// <summary>
-        /// Finding reference to mainCharacter object
-        /// </summary>
         mainCharacter = FindObjectOfType<MainCharacter>();
     }
 

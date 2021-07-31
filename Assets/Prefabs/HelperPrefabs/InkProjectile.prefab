@@ -130,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a9950170e1e9c949903da3cc4395096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
+  damage: 5
   body: {fileID: 6199357921058576844}
   maxBounces: 0
 --- !u!50 &6199357921058576844

@@ -16,7 +16,7 @@ PrefabInstance:
         type: 3}
       propertyPath: weapon
       value: 
-      objectReference: {fileID: 4302344185761165745, guid: 34ac4979876de3246b6be3b7f74096ae,
+      objectReference: {fileID: 1062488391251515687, guid: 17ad785990b855e41a0258fd3fd5f261,
         type: 3}
     - target: {fileID: 6057925516227009319, guid: 8b4a90e19c327914aa5aa1840d729811,
         type: 3}
@@ -86,7 +86,7 @@ PrefabInstance:
     - target: {fileID: 8693141397622866991, guid: 8b4a90e19c327914aa5aa1840d729811,
         type: 3}
       propertyPath: m_Name
-      value: Mobster1 - Guarding
+      value: Mobster1 - Guarding Variant
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b4a90e19c327914aa5aa1840d729811, type: 3}

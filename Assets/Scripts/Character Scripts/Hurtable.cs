@@ -20,7 +20,7 @@ public class Hurtable : MonoBehaviour
     /// <summary>
     /// The current health of this object, is input parameter.
     /// </summary>
-    public int health;
+    public int Health { get; internal set; } = 100;
 
     [SerializeField]
     /// <summary>
@@ -46,8 +46,8 @@ public class Hurtable : MonoBehaviour
     /// <param name="change">The change in health</param>
     public virtual void ChangeHealth(int change)
     {
-        health += change;
-        if (health <= 0)
+        Health += change;
+        if (Health <= 0)
             OnDeath();
     }
     // protected methods

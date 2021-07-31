@@ -36,7 +36,6 @@ namespace Assets.Scripts.AI
             weapon.body = body;
             DamageGroup = DamegeGroups.Enemy;
             weapon.ignoring = DamegeGroups.Enemy;
-            //MainCharacter = Manager.player;
         }
         /// <summary>
         /// Called when this enemy gains line of sight with the player.
