@@ -140,32 +140,5 @@ public class MainCharacter : MovableCharacter
         base.Update();
         // moving the camera to keep up with the MainCharacter (player).
         cam.transform.position = new Vector3(body.position.x, body.position.y, cam.transform.position.z);
-
-        // dealing with user input
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            // Mouse0 has been pressed.
-            if(weapon != null && !EventSystem.current.IsPointerOverGameObject())
-            {
-                // Mouse is not over a game object such as the joystick.
-                var pos = Input.mousePosition;
-                var playerScreenPos = cam.WorldToScreenPoint(body.transform.position);
-                var angle = Mathf.Atan2(pos.y - playerScreenPos.y, pos.x - playerScreenPos.x);
-                weapon.AttemptUse(angle);
-            }
-        }
-        else
-            for (int i = 0; i < Input.touchCount; i++)
-            {
-                Touch t = Input.GetTouch(i);
-                // checking if is over game object
-                if (!EventSystem.current.IsPointerOverGameObject(t.fingerId))
-                {
-                    print("Is not in a bad place!");
-                    break;
-                }
-                else
-                    print("Is in bad place...");
-            }
     }
 }
