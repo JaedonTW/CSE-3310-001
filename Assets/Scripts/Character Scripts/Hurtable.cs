@@ -21,10 +21,12 @@ public class Hurtable : MonoBehaviour
     /// The current health of this object, is input parameter.
     /// </summary>
     public int health;
+
+    [SerializeField]
     /// <summary>
     /// An optional weapon to be used by this hurtable object.
     /// </summary>
-    public Weapon weapon;
+    protected Weapon weapon;
     // private variables
     /// <summary>
     /// The Rigidbody2D of this object, automatically collected by Start().

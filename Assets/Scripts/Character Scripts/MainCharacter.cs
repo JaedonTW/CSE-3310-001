@@ -61,6 +61,7 @@ public class MainCharacter : MovableCharacter
     }
     protected override void Start()
     {
+        print("MainCharacter started");
         // Loading data and setting initial values
         insanity = PlayerPrefs.GetInt("Insanity",0);
         for (int i = 0; i < HasWeapon.Length; i++)
