@@ -55,7 +55,6 @@ namespace Assets.Scripts.AI
             for (int i = 0; i < Manager.player.HasWeapon.Length; i++)
                 if (!Manager.player.HasWeapon[i] && Random.Range(0f, 1f) < probability[i])
                 {
-                    print("Giving player weapen: " + i);
                     Manager.player.HasWeapon[i] = true;
                     return;
                 }

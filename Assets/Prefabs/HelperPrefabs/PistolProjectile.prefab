@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3324110439869445398
+--- !u!1 &8689005897565756266
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6569746927837459039}
-  - component: {fileID: 2996702088250279110}
-  - component: {fileID: 7520932866385995575}
-  - component: {fileID: 7520932866385995568}
-  - component: {fileID: 7520932866385995569}
-  - component: {fileID: 50289187345501134}
+  - component: {fileID: 979671471457344547}
+  - component: {fileID: 9161021664143600314}
+  - component: {fileID: 4533902849478019403}
+  - component: {fileID: 4533902849478019404}
+  - component: {fileID: 4533902849478019405}
+  - component: {fileID: 6198846142533215666}
   m_Layer: 0
-  m_Name: ScepterProjectile
+  m_Name: PistolProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6569746927837459039
+--- !u!4 &979671471457344547
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3324110439869445398}
+  m_GameObject: {fileID: 8689005897565756266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.31, y: -2.08, z: 0}
+  m_LocalPosition: {x: -4.99, y: 0.94, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2996702088250279110
+--- !u!212 &9161021664143600314
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3324110439869445398}
+  m_GameObject: {fileID: 8689005897565756266}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300004, guid: e0c880a8cf2c97b438945e0527c2b26f, type: 3}
+  m_Sprite: {fileID: 21300002, guid: f5d2c18973f3ac24bb352a64c44f7f6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -83,13 +83,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &7520932866385995575
+--- !u!58 &4533902849478019403
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3324110439869445398}
+  m_GameObject: {fileID: 8689005897565756266}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -99,17 +99,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.12
---- !u!95 &7520932866385995568
+--- !u!95 &4533902849478019404
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3324110439869445398}
+  m_GameObject: {fileID: 8689005897565756266}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3fb0d00770488464792c7835afbe32c0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5ee147b4746ba584399da085714cb874, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -118,29 +118,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7520932866385995569
+--- !u!114 &4533902849478019405
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3324110439869445398}
+  m_GameObject: {fileID: 8689005897565756266}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a9950170e1e9c949903da3cc4395096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
-  body: {fileID: 50289187345501134}
-  maxBounces: 3
---- !u!50 &50289187345501134
+  damage: 20
+  body: {fileID: 6198846142533215666}
+  maxBounces: 0
+--- !u!50 &6198846142533215666
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3324110439869445398}
+  m_GameObject: {fileID: 8689005897565756266}
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0

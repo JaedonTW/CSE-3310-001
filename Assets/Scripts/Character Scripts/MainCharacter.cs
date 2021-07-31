@@ -93,6 +93,9 @@ public class MainCharacter : MovableCharacter
         cam = FindObjectOfType<Camera>();
         // setting the camera to be focused on the MainCharacter (player)
         cam.transform.position = new Vector3(body.position.x, body.position.y, cam.transform.position.z);
+
+        if (weapon != null)
+            weapon.body = body;
     }
     protected override void Update()
     {
