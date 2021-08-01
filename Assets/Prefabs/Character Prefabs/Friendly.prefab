@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f79d4bbc0a5a04d81c3c901ee43907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
+  health: 100
   weapon: {fileID: 0}
   idleClip: {fileID: 7400000, guid: 0089ab65a283ddf4ea0d74f69795c47a, type: 2}
   walkUpClip: {fileID: 7400000, guid: 84f0a704c685df04ba5c1c7e739fae04, type: 2}

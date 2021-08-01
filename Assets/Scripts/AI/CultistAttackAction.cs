@@ -11,6 +11,7 @@ namespace Assets.Scripts.AI
     {
         MovableCharacter Reference { get; }
         Vector2 Displacement { get; }
+        
         public CultistAttackAction(MovableCharacter reference, Vector2 displacement)
         {
             Reference = reference;
@@ -18,7 +19,7 @@ namespace Assets.Scripts.AI
         }
         public void ExecuteAction(Stack<IAtomicNPCAction> actionStack, Enemy c)
         {
-            if (c.State != EnemyState.HasLineOfSight)
+            if (c.state != EnemyState.HasLineOfSight)
             {
                 actionStack.Pop();
                 c.Manager.CultistCoordinator.LeaveAttack((Cultist)c);

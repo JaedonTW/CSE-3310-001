@@ -161,4 +161,8 @@ MonoBehaviour:
   sitClip: {fileID: 0}
   dieClip: {fileID: 0}
   walkingSpeed: 1
+  Weapons:
+  - {fileID: 4302344185761165745, guid: 34ac4979876de3246b6be3b7f74096ae, type: 3}
+  - {fileID: 4432347544667195781, guid: 86fe7a72f9cfd144dabaae54beb72e1e, type: 3}
+  - {fileID: 7557474073386850935, guid: 7cbdbf205458a754ca48a415f19a4865, type: 3}
   insanity: 0

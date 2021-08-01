@@ -20,11 +20,13 @@ public class Hurtable : MonoBehaviour
     /// <summary>
     /// The current health of this object, is input parameter.
     /// </summary>
-    public int health;
+    public int Health { get; internal set; } = 100;
+
+    [SerializeField]
     /// <summary>
     /// An optional weapon to be used by this hurtable object.
     /// </summary>
-    public Weapon weapon;
+    protected Weapon weapon;
     // private variables
     /// <summary>
     /// The Rigidbody2D of this object, automatically collected by Start().
@@ -44,8 +46,8 @@ public class Hurtable : MonoBehaviour
     /// <param name="change">The change in health</param>
     public virtual void ChangeHealth(int change)
     {
-        health += change;
-        if (health <= 0)
+        Health += change;
+        if (Health <= 0)
             OnDeath();
     }
     // protected methods

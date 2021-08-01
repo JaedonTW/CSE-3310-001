@@ -46,6 +46,6 @@ MonoBehaviour:
   ID: -1
   body: {fileID: 0}
   ignoring: 0
-  rechargeTime: 60
+  rechargeTime: 30
   damage: 5
   rangeSqrd: 2
