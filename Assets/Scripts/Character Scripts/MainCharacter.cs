@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 /// <summary>
-/// The class that corrosponds to the main character object.
+/// The class that corresponds to the main character object.
 /// </summary>
 public class MainCharacter : MovableCharacter
 {
