@@ -11,5 +11,14 @@ namespace Assets.Scripts.AI
         internal override float OptimalFightDistance => 3f;
         protected override void InitializeAttack() =>
             PlannedActions.Push(new HoldRelativeDistanceAction(Manager.player,OptimalFightDistance));
+        public override void ChangeHealth(int change)
+        {
+            if (state == EnemyState.Guarding)
+            {
+                body.constraints = UnityEngine.RigidbodyConstraints2D.FreezeRotation;
+                state = EnemyState.Wandering;
+            }
+            base.ChangeHealth(change);
+        }
     }
 }

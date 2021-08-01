@@ -10,6 +10,7 @@ namespace Assets.Scripts.AI
         Pursuing = 0,
         Wandering,
         HasLineOfSight,
+        Guarding,
     }
     public abstract class Enemy : NPC
     {
@@ -20,7 +21,7 @@ namespace Assets.Scripts.AI
         /// <summary>
         /// The current state of the AI at this moment, see UML for details
         /// </summary>
-        internal EnemyState State { get; set; } = EnemyState.Wandering;
+        public EnemyState state = EnemyState.Wandering;
         protected Vector2 KnownPlayerLocation { get; private set; }
         /// <summary>
         /// The max distance this enemy can see.
@@ -35,7 +36,6 @@ namespace Assets.Scripts.AI
             weapon.body = body;
             DamageGroup = DamegeGroups.Enemy;
             weapon.ignoring = DamegeGroups.Enemy;
-            //MainCharacter = Manager.player;
         }
         /// <summary>
         /// Called when this enemy gains line of sight with the player.
@@ -51,54 +51,55 @@ namespace Assets.Scripts.AI
         protected override void Update()
         {
             base.Update();
-
-
-            // the player is within the view range, so we need to check if the player is within line of sight.
-            var dx = MainCharacter.body.position - body.position;
-            var hits = Physics2D.RaycastAll(body.position, dx, ViewDistance);
-            foreach (var hit in hits)
+            if (state != EnemyState.Guarding)
             {
-                if (hit.collider.gameObject.tag == "View Blocker")
+                // the player is within the view range, so we need to check if the player is within line of sight.
+                var dx = MainCharacter.body.position - body.position;
+                var hits = Physics2D.RaycastAll(body.position, dx, ViewDistance);
+                foreach (var hit in hits)
                 {
-                    if (State == EnemyState.HasLineOfSight)
+                    if (hit.collider.gameObject.tag == "View Blocker")
                     {
-                        State = EnemyState.Pursuing;
-                        // In this case, we just lost line of sight and thus start pursuing.
-                        print("Looking for player");
-                        PlannedActions.Push(new GoToPositionAction(KnownPlayerLocation));
+                        if (state == EnemyState.HasLineOfSight)
+                        {
+                            state = EnemyState.Pursuing;
+                            // In this case, we just lost line of sight and thus start pursuing.
+                            print("Looking for player");
+                            PlannedActions.Push(new GoToPositionAction(KnownPlayerLocation));
+                        }
+                        break;
                     }
-                    break;
+                    if (hit.collider.gameObject.tag == "Player")
+                    {
+                        //print("Using weapon");
+                        weapon.AttemptUse(Mathf.Atan2(dx.y, dx.x), MainCharacter);
+                        // we have line of sight.
+                        KnownPlayerLocation = MainCharacter.body.position;
+                        // TODO have attacks take place
+                        if (state != EnemyState.HasLineOfSight)
+                        {
+                            // Line of sight was just made, so we
+                            //   1. Purged 'PlannedActions' so that the 
+                            //      derivative class can decide how to proceed.
+                            //   2. Update the state
+                            //   3. Let the derivitive class decide how it would like to attack.
+                            state = EnemyState.HasLineOfSight;
+                            print("Player spotted!");
+                            PlannedActions.Clear();
+                            InitializeAttack();
+                        }
+                        break;
+                    }
                 }
-                if (hit.collider.gameObject.tag == "Player")
+                if (PlannedActions.Count > 0)
+                    PlannedActions.Peek().ExecuteAction(PlannedActions, this);
+                else
                 {
-                    //print("Using weapon");
-                    weapon.AttemptUse(Mathf.Atan2(dx.y, dx.x), MainCharacter);
-                    // we have line of sight.
-                    KnownPlayerLocation = MainCharacter.body.position;
-                    // TODO have attacks take place
-                    if (State != EnemyState.HasLineOfSight)
-                    {
-                        // Line of sight was just made, so we
-                        //   1. Purged 'PlannedActions' so that the 
-                        //      derivative class can decide how to proceed.
-                        //   2. Update the state
-                        //   3. Let the derivitive class decide how it would like to attack.
-                        State = EnemyState.HasLineOfSight;
-                        print("Player spotted!");
-                        PlannedActions.Clear();
-                        InitializeAttack();
-                    }
-                    break;
+                    //print("wandering");
+                    state = EnemyState.Wandering;
+                    PlannedActions.Push(new RestAction(60));
+                    PlannedActions.Push(new GoToPositionAction(Random.insideUnitCircle + body.position));
                 }
-            }
-            if (PlannedActions.Count > 0)
-                PlannedActions.Peek().ExecuteAction(PlannedActions, this);
-            else
-            {
-                //print("wandering");
-                State = EnemyState.Wandering;
-                PlannedActions.Push(new RestAction(60));
-                PlannedActions.Push(new GoToPositionAction(Random.insideUnitCircle + body.position));
             }
         }
         protected virtual void OnCollisionEnter2D(Collision2D collision)

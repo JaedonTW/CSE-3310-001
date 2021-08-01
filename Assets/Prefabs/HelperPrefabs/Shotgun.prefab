@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5185300421061613896
+--- !u!1 &5469469255736377912
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,44 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5185300421061613898}
-  - component: {fileID: 5185300421061613899}
+  - component: {fileID: 6445758038900313933}
+  - component: {fileID: 4432347544667195781}
   m_Layer: 0
-  m_Name: CultistMeleeWeapon
+  m_Name: Shotgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5185300421061613898
+--- !u!4 &6445758038900313933
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5185300421061613896}
+  m_GameObject: {fileID: 5469469255736377912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.056562617, y: 1.5663931, z: -0.08984375}
+  m_LocalPosition: {x: 3.3942966, y: 3.2476037, z: 12.461924}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5185300421061613899
+--- !u!114 &4432347544667195781
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5185300421061613896}
+  m_GameObject: {fileID: 5469469255736377912}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5083356220de53342b4f7b0a84b3b6d3, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c17254bf3a45ee44ac95fef4cec3445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: -1
+  ID: 3
   body: {fileID: 0}
   ignoring: 0
   rechargeTime: 30
-  damage: 5
-  rangeSqrd: 2
+  bullet: {fileID: 1384079593236845737, guid: 2d9c0cdd54ee61848a23b3214e1e5253, type: 3}
+  numberOfProjectiles: 5

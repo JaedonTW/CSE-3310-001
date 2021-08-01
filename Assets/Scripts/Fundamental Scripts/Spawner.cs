@@ -40,7 +40,7 @@ class Spawner : MonoBehaviour
             Debug.LogWarning("You have no spawners, is this intentional?");
             return;
         }
-        int undeadCount = PlayerPrefs.GetInt("Undead Friendly Count", 0);
+        int undeadCount = PlayerPrefs.GetInt("friendly_counter", 0);
         undeadCount = GetBinomialSample(undeadCount, undeadSpawnProbability);
         SpawnEnemies(mobsterCount, cultustCount, undeadCount);
     }

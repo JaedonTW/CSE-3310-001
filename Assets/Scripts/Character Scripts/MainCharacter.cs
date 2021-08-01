@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.AI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -20,23 +21,33 @@ public class MainCharacter : MovableCharacter
     /// mainCharacter will have sanity which depends
     /// on if friendlies are saved/killed.
     /// </summary>
-    [SerializeField] protected int insanity;
-
+    public int Sanity { get; private set; }
+    public GameManager Manager { get; set; }
+    public void SetActiveWeapon(int ID)
+    {
+        if(HasWeapon[ID])
+            weapon = Weapons[ID];
+    }
     /// <summary>
-    /// Getter function for insanity.
-    /// </summary>
-    public int GetInsanity() => insanity;
-    /// <summary>
-    /// Change function for insanity.
+    /// Change function for sanity.
     /// </summary>
     public void ChangeSanity(int amount)
     {
-        insanity += amount;
-        if (insanity > 100)
-            insanity = 100;
-        else if (insanity < 0)
-            insanity = 0;
-
+        Sanity += amount;
+        if (Sanity > 100)
+            Sanity = 100;
+        else if (Sanity < 50)
+        {
+            if (Sanity <= 0)
+            {
+                HUD.SetSanity(Sanity);
+                OnDeath();
+                return;
+            }
+            else
+                InkSpawner.Start(this);
+        }
+        HUD.SetSanity(Sanity);
     }
 
     /// <summary>
@@ -50,22 +61,24 @@ public class MainCharacter : MovableCharacter
     protected Camera cam;
     public void OnLevelEnd()
     {
-        PlayerPrefs.SetInt("Insanity", GetInsanity());
+        PlayerPrefs.SetInt("Sanity", Sanity);
         for(int i = 0; i < HasWeapon.Length; i++)
             PlayerPrefs.SetInt("Weapon " + i + " is unlocked", HasWeapon[i]? 1 : 0);
     }
     public override void ChangeHealth(int change)
     {
         base.ChangeHealth(change);
-        print("Player health is now " + health);
+        HUD.SetHealth(Health);
+        print("Player health is now " + Health);
     }
     protected override void Start()
     {
+        print("MainCharacter started");
         // Loading data and setting initial values
-        insanity = PlayerPrefs.GetInt("Insanity",0);
+        Sanity = PlayerPrefs.GetInt("Sanity",75);
+        HUD.SetSanity(Sanity);
         for (int i = 0; i < HasWeapon.Length; i++)
             HasWeapon[i] = PlayerPrefs.GetInt("Weapon " + i + " is unlocked",0) == 1;
-        health = 100;
         //
         base.Start();
         DamageGroup = DamegeGroups.Player;
@@ -92,6 +105,9 @@ public class MainCharacter : MovableCharacter
         cam = FindObjectOfType<Camera>();
         // setting the camera to be focused on the MainCharacter (player)
         cam.transform.position = new Vector3(body.position.x, body.position.y, cam.transform.position.z);
+
+        if (weapon != null)
+            weapon.body = body;
     }
     protected override void Update()
     {
@@ -125,38 +141,14 @@ public class MainCharacter : MovableCharacter
             }
             if (rangeAttack && weapon != null)
                 weapon.AttemptUse(Mathf.Atan2(attacking.y,attacking.x));
+            // dealing with sanity
+            if (Sanity <= 50)
+                InkSpawner.Update(this,Manager.Walls,Manager.inkiePrefab);
         }
         // calling update for parent object.
         // this is done after getting user input to improve response time.
         base.Update();
         // moving the camera to keep up with the MainCharacter (player).
         cam.transform.position = new Vector3(body.position.x, body.position.y, cam.transform.position.z);
-
-        // dealing with user input
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            // Mouse0 has been pressed.
-            if(weapon != null && !EventSystem.current.IsPointerOverGameObject())
-            {
-                // Mouse is not over a game object such as the joystick.
-                var pos = Input.mousePosition;
-                var playerScreenPos = cam.WorldToScreenPoint(body.transform.position);
-                var angle = Mathf.Atan2(pos.y - playerScreenPos.y, pos.x - playerScreenPos.x);
-                weapon.AttemptUse(angle);
-            }
-        }
-        else
-            for (int i = 0; i < Input.touchCount; i++)
-            {
-                Touch t = Input.GetTouch(i);
-                // checking if is over game object
-                if (!EventSystem.current.IsPointerOverGameObject(t.fingerId))
-                {
-                    print("Is not in a bad place!");
-                    break;
-                }
-                else
-                    print("Is in bad place...");
-            }
     }
 }

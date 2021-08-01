@@ -7,6 +7,8 @@ using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    internal Inkie inkiePrefab;
     public MainCharacter player;
     public int CurrentLevel { get; private set; } = 0;
     public Tilemap Walls { get; private set; }
@@ -113,6 +115,7 @@ public class GameManager : MonoBehaviour
         }
         // getting a reference to the MainCharacter
         player = FindObjectOfType<MainCharacter>();
+        player.Manager = this;
     }
     void Start()
     {

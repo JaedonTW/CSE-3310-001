@@ -19,7 +19,7 @@ namespace Assets.Scripts.AI
         }
         public void ExecuteAction(Stack<IAtomicNPCAction> actionStack, Enemy c)
         {
-            if (c.State != EnemyState.HasLineOfSight)
+            if (c.state != EnemyState.HasLineOfSight)
             {
                 actionStack.Pop();
                 c.Manager.CultistCoordinator.LeaveAttack((Cultist)c);
