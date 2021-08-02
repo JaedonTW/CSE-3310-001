@@ -12,6 +12,7 @@ public class EndLevelBox : MonoBehaviour
         {
             character.OnLevelEnd();
             SceneManager.LoadScene("Level2 - Library");
+            Spawner.Spawners.Clear();
         }
     }
 }
