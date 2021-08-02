@@ -108,7 +108,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 0504b03896ac9b8428969c772e93edd3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -151,7 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a073c168330c70488c846dfc295479f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
   weapon: {fileID: 0}
   idleClip: {fileID: 7400000, guid: a5b74ec8f8cc6764da9a844e6b259f3e, type: 2}
   walkUpClip: {fileID: 7400000, guid: df6dfa91a884f294da0476922bbed1bb, type: 2}
@@ -160,9 +159,8 @@ MonoBehaviour:
   walkDownClip: {fileID: 7400000, guid: 68f8442727d1dfb49bf4be329757a8de, type: 2}
   sitClip: {fileID: 0}
   dieClip: {fileID: 0}
-  walkingSpeed: 1
+  walkingSpeed: 4
   Weapons:
   - {fileID: 4302344185761165745, guid: 34ac4979876de3246b6be3b7f74096ae, type: 3}
   - {fileID: 4432347544667195781, guid: 86fe7a72f9cfd144dabaae54beb72e1e, type: 3}
   - {fileID: 7557474073386850935, guid: 7cbdbf205458a754ca48a415f19a4865, type: 3}
-  insanity: 0

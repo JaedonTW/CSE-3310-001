@@ -27,6 +27,7 @@ public class MainCharacter : MovableCharacter
     {
         if(HasWeapon[ID])
             weapon = Weapons[ID];
+        weapon.body = body;
     }
     /// <summary>
     /// Change function for sanity.
