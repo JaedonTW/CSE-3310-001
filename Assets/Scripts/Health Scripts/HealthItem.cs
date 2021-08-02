@@ -4,14 +4,19 @@ using UnityEngine;
 
 public class HealthItem : MonoBehaviour
 {
+    bool IsUsable { get; set; } = true;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        MainCharacter mainCharacter = collision.GetComponentInParent<MainCharacter>();
-        if (mainCharacter != null && mainCharacter.Health < 100)
+        if (IsUsable)
         {
-            mainCharacter.Health = 100;
-            var spriteRenderer = GetComponent<SpriteRenderer>();
-            spriteRenderer.color = Color.black;
+            MainCharacter mainCharacter = collision.GetComponentInParent<MainCharacter>();
+            if (mainCharacter != null && mainCharacter.Health < 100)
+            {
+                mainCharacter.Health = 100;
+                var spriteRenderer = GetComponent<SpriteRenderer>();
+                spriteRenderer.color = Color.black;
+                IsUsable = false;
+            }
         }
     }
 }
