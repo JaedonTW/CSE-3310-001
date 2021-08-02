@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
     */
     private int correct_Doors_Entered;
 
+    public int GetCorrectDoorsEntered() 
+    {
+        return correct_Doors_Entered;
+    }
+
     /*
         Check_Distance uses the famed Distance Formula
         to check the distance between two entities. 

@@ -110,6 +110,7 @@ public class MainCharacter : MovableCharacter
         // setting the camera to be focused on the MainCharacter (player)
         cam.transform.position = new Vector3(body.position.x, body.position.y, cam.transform.position.z);
     }
+    
     protected override void Update()
     {
         // updating player movement.
