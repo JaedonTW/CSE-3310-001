@@ -11,6 +11,10 @@ public class InventoryMenu : MonoBehaviour
     public Button InventoryButton;
     public GameObject weaponSelectUI;
     public GameManager manager;
+    /// <summary>
+    /// The text boxes for each weapon in order.
+    /// </summary>
+    public Text[] textBoxes;
     // Update is called once per frame
     void Start()
     {
@@ -35,10 +39,12 @@ public class InventoryMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
-     public void WeaponSelect()
+    public void WeaponSelect()
     {
         weaponSelectUI.SetActive(true);
         pauseMenuUI.SetActive(false);
+        for (int i = 0; i < manager.player.HasWeapon.Length; i++)
+            textBoxes[i].color = manager.player.HasWeapon[i] ? Color.red : Color.gray;
     }
     public void clicked()
     {
