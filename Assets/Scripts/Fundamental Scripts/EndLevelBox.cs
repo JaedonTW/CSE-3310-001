@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EndLevelBox : MonoBehaviour
 {
@@ -9,7 +10,8 @@ public class EndLevelBox : MonoBehaviour
         MainCharacter character = collision.GetComponent<MainCharacter>();
         if(character != null)
         {
-            print("Level end!");
+            character.OnLevelEnd();
+            SceneManager.LoadScene("Level2 - Library");
         }
     }
 }
