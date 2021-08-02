@@ -25,7 +25,7 @@ public class MainCharacter : MovableCharacter
     public GameManager Manager { get; set; }
     public void SetActiveWeapon(int ID)
     {
-        if (HasWeapon[ID])
+        if (0 <= ID && ID < HasWeapon.Length && HasWeapon[ID])
         {
             weapon = Weapons[ID];
             weapon.body = body;
