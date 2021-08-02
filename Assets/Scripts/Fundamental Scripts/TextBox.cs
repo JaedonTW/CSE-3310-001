@@ -11,7 +11,7 @@ public class TextBox : MonoBehaviour
     private GameManager manager;
     private MainCharacter mainCharacter;
 
-
+    
 
     /*
         Logic handles displaying and hiding the Display Box

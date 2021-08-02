@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TextBoxMessage : MonoBehaviour
 {
+    GameManager manager;
+
+    private TextBox[] textBoxes;
     /*
         The below string Lists are the door riddles
         that the user will use to complete the 
@@ -63,4 +66,32 @@ public class TextBoxMessage : MonoBehaviour
         "DON'T LEAVE ME IN THE HEAT",
         "OR I'LL LEAVE REAL QUICKLY"
     };
+    private List<List<string>> riddleArray;
+
+    private void _loadTextBox() 
+    {
+        textBoxes = FindObjectsOfType<TextBox>();
+
+        for(int i=0; i<textBoxes.Length; i++) 
+        {
+            TextMesh textMesh = textBoxes[i].GetComponentInChildren<TextMesh>();
+            textMesh.text = _viperRiddles[i];
+        }
+    }
+    
+    private void Start()
+    {
+        manager = FindObjectOfType<GameManager>();
+
+        /*
+            Loading the riddleArray
+        */
+        riddleArray = new List<List<string>> { _viperRiddles,_lionRiddles,_lightningRiddles,_fireRiddles, _waterRiddles};
+    }
+
+    private void Update()
+    {
+        if()
+        
+    }
 }

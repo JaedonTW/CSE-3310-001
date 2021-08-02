@@ -109,6 +109,7 @@ public class MainCharacter : MovableCharacter
         if (weapon != null)
             weapon.body = body;
     }
+    
     protected override void Update()
     {
         // updating player movement.
