@@ -18,7 +18,6 @@ public class FriendlySaveAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (CurrentTick < TotalTicks)
         {
             CurrentTick++;

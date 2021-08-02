@@ -11,6 +11,7 @@ namespace Assets.Scripts.AI
     {
         MovableCharacter Reference { get; }
         Vector2 Displacement { get; }
+        
         public CultistAttackAction(MovableCharacter reference, Vector2 displacement)
         {
             Reference = reference;
