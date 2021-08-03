@@ -18,7 +18,7 @@ public class Puzzle_Door : Door
         {"Viper",0},
         {"Lightning",1},
         {"Water Ripple",2},
-        {"Vulture",3},
+        {"Fire",3},
         {"Lion", 4}
     };
 

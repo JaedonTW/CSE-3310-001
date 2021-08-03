@@ -37,6 +37,7 @@ public class TextBox : MonoBehaviour
         /*
             Ill comment tomorrow .....
         */
+        
         animator.SetBool("displayBox", displayBox);
         mainCharacter = FindObjectOfType<MainCharacter>();
         manager = FindObjectOfType<GameManager>();
