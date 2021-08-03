@@ -91,7 +91,7 @@ public class TextBoxMessage : MonoBehaviour
 
     private void Update()
     {
-        if()
+        //if()
         
     }
 }
