@@ -73,8 +73,6 @@ public class TextBoxMessage : MonoBehaviour
 
     public void _loadTextBox() 
     {
-        
-        
         for(int i=0; i<textBoxes.Length; i++) 
         {
             TextMeshPro textMesh = textBoxes[i].GetComponentInChildren<TextMeshPro>();
