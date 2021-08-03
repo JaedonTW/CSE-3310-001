@@ -19,7 +19,22 @@ public class TextBox : MonoBehaviour
         there is a storm outside.
     */
     public bool displayBox;
-    protected void Check_Front_Door()
+
+    private void _displayRiddle() 
+    {
+        if(manager.Check_Distance(mainCharacter.transform,gameObject.transform) == true) 
+        {
+            displayBox = true;
+        }
+
+        else 
+        {
+            displayBox = false;
+        }
+    }
+
+
+    /*protected void Check_Front_Door()
     {
         if (front_Door.tag.CompareTo("Front_Door") == 0 && front_Door.Get_Door_State() == true && manager.Check_Distance(mainCharacter.transform, front_Door.transform))
         {
@@ -30,7 +45,7 @@ public class TextBox : MonoBehaviour
         {
             animator.SetBool("displayBox", false);
         }
-    }
+    }*/
 
     private void Start()
     {
@@ -45,6 +60,6 @@ public class TextBox : MonoBehaviour
 
     void Update()
     {
-        Check_Front_Door();
+        _displayRiddle();
     }
 }

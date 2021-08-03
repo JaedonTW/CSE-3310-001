@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 114117507092533532}
   m_Layer: 0
   m_Name: Teleporting Door
-  m_TagString: Untagged
+  m_TagString: Viper
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300196, guid: 200985eb627b6f94fb3ef0b926119f2b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -92,8 +92,11 @@ Animation:
   m_GameObject: {fileID: 6802496447558870765}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 943be347ce11ba84799238cdd5d7e72d, type: 2}
-  m_Animations: []
+  m_Animation: {fileID: 7400000, guid: f384149f99a7037439e9881c27738a96, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 943be347ce11ba84799238cdd5d7e72d, type: 2}
+  - {fileID: 7400000, guid: 2898c977fc7ddd546b238f7c8de55c8f, type: 2}
+  - {fileID: 7400000, guid: a48b31eaa8460814d9595a378d7ae0b1, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -130,7 +133,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.000000059604645, y: -0.057786137}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -141,7 +144,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 0.66138554, y: 0.80394906}
   m_EdgeRadius: 0
 --- !u!114 &114117507092533532
 MonoBehaviour:
@@ -155,5 +158,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6475871a92282f14695050fa8628918e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 95435023857849652}
   textMeshPro: {fileID: 0}
