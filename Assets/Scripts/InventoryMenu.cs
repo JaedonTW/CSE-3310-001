@@ -11,21 +11,27 @@ public class InventoryMenu : MonoBehaviour
     public Button InventoryButton;
     public GameObject weaponSelectUI;
     public GameManager manager;
+    public Button weapon1;
+    public Button weapon2;
+    public Button weapon3;
     /// <summary>
     /// The text boxes for each weapon in order.
     /// </summary>
     public Text[] textBoxes;
-    // Update is called once per frame
     void Start()
     {
         pauseMenuUI.SetActive(false);
         weaponSelectUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+        weapon1.interactable = false;
+        weapon2.interactable = false;
+        weapon3.interactable = false;  // set weapons to disabled
     }
      void Resume()
     {
         pauseMenuUI.SetActive(false);
+        weaponSelectUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
     }
@@ -43,8 +49,13 @@ public class InventoryMenu : MonoBehaviour
     {
         weaponSelectUI.SetActive(true);
         pauseMenuUI.SetActive(false);
+<<<<<<< HEAD
         for (int i = 0; i < manager.Player.HasWeapon.Length; i++)
             textBoxes[i].color = manager.Player.HasWeapon[i] ? Color.red : Color.gray;
+=======
+        Time.timeScale = 0f;
+
+>>>>>>> da181e92040cfd721401c29953d36e1d5c13efb9
     }
     public void clicked()
     {
