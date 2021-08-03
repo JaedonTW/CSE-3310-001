@@ -104,11 +104,5 @@ public class TextBoxMessage : MonoBehaviour
 
     private void Update()
     {
-<<<<<<< HEAD
-        //if()
-        
-=======
-      
->>>>>>> 4de9dd2cc1900ff48f71a7c3be957561adb8809a
     }
 }
