@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Viper
   - Lion
-  - Vulture
   - Reed
   - Water Ripple
   - NPC
@@ -14,6 +13,7 @@ TagManager:
   - View Blocker
   - Front_Door
   - Lightning
+  - Fire
   layers:
   - Default
   - TransparentFX
