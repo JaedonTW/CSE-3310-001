@@ -94,9 +94,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdc151158ee1a7439fe352ecf017315, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 1732131824}
   text: {fileID: 0}
   front_Door: {fileID: 0}
+  bookShelf: {fileID: 0}
   displayBox: 0
 --- !u!95 &1732131824
 Animator:

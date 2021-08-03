@@ -10,6 +10,7 @@ public class TextBox : MonoBehaviour
     public Door front_Door;
     private GameManager manager;
     private MainCharacter mainCharacter;
+    public GameObject bookShelf;
 
     
 
@@ -22,14 +23,16 @@ public class TextBox : MonoBehaviour
 
     private void _displayRiddle() 
     {
-        if(manager.Check_Distance(mainCharacter.transform,gameObject.transform) == true) 
+        if(manager.Check_Distance(mainCharacter.transform,bookShelf.transform) == true) 
         {
             displayBox = true;
+            animator.SetBool("displayBox", displayBox);
         }
 
         else 
         {
             displayBox = false;
+            animator.SetBool("displayBox", displayBox);
         }
     }
 
@@ -49,12 +52,13 @@ public class TextBox : MonoBehaviour
 
     private void Start()
     {
-        /*
-            Ill comment tomorrow .....
-        */
-        
+        displayBox = false;
         animator.SetBool("displayBox", displayBox);
+        
+        // Find reference to MainCharacter object in the scene.
         mainCharacter = FindObjectOfType<MainCharacter>();
+        
+        // Find reference to Manager object in the scene.
         manager = FindObjectOfType<GameManager>();
     }
 
