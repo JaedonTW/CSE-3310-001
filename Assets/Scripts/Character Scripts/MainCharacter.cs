@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 /// <summary>
 /// The class that corresponds to the main character object.
@@ -75,6 +76,12 @@ public class MainCharacter : MovableCharacter
         base.ChangeHealth(change);
         HUD.SetHealth(Health);
         print("Player health is now " + Health);
+    }
+    public override void OnDeath()
+    {
+        base.OnDeath();
+        Spawner.Spawners.Clear();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     protected override void Start()
     {
