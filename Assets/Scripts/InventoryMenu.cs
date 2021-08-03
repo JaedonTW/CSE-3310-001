@@ -43,8 +43,8 @@ public class InventoryMenu : MonoBehaviour
     {
         weaponSelectUI.SetActive(true);
         pauseMenuUI.SetActive(false);
-        for (int i = 0; i < manager.player.HasWeapon.Length; i++)
-            textBoxes[i].color = manager.player.HasWeapon[i] ? Color.red : Color.gray;
+        for (int i = 0; i < manager.Player.HasWeapon.Length; i++)
+            textBoxes[i].color = manager.Player.HasWeapon[i] ? Color.red : Color.gray;
     }
     public void clicked()
     {
@@ -59,7 +59,7 @@ public class InventoryMenu : MonoBehaviour
     }
     public void SetWeapon(int id)
     {
-        manager.player.SetActiveWeapon(id);
+        manager.Player.SetActiveWeapon(id);
         weaponSelectUI.SetActive(false);
         Time.timeScale = 1f;
     }

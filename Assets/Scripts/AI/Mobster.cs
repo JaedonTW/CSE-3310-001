@@ -10,7 +10,7 @@ namespace Assets.Scripts.AI
     {
         internal override float OptimalFightDistance => 3f;
         protected override void InitializeAttack() =>
-            PlannedActions.Push(new HoldRelativeDistanceAction(Manager.player,OptimalFightDistance));
+            PlannedActions.Push(new HoldRelativeDistanceAction(Manager.Player,OptimalFightDistance));
         public override void ChangeHealth(int change)
         {
             if (state == EnemyState.Guarding)

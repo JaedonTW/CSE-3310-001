@@ -27,7 +27,7 @@ namespace Assets.Scripts.AI
             {
                 var c = AttackingCultists[i];
                 c.PlannedActions.Clear();
-                c.PlannedActions.Push(new CultistAttackAction(c.Manager.player,
+                c.PlannedActions.Push(new CultistAttackAction(c.Manager.Player,
                     new Vector2(Mathf.Cos(theta) * c.OptimalFightDistance, Mathf.Sin(theta) * c.OptimalFightDistance)
                     ));
                 theta += dtheta;
@@ -39,7 +39,7 @@ namespace Assets.Scripts.AI
             {
                 TeleportCooldownTicksRemaining = TeleportCooldownTicks;
                 // initializing offset
-                var dx = cultist.Manager.player.body.position - cultist.body.position;
+                var dx = cultist.Manager.Player.body.position - cultist.body.position;
                 AngleOffset = Mathf.Atan2(dx.y,dx.x);
                 
                 // having every cultist move towards the player
@@ -47,7 +47,7 @@ namespace Assets.Scripts.AI
                     if(c != cultist)
                     {
                         c.PlannedActions.Clear();
-                        c.PlannedActions.Push(new GoToPositionStreamAction(cultist.Manager.player));
+                        c.PlannedActions.Push(new GoToPositionStreamAction(cultist.Manager.Player));
                     }
             }
             AttackingCultists.Add(cultist);
@@ -59,14 +59,14 @@ namespace Assets.Scripts.AI
             if (AttackingCultists.Count > 0)
             {
                 cultist.PlannedActions.Clear();
-                cultist.PlannedActions.Push(new GoToPositionStreamAction(cultist.Manager.player));
+                cultist.PlannedActions.Push(new GoToPositionStreamAction(cultist.Manager.Player));
                 ResetPositions();
             }
             else
                 foreach (var c in Cultists)
                 {
                     c.PlannedActions.Clear();
-                    c.PlannedActions.Push(new GoToPositionAction(cultist.Manager.player.body.position));
+                    c.PlannedActions.Push(new GoToPositionAction(cultist.Manager.Player.body.position));
                 }
         }
         internal void Tick()
@@ -80,7 +80,7 @@ namespace Assets.Scripts.AI
                         if (UnityEngine.Random.Range(0, 1) < ProbabilityOfSuccessfulTeleport)
                         {
                             MonoBehaviour.print("Teleporting...");
-                            c.transform.position = c.Manager.player.transform.position;
+                            c.transform.position = c.Manager.Player.transform.position;
                         }
                         break;
                     }

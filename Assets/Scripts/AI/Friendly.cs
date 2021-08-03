@@ -52,28 +52,28 @@ namespace Assets.Scripts.AI
             float[] probability = { 1f, 0.5f, 0.25f };
             // we handle giving the player a weapon.
             // First, we use a random check to see if the weapon is successfuly given.
-            for (int i = 0; i < Manager.player.HasWeapon.Length; i++)
-                if (!Manager.player.HasWeapon[i] && Random.Range(0f, 1f) < probability[i])
+            for (int i = 0; i < Manager.Player.HasWeapon.Length; i++)
+                if (!Manager.Player.HasWeapon[i] && Random.Range(0f, 1f) < probability[i])
                 {
-                    Manager.player.HasWeapon[i] = true;
-                    if (Manager.player != null)
-                        Manager.player.SetActiveWeapon(i);
+                    Manager.Player.HasWeapon[i] = true;
+                    if (Manager.Player != null)
+                        Manager.Player.SetActiveWeapon(i);
                     return;
                 }
         }
         public override void OnDeath()
         {
             AttemptGivePlayerWeapon();
-            Manager.player.ChangeSanity(SanityDeathChange);
+            Manager.Player.ChangeSanity(SanityDeathChange);
             base.OnDeath();
         }
         private void OnMouseDown()
         {
-            if((Manager.player.body.position - body.position).sqrMagnitude <= MaxInteractionDistanceSqrd)
+            if((Manager.Player.body.position - body.position).sqrMagnitude <= MaxInteractionDistanceSqrd)
             {
                 AttemptGivePlayerWeapon();
                 var despawn = Instantiate(despawnAnimation,transform.parent);
-                Manager.player.ChangeSanity(SanitySaveChange);
+                Manager.Player.ChangeSanity(SanitySaveChange);
                 despawn.transform.position = transform.position;
                 Destroy(gameObject);
             }

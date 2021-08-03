@@ -27,7 +27,7 @@ namespace Assets.Scripts.AI
         /// The max distance this enemy can see.
         /// </summary>
         const int ViewDistance = 10;
-        Hurtable MainCharacter => Manager.player;
+        Hurtable MainCharacter => Manager.Player;
         // Start is called before the first frame update
         protected override void Start()
         {
