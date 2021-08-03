@@ -47,6 +47,9 @@ public class Puzzle_Door : Door
 
         // Check if the character pressed the correct door in the correct order
         manager.Track_Door_Order(door_Order, gameObject.tag);
+
+        //
+        Spawner.SpawnEnemies(Random.Range(0, 5), Random.Range(0, 5), 0.5f);
     }
 
     
