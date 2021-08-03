@@ -36,6 +36,12 @@ namespace Assets.Scripts.AI
             weapon.body = body;
             DamageGroup = DamegeGroups.Enemy;
             weapon.ignoring = DamegeGroups.Enemy;
+            Manager.EnemyCount++;
+        }
+        public override void OnDeath()
+        {
+            base.OnDeath();
+            Manager.EnemyCount--;
         }
         /// <summary>
         /// Called when this enemy gains line of sight with the player.

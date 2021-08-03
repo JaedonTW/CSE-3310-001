@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TextBoxMessage : MonoBehaviour
 {
+    private GameManager _manager;
+    public TextBox[] textBoxes;
+    
     /*
         The below string Lists are the door riddles
         that the user will use to complete the 
@@ -15,9 +19,10 @@ public class TextBoxMessage : MonoBehaviour
         "I AM THE CAUSE OF THE FALL",
         "I START REAL SMALL",
         "I CAN GROW TO BE QUITE TALL",
-        "I AM QUITE DECEPTIVE", "MAY DANGER IS NOT SUBJECTIVE",
+        "I AM QUITE DECEPTIVE", 
+        "MAY DANGER IS NOT SUBJECTIVE",
         "IF YOU SEE ME, HAVE CAUTION",
-        "SO YOU WON'T END UP IN A COFFIN"
+        "SO YOU WON'T END IN A COFFIN"
     };
     private List<string> _lionRiddles = new List<string>
     {
@@ -63,4 +68,39 @@ public class TextBoxMessage : MonoBehaviour
         "DON'T LEAVE ME IN THE HEAT",
         "OR I'LL LEAVE REAL QUICKLY"
     };
+    private List<string> _currentRiddles;
+    private List<List<string>> riddleArray;
+
+    public void _loadTextBox() 
+    {
+        for(int i=0; i<textBoxes.Length; i++) 
+        {
+            TextMeshPro textMesh = textBoxes[i].GetComponentInChildren<TextMeshPro>();
+            textMesh.text = _currentRiddles[i];
+        }
+    }
+    
+    public void Set_Current_Riddles() 
+    {
+        _currentRiddles = riddleArray[_manager.GetCorrectDoorsEntered()];
+    }
+
+    private void Start()
+    {
+        // Find reference to GameManager object in the scene.
+        _manager = FindObjectOfType<GameManager>();
+
+        // Load riddles into the riddle array.
+        riddleArray = new List<List<string>> { _viperRiddles,_lightningRiddles, _waterRiddles,_fireRiddles,_lionRiddles};
+
+        // Set the status of the current riddle
+        Set_Current_Riddles();
+
+        // Load the text boxes with the appropriate text
+        _loadTextBox();
+    }
+
+    private void Update()
+    {
+    }
 }

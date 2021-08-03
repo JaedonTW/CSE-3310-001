@@ -56,6 +56,8 @@ namespace Assets.Scripts.AI
                 if (!Manager.player.HasWeapon[i] && Random.Range(0f, 1f) < probability[i])
                 {
                     Manager.player.HasWeapon[i] = true;
+                    if (Manager.player != null)
+                        Manager.player.SetActiveWeapon(i);
                     return;
                 }
         }

@@ -22,6 +22,7 @@ class Spawner : MonoBehaviour
     /// The undead friendly (friendly cultst) prefab to be used.
     /// </summary>
     public GameObject undeadFriendlyPrefab;
+    private static int UndeadCount { get; set; }
     /// <summary>
     /// The list of spawners that are currently in the level.
     /// This needs to be cleared by the end of the level.
@@ -33,15 +34,18 @@ class Spawner : MonoBehaviour
     /// <param name="config">The configuration that specifies numbers for how many enemies are to be spawned of each type.</param>
     public static void SpawnEnemies(MapConfiguration config) =>
         SpawnEnemies(config.mobsterSpawnCount, config.cultistSpawnCount, config.undeadFriendlySpawnProbability);
-    static void SpawnEnemies(int mobsterCount, int cultustCount, float undeadSpawnProbability)
+    public static void SpawnEnemies(int mobsterCount, int cultustCount, float undeadSpawnProbability)
     {
         if(Spawners.Count == 0)
         {
             Debug.LogWarning("You have no spawners, is this intentional?");
             return;
         }
-        int undeadCount = PlayerPrefs.GetInt("friendly_counter", 0);
+        int undeadCount = UndeadCount == -1?
+            PlayerPrefs.GetInt("friendly_counter", 0) : UndeadCount;
+
         undeadCount = GetBinomialSample(undeadCount, undeadSpawnProbability);
+        UndeadCount -= undeadCount;
         SpawnEnemies(mobsterCount, cultustCount, undeadCount);
     }
     static void SpawnEnemies(int mobsterCount, int cultistCount, int undeadFriendlyCount)
@@ -81,6 +85,8 @@ class Spawner : MonoBehaviour
     }
     void Start()
     {
+        if (Spawners.Count == 0)
+            UndeadCount = -1;
         Spawners.Add(this);
         Destroy(GetComponent<SpriteRenderer>());
     }

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 /// <summary>
 /// The class that corresponds to the main character object.
@@ -25,8 +26,11 @@ public class MainCharacter : MovableCharacter
     public GameManager Manager { get; set; }
     public void SetActiveWeapon(int ID)
     {
-        if(HasWeapon[ID])
+        if (0 <= ID && ID < HasWeapon.Length && HasWeapon[ID])
+        {
             weapon = Weapons[ID];
+            weapon.body = body;
+        }
     }
     /// <summary>
     /// Change function for sanity.
@@ -64,6 +68,8 @@ public class MainCharacter : MovableCharacter
         PlayerPrefs.SetInt("Sanity", Sanity);
         for(int i = 0; i < HasWeapon.Length; i++)
             PlayerPrefs.SetInt("Weapon " + i + " is unlocked", HasWeapon[i]? 1 : 0);
+        if(weapon != null)
+            PlayerPrefs.SetInt("Equiped Weapon", weapon.ID);
     }
     public override void ChangeHealth(int change)
     {
@@ -71,16 +77,23 @@ public class MainCharacter : MovableCharacter
         HUD.SetHealth(Health);
         print("Player health is now " + Health);
     }
+    public override void OnDeath()
+    {
+        base.OnDeath();
+        Spawner.Spawners.Clear();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     protected override void Start()
     {
-        print("MainCharacter started");
+        base.Start();
         // Loading data and setting initial values
         Sanity = PlayerPrefs.GetInt("Sanity",75);
         HUD.SetSanity(Sanity);
         for (int i = 0; i < HasWeapon.Length; i++)
             HasWeapon[i] = PlayerPrefs.GetInt("Weapon " + i + " is unlocked",0) == 1;
+        int currentWeapon = PlayerPrefs.GetInt("Equiped Weapon", 0);
+        SetActiveWeapon(currentWeapon);
         //
-        base.Start();
         DamageGroup = DamegeGroups.Player;
 
         // Getting the joystick and camera objects
@@ -88,8 +101,6 @@ public class MainCharacter : MovableCharacter
         var joysticks = FindObjectsOfType<Joystick>();
         if (joysticks.Length < 2)
             throw new MissingComponentException("Could not find both 'Joystick' objects.");
-        print(joysticks[0].name);
-        print(joysticks[1].name);
         if (joysticks[0].name == "Movement Joystick")
         {
             MovementJoystick = joysticks[0];
@@ -105,10 +116,8 @@ public class MainCharacter : MovableCharacter
         cam = FindObjectOfType<Camera>();
         // setting the camera to be focused on the MainCharacter (player)
         cam.transform.position = new Vector3(body.position.x, body.position.y, cam.transform.position.z);
-
-        if (weapon != null)
-            weapon.body = body;
     }
+    
     protected override void Update()
     {
         // updating player movement.

@@ -10,8 +10,9 @@ public class TextBox : MonoBehaviour
     public Door front_Door;
     private GameManager manager;
     private MainCharacter mainCharacter;
+    public GameObject bookShelf;
 
-
+    
 
     /*
         Logic handles displaying and hiding the Display Box
@@ -19,7 +20,24 @@ public class TextBox : MonoBehaviour
         there is a storm outside.
     */
     public bool displayBox;
-    protected void Check_Front_Door()
+
+    private void _displayRiddle() 
+    {
+        if(manager.Check_Distance(mainCharacter.transform,bookShelf.transform) == true) 
+        {
+            displayBox = true;
+            animator.SetBool("displayBox", displayBox);
+        }
+
+        else 
+        {
+            displayBox = false;
+            animator.SetBool("displayBox", displayBox);
+        }
+    }
+
+
+    /*protected void Check_Front_Door()
     {
         if (front_Door.tag.CompareTo("Front_Door") == 0 && front_Door.Get_Door_State() == true && manager.Check_Distance(mainCharacter.transform, front_Door.transform))
         {
@@ -30,20 +48,22 @@ public class TextBox : MonoBehaviour
         {
             animator.SetBool("displayBox", false);
         }
-    }
+    }*/
 
     private void Start()
     {
-        /*
-            Ill comment tomorrow .....
-        */
+        displayBox = false;
         animator.SetBool("displayBox", displayBox);
+        
+        // Find reference to MainCharacter object in the scene.
         mainCharacter = FindObjectOfType<MainCharacter>();
+        
+        // Find reference to Manager object in the scene.
         manager = FindObjectOfType<GameManager>();
     }
 
     void Update()
     {
-        Check_Front_Door();
+        _displayRiddle();
     }
 }

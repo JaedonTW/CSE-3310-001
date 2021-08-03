@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c17254bf3a45ee44ac95fef4cec3445, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 3
+  ID: 2
   body: {fileID: 0}
   ignoring: 0
   rechargeTime: 60

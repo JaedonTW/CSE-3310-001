@@ -7,12 +7,15 @@ using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
+    private TextBoxMessage textBoxMessage;
+
     [SerializeField]
     internal Inkie inkiePrefab;
     public MainCharacter player;
     public int CurrentLevel { get; private set; } = 0;
     public Tilemap Walls { get; private set; }
     public CultistManager CultistCoordinator { get; set; } = new CultistManager();
+    public int EnemyCount { get; set; }
     /*
         correct_Doors_Entered will hold the number of
         doors entered in a row by the user. The user 
@@ -20,6 +23,11 @@ public class GameManager : MonoBehaviour
         finish the level.
     */
     private int correct_Doors_Entered;
+
+    public int GetCorrectDoorsEntered() 
+    {
+        return correct_Doors_Entered;
+    }
 
     /*
         Check_Distance uses the famed Distance Formula
@@ -73,9 +81,11 @@ public class GameManager : MonoBehaviour
         // We check if the door entered was the correct one. 
         if (door_Order[door_Name] == correct_Doors_Entered)
         {
+            correct_Doors_Entered++;
+            _updatePuzzleDoorText();
             // If the door enterd was correct, we increment and
             //   check if all of the correct doors were entered.
-            if(++correct_Doors_Entered == 5)
+            if(correct_Doors_Entered == 5)
                 /*
                     If all correct doors were entered,
                     you may pass to the next stage.
@@ -90,6 +100,13 @@ public class GameManager : MonoBehaviour
             */
             correct_Doors_Entered = 0;
     }
+    
+    private void _updatePuzzleDoorText() 
+    {
+        textBoxMessage.Set_Current_Riddles();
+        textBoxMessage._loadTextBox();
+    }
+    
     void OnMapLoad()
     {
         // initializing the 'PathMap' and the 'MapOffset'
@@ -119,6 +136,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        textBoxMessage = FindObjectOfType<TextBoxMessage>();
         correct_Doors_Entered = 0;
         OnMapLoad();
     }
