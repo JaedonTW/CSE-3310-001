@@ -20,7 +20,6 @@ public class EndLevelBox : MonoBehaviour
             Spawner.Spawners.Clear();
         }
     }
-
     private void Start()
     {
         // Find reference to MainCamera object in the scene.
