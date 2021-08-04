@@ -49,6 +49,7 @@ public class InventoryMenu : MonoBehaviour
     {
         weaponSelectUI.SetActive(true);
         pauseMenuUI.SetActive(false);
+<<<<<<< HEAD
 
         for (int i = 0; i < manager.Player.HasWeapon.Length; i++)
             textBoxes[i].color = manager.Player.HasWeapon[i] ? Color.red : Color.gray;
@@ -56,6 +57,10 @@ public class InventoryMenu : MonoBehaviour
         Time.timeScale = 0f;
 
 
+=======
+        for (int i = 0; i < manager.Player.HasWeapon.Length; i++)
+            textBoxes[i].color = manager.Player.HasWeapon[i] ? Color.red : Color.gray;
+>>>>>>> f25141e97fafb7da91f0258dc567e6fd8eb683ad
     }
     public void clicked()
     {
