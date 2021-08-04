@@ -92,9 +92,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d91abde92849794caca0aad182439b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mobsterPrefab: {fileID: 8693141397622866991, guid: 8b4a90e19c327914aa5aa1840d729811,
+  mobsterPrefab: {fileID: 6057925516227009319, guid: 8b4a90e19c327914aa5aa1840d729811,
     type: 3}
-  cultistPrefab: {fileID: 4561685283525778104, guid: e4cc885c82c85384aa2625156be4b00e,
+  cultistPrefab: {fileID: 114781340316339048, guid: e4cc885c82c85384aa2625156be4b00e,
     type: 3}
-  undeadFriendlyPrefab: {fileID: 4561685283525778104, guid: e4cc885c82c85384aa2625156be4b00e,
+  undeadFriendlyPrefab: {fileID: 114781340316339048, guid: e4cc885c82c85384aa2625156be4b00e,
     type: 3}

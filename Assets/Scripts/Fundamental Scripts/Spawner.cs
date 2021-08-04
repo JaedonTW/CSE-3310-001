@@ -13,15 +13,15 @@ class Spawner : MonoBehaviour
     /// <summary>
     /// The mobster prefab to be used.
     /// </summary>
-    public GameObject mobsterPrefab;
+    public Enemy mobsterPrefab;
     /// <summary>
     /// The cultist prefab to be used.
     /// </summary>
-    public GameObject cultistPrefab;
+    public Enemy cultistPrefab;
     /// <summary>
     /// The undead friendly (friendly cultst) prefab to be used.
     /// </summary>
-    public GameObject undeadFriendlyPrefab;
+    public Enemy undeadFriendlyPrefab;
     private static int UndeadCount { get; set; }
     /// <summary>
     /// The list of spawners that are currently in the level.
@@ -34,23 +34,24 @@ class Spawner : MonoBehaviour
     /// <param name="config">The configuration that specifies numbers for how many enemies are to be spawned of each type.</param>
     public static void SpawnEnemies(MapConfiguration config) =>
         SpawnEnemies(config.mobsterSpawnCount, config.cultistSpawnCount, config.undeadFriendlySpawnProbability);
-    public static void SpawnEnemies(int mobsterCount, int cultustCount, float undeadSpawnProbability)
+    public static List<Enemy> SpawnEnemies(int mobsterCount, int cultustCount, float undeadSpawnProbability, bool returnRefs = false)
     {
         if(Spawners.Count == 0)
         {
             Debug.LogWarning("You have no spawners, is this intentional?");
-            return;
+            return returnRefs? new List<Enemy>() : null;
         }
         int undeadCount = UndeadCount == -1?
             PlayerPrefs.GetInt("friendly_counter", 0) : UndeadCount;
 
         undeadCount = GetBinomialSample(undeadCount, undeadSpawnProbability);
         UndeadCount -= undeadCount;
-        SpawnEnemies(mobsterCount, cultustCount, undeadCount);
+        return SpawnEnemies(mobsterCount, cultustCount, undeadCount,returnRefs);
     }
-    static void SpawnEnemies(int mobsterCount, int cultistCount, int undeadFriendlyCount)
+    static List<Enemy> SpawnEnemies(int mobsterCount, int cultistCount, int undeadFriendlyCount, bool returnRefs)
     {
         int count = mobsterCount + cultistCount + undeadFriendlyCount;
+        List<Enemy> refs = returnRefs ? new List<Enemy>(count) : null;
         int[] partitions = new int[count];
         int i;
         for(i = 1; i < Spawners.Count; i++)
@@ -60,28 +61,35 @@ class Spawner : MonoBehaviour
         foreach(int b in partitions)
         {
             i += b;
-            Spawners[i].SpawnEnemy(ref mobsterCount, ref cultistCount, ref undeadFriendlyCount, count);
+            var enemy = Spawners[i].SpawnEnemy(ref mobsterCount, ref cultistCount, ref undeadFriendlyCount, count);
+            if (returnRefs)
+                refs.Add(enemy);
             count--;
         }
+        return refs;
     }
-    void SpawnEnemy(ref int mobsterCount, ref int cultistCount, ref int undeadFriendlyCount, int count)
+    Enemy SpawnEnemy(ref int mobsterCount, ref int cultistCount, ref int undeadFriendlyCount, int count)
     {
         int ran = Random.Range(0, count);
+        Enemy prefab;
         if (ran < mobsterCount)
         {
             mobsterCount--;
-            Instantiate(mobsterPrefab).transform.position = transform.position;
+            prefab = mobsterPrefab;
         }
         else if (ran < mobsterCount + cultistCount)
         {
             cultistCount--;
-            Instantiate(cultistPrefab).transform.position = transform.position;
+            prefab = cultistPrefab;
         }
         else
         {
             undeadFriendlyCount--;
-            Instantiate(undeadFriendlyPrefab).transform.position = transform.position;
+            prefab = undeadFriendlyPrefab;
         }
+        var ret = Instantiate(undeadFriendlyPrefab);
+        ret.transform.position = transform.position;
+        return ret;
     }
     void Start()
     {
