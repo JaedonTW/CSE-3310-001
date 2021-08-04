@@ -26,7 +26,7 @@ public class Door : MonoBehaviour
         we can use the unary not operator to change the
         state to it's opposite boolean value.
     */
-    protected void Change_Door_State()
+    public void Change_Door_State()
     {
         isOpen = !isOpen;
         animator.SetBool("isOpen", isOpen);
