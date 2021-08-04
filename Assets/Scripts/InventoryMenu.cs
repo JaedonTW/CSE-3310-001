@@ -49,13 +49,13 @@ public class InventoryMenu : MonoBehaviour
     {
         weaponSelectUI.SetActive(true);
         pauseMenuUI.SetActive(false);
-<<<<<<< HEAD
+
         for (int i = 0; i < manager.Player.HasWeapon.Length; i++)
             textBoxes[i].color = manager.Player.HasWeapon[i] ? Color.red : Color.gray;
-=======
+
         Time.timeScale = 0f;
 
->>>>>>> da181e92040cfd721401c29953d36e1d5c13efb9
+
     }
     public void clicked()
     {
