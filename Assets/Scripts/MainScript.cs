@@ -8,12 +8,17 @@ public class MainScript : MonoBehaviour
 {
     public GameObject MainUI;
    public GameObject LevelSelectUI;
+    public Button Act1Button;
+    public Button Act2Button;
+    public Button Act3Button;
 
     public void Start()
     {
         MainUI.SetActive(true);
         LevelSelectUI.SetActive(false);
         Time.timeScale = 1f;
+        Act2Button.interactable = false;
+        Act3Button.interactable = false;
     }
     public void EndGame()
     {

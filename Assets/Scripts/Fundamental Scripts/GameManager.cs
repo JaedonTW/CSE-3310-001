@@ -7,23 +7,30 @@ using UnityEngine.Tilemaps;
 
 public class GameManager : MonoBehaviour
 {
-    private TextBoxMessage textBoxMessage;
+    public MainCharacter Player;
+    private MainCamera _mainCamera;
+    internal Inkie inkiePrefab;
+
+    private EndLevelBox _endLevelBox;
+    private TextBoxMessage _textBoxMessage;
 
     [SerializeField]
-    internal Inkie inkiePrefab;
-    public MainCharacter player;
-    public int CurrentLevel { get; private set; } = 0;
     public Tilemap Walls { get; private set; }
     public CultistManager CultistCoordinator { get; set; } = new CultistManager();
     public int EnemyCount { get; set; }
+    
     /*
         correct_Doors_Entered will hold the number of
-        doors entered in a row by the user. The user 
-        will need to enter 4 correct doors in a row to 
+        doors entered in the correct order by the user. 
+        The user will need to enter 5 correct doors in a row to 
         finish the level.
     */
     private int correct_Doors_Entered;
-
+    
+    /*
+        GetCorrectDoorsEntered() is a getter function that 
+        returns that number of correct doors entered by the user.
+    */
     public int GetCorrectDoorsEntered() 
     {
         return correct_Doors_Entered;
@@ -44,7 +51,7 @@ public class GameManager : MonoBehaviour
 
         float x_Val = Mathf.Sqrt(Mathf.Pow(obj1_XPos - obj2_XPos, 2));
         float y_Val = Mathf.Sqrt(Mathf.Pow(obj1_YPos - obj2_YPos, 2));
-        float instantiation_Distance = 1.25f;
+        float instantiation_Distance = 1.5f;
 
         if (Mathf.Sqrt(x_Val + y_Val) <= instantiation_Distance)
         {
@@ -53,7 +60,6 @@ public class GameManager : MonoBehaviour
 
         return false;
     }
-
 
     public void StartLevel(int level)
     {
@@ -71,40 +77,49 @@ public class GameManager : MonoBehaviour
         match.
     */
     public void Track_Door_Order(SortedDictionary<string,int> door_Order, string door_Name) 
-    {
-        /*
-            Before we begin traversing the dictionary,
-            we have not yet found the KeyValuePair. For
-            this reason, found will always start as false.
-        */
-        
+    {   
         // We check if the door entered was the correct one. 
         if (door_Order[door_Name] == correct_Doors_Entered)
         {
+            // If the door enterd was correct, we increment,
+            // update the Puzzle Door Text fields, and check if
+            // all of the correct doors were entered.
             correct_Doors_Entered++;
             _updatePuzzleDoorText();
-            // If the door enterd was correct, we increment and
-            //   check if all of the correct doors were entered.
-            if(correct_Doors_Entered == 5)
-                /*
-                    If all correct doors were entered,
-                    you may pass to the next stage.
-                */
-                Debug.Log("YOU WIN !!!\n");
+            
+            if(correct_Doors_Entered == 5) 
+            {
+                // If all correct doors were entered,
+                // you may pass to the next stage.
+                _endLevelBox.GetComponent<BoxCollider2D>().enabled = true;
+                _endLevelBox.GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
-        else
-            /*
-                If the user enters the wrong door, 
-                the correct_Door_Counter starts back
-                at 0.
-            */
+        
+        else 
+        {
+            // If the user enters the wrong door, 
+            // the correct_Door_Counter starts back at 0.
+            // Update the Puzzle Door Text back to the first riddle.
             correct_Doors_Entered = 0;
+            _updatePuzzleDoorText();
+        }
+           
     }
     
+    /*
+        _updatePuzzleDoorText will fill in the text fields 
+        of the text box depending on how many doors have
+        been entered in the correct order.
+    */
     private void _updatePuzzleDoorText() 
     {
-        textBoxMessage.Set_Current_Riddles();
-        textBoxMessage._loadTextBox();
+        // If you have not yet finished the puzzle, update the Puzzle Doors.
+        if(correct_Doors_Entered < 5) 
+        {
+            _textBoxMessage.Set_Current_Riddles();
+            _textBoxMessage._loadTextBox();
+        }
     }
     
     void OnMapLoad()
@@ -131,17 +146,33 @@ public class GameManager : MonoBehaviour
             Spawner.SpawnEnemies(config);
         }
         // getting a reference to the MainCharacter
-        player = FindObjectOfType<MainCharacter>();
-        player.Manager = this;
+        Player = FindObjectOfType<MainCharacter>();
+        Player.Manager = this;
     }
+    
     void Start()
     {
-        textBoxMessage = FindObjectOfType<TextBoxMessage>();
+        // Find reference to the TextBoxMessage object in the scene.
+        _textBoxMessage = FindObjectOfType<TextBoxMessage>();
+
+        // Find reference to the EndLevelBox object in the scene.
+        _endLevelBox = FindObjectOfType<EndLevelBox>();
+
+        // Find reference to MainCamera object in the scene.
+        _mainCamera = FindObjectOfType<MainCamera>();
+
+        // Disable the box collider and the sprite renderer at the beggining of the level
+        _endLevelBox.GetComponent<BoxCollider2D>().enabled = false;
+        _endLevelBox.GetComponent<SpriteRenderer>().enabled = false;
+        
+        // The user has not entered any correct doors at the start of the level.
         correct_Doors_Entered = 0;
+
+        _mainCamera.StartCoroutine(_mainCamera.Fade_Black(false));
+
         OnMapLoad();
     }
 
-    // Update is called once per frame
     void Update()
     {
         CultistCoordinator.Tick();
