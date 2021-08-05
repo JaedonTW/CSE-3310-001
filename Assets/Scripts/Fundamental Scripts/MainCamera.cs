@@ -32,8 +32,11 @@ public class MainCamera : MonoBehaviour
     */
     public IEnumerator Fade_Black(bool isOpen) 
     {
-        // Lock cursor so the user cannot click a door before fade has completed
-        Cursor.lockState = CursorLockMode.Locked;
+        // Lock cursor if not already so the user cannot click a door before fade has completed
+        if (!Cursor.lockState.Equals(CursorLockMode.Locked))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
 
         // Fade_Interval signifies the 2 seconds it takes the camera to fade in/out of black
         float Fade_Interval= 2f;

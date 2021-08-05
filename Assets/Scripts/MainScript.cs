@@ -17,8 +17,9 @@ public class MainScript : MonoBehaviour
         MainUI.SetActive(true);
         LevelSelectUI.SetActive(false);
         Time.timeScale = 1f;
-        Act2Button.interactable = false;
-        Act3Button.interactable = false;
+        //Act2Button.interactable = false;
+       // Act3Button.interactable = false;
+       //uncomment these lines when done with the game development. 
     }
     public void EndGame()
     {
