@@ -49,6 +49,8 @@ public class Hurtable : MonoBehaviour
         Health += change;
         if (Health <= 0)
             OnDeath();
+        else if (Health > 100)
+            Health = 100;
     }
     // protected methods
     // Start is called before the first frame update
