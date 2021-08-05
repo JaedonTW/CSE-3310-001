@@ -6,6 +6,8 @@ public class Teleport : MonoBehaviour
 {
     private MainCharacter mainCharacter;
     private Puzzle_Door[] puzzle_Doors;
+    private GameManager manager;
+    private Vector2 _startPos;
 
     /*
         Teleport_Character will determine the location to place
@@ -16,14 +18,26 @@ public class Teleport : MonoBehaviour
     */
     public Vector2 Teleport_Character()
     {
-        Puzzle_Door puzzle_Door = puzzle_Doors[Random.Range(0, 5)];
-        return new Vector2 (puzzle_Door.transform.position.x, puzzle_Door.transform.position.y -1);
+        if(manager.GetCorrectDoorsEntered() != 5) 
+        {
+            Puzzle_Door puzzle_Door = puzzle_Doors[Random.Range(0, 5)];
+            return new Vector2(puzzle_Door.transform.position.x, puzzle_Door.transform.position.y - 1);
+        }
+
+        else 
+        {
+            return _startPos;
+        }
     }
 
     private void Start()
     {
+        manager = FindObjectOfType<GameManager>();
         mainCharacter = FindObjectOfType<MainCharacter>();
         puzzle_Doors = FindObjectsOfType<Puzzle_Door>();
+
+        // Initialize startPos Vector2
+        _startPos = new Vector2(-28, 17.81f);
     }
 
 

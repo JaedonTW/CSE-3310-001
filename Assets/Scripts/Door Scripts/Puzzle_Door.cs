@@ -7,6 +7,7 @@ using UnityEngine.Tilemaps;
 public class Puzzle_Door : Door
 {
     private Teleport teleport;
+    
 
     /*
         door_Order is a SortedDictionary that we will use to
@@ -22,12 +23,15 @@ public class Puzzle_Door : Door
         {"Lion", 4}
     };
 
-    
+
 
     /*
         When we select a teleporting door, we will
         execute the following subroutines.
     */
+
+    
+
     private void OnMouseDown()
     {
         // Negate the value of the door state; opening the door
@@ -36,7 +40,7 @@ public class Puzzle_Door : Door
         // Fade the camera out
         mainCamera.StartCoroutine(mainCamera.Fade_Black(isOpen));
 
-        // Teleport the main character to a random door
+        // Teleport the main character to a random door / location.
         mainCharacter.transform.position = teleport.Teleport_Character();
 
         // Fade the camera in
@@ -51,8 +55,6 @@ public class Puzzle_Door : Door
         //
         Spawner.SpawnEnemies(Random.Range(0, 5), Random.Range(0, 5), 0.5f);
     }
-
-    
 
     void Start()
     {

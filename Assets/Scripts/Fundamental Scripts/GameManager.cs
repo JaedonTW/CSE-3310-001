@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     private MainCamera _mainCamera;
     internal Inkie inkiePrefab;
 
+    private ParticleSystem[] particleSystem;
+
     private EndLevelBox _endLevelBox;
     private TextBoxMessage _textBoxMessage;
 
@@ -93,6 +95,7 @@ public class GameManager : MonoBehaviour
                 // you may pass to the next stage.
                 _endLevelBox.GetComponent<BoxCollider2D>().enabled = true;
                 _endLevelBox.GetComponent<SpriteRenderer>().enabled = true;
+                Trigger_Confetti();
             }
         }
         
@@ -149,7 +152,15 @@ public class GameManager : MonoBehaviour
         Player = FindObjectOfType<MainCharacter>();
         Player.Manager = this;
     }
-    
+
+    void Trigger_Confetti()
+    {
+        for (int i = 0; i < particleSystem.Length; i++)
+        {
+            particleSystem[i].Play();
+        }
+    }
+
     void Start()
     {
         // Find reference to the TextBoxMessage object in the scene.
@@ -167,6 +178,9 @@ public class GameManager : MonoBehaviour
         
         // The user has not entered any correct doors at the start of the level.
         correct_Doors_Entered = 0;
+
+        // Find reference to the ParticleSystem objects.
+        particleSystem = FindObjectsOfType<ParticleSystem>();
 
         _mainCamera.StartCoroutine(_mainCamera.Fade_Black(false));
 
