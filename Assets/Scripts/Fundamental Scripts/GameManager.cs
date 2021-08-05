@@ -172,9 +172,11 @@ public class GameManager : MonoBehaviour
         // Find reference to MainCamera object in the scene.
         _mainCamera = FindObjectOfType<MainCamera>();
 
+        // Commented out below code since it breaks level 1.
         // Disable the box collider and the sprite renderer at the beggining of the level
-        _endLevelBox.GetComponent<BoxCollider2D>().enabled = false;
-        _endLevelBox.GetComponent<SpriteRenderer>().enabled = false;
+        // _endLevelBox.GetComponent<BoxCollider2D>().enabled = false;
+        // _endLevelBox.GetComponent<SpriteRenderer>().enabled = false;
+        // End.
         
         // The user has not entered any correct doors at the start of the level.
         correct_Doors_Entered = 0;
