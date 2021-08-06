@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
 
@@ -171,10 +172,13 @@ public class GameManager : MonoBehaviour
 
         // Find reference to MainCamera object in the scene.
         _mainCamera = FindObjectOfType<MainCamera>();
-
-        // Disable the box collider and the sprite renderer at the beggining of the level
-        _endLevelBox.GetComponent<BoxCollider2D>().enabled = false;
-        _endLevelBox.GetComponent<SpriteRenderer>().enabled = false;
+        
+        if (SceneManager.GetActiveScene().name != "Level1 - Mansion")
+        {
+            // Disable the box collider and the sprite renderer at the beggining of the level
+            _endLevelBox.GetComponent<BoxCollider2D>().enabled = false;
+            _endLevelBox.GetComponent<SpriteRenderer>().enabled = false;
+        }
         
         // The user has not entered any correct doors at the start of the level.
         correct_Doors_Entered = 0;

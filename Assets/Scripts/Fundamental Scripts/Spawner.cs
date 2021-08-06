@@ -56,7 +56,6 @@ class Spawner : MonoBehaviour
         int i;
         for(i = 1; i < Spawners.Count; i++)
             partitions[Random.Range(0, partitions.Length)]++;
-        print(30);
         i = 0;
         foreach(int b in partitions)
         {
@@ -87,7 +86,7 @@ class Spawner : MonoBehaviour
             undeadFriendlyCount--;
             prefab = undeadFriendlyPrefab;
         }
-        var ret = Instantiate(undeadFriendlyPrefab);
+        var ret = Instantiate(prefab);
         ret.transform.position = transform.position;
         return ret;
     }
