@@ -1773,6 +1773,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1954692250}
+  inkiePrefab: {fileID: 2986187683301739945, guid: a925d3adb1d4c5e4b84fa10289a6e958,
+    type: 3}
 --- !u!4 &424158670
 Transform:
   m_ObjectHideFlags: 0

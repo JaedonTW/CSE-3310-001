@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public MainCharacter Player;
     private MainCamera _mainCamera;
+    [SerializeField]
     internal Inkie inkiePrefab;
 
     private ParticleSystem[] particleSystem;

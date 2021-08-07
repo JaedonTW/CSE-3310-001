@@ -7213,6 +7213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 744394507}
+  inkiePrefab: {fileID: 2986187683301739945, guid: a925d3adb1d4c5e4b84fa10289a6e958,
+    type: 3}
 --- !u!4 &1924901333
 Transform:
   m_ObjectHideFlags: 0
@@ -7463,6 +7465,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3470720522964369975, guid: f3d1e124b80becf45b77a66c3cece5e0,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3470720523063777313, guid: f3d1e124b80becf45b77a66c3cece5e0,
         type: 3}
       propertyPath: m_Name
