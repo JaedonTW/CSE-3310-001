@@ -51,6 +51,11 @@ class Spawner : MonoBehaviour
     static List<Enemy> SpawnEnemies(int mobsterCount, int cultistCount, int undeadFriendlyCount, bool returnRefs)
     {
         int count = mobsterCount + cultistCount + undeadFriendlyCount;
+        if(count == 0)
+        {
+            Debug.LogWarning("You are calliny \"SpawnEnemies(int, int, int, bool)\", but asking for zero enemies to be spawned.  Is this intentional?");
+            return returnRefs ? new List<Enemy>(0) : null;
+        }
         List<Enemy> refs = returnRefs ? new List<Enemy>(count) : null;
         int[] partitions = new int[count];
         int i;
