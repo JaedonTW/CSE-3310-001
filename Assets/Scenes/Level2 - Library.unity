@@ -3095,16 +3095,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3470720522964369975, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522964369976, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: manager
-      value: 
-      objectReference: {fileID: 218175067}
     - target: {fileID: 3470720523063777313, guid: f3d1e124b80becf45b77a66c3cece5e0,
         type: 3}
       propertyPath: m_Name
@@ -3164,46 +3154,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4881292206033530331, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6878700829002891028, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_Text
-      value: Unholy Scepter
-      objectReference: {fileID: 0}
-    - target: {fileID: 6878700829386885013, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6878700829417280724, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_Text
-      value: Shotgun
-      objectReference: {fileID: 0}
-    - target: {fileID: 6878700829575604459, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6878700829632628909, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6878700830134331731, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 6878700830134331731, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3d1e124b80becf45b77a66c3cece5e0, type: 3}
