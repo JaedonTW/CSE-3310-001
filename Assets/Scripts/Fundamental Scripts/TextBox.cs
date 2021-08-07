@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TextBox : MonoBehaviour
 {
@@ -64,6 +65,10 @@ public class TextBox : MonoBehaviour
 
     void Update()
     {
-        _displayRiddle();
+        if(SceneManager.GetActiveScene().name.CompareTo("Level3 - Boss") != 0) 
+        {
+            _displayRiddle();
+        }
+        
     }
 }

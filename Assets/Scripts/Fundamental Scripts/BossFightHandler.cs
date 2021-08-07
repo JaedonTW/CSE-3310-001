@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.AI;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 class BossFightHandler : MonoBehaviour
 {

@@ -71,14 +71,7 @@ public class MainCamera : MonoBehaviour
     
     void Update()
     {
-        /*
-            Basic concept.
-        */
+        // Follow main character
         Camera.main.transform.position = new Vector3(mainCharacter.transform.position.x,mainCharacter.transform.position.y,Camera.main.transform.position.z);
-        
-
-        /*t = 0;
-        black_Fade.color = Color.Lerp(non_translucent, translucent, t);
-        t += Time.deltaTime;*/
     }
 }

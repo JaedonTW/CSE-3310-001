@@ -172,19 +172,36 @@ public class GameManager : MonoBehaviour
 
         // Find reference to MainCamera object in the scene.
         _mainCamera = FindObjectOfType<MainCamera>();
-        
-        if (SceneManager.GetActiveScene().name != "Level1 - Mansion")
+
+        // Find reference to the ParticleSystem objects.
+        particleSystem = FindObjectsOfType<ParticleSystem>();
+
+        if (SceneManager.GetActiveScene().name == "Level2 - Library") // Changed, level2 is the only one that does this
         {
             // Disable the box collider and the sprite renderer at the beggining of the level
             _endLevelBox.GetComponent<BoxCollider2D>().enabled = false;
             _endLevelBox.GetComponent<SpriteRenderer>().enabled = false;
         }
+
+        if(SceneManager.GetActiveScene().name == "Level3 - Boss") 
+        { 
+
         
+        }
+
+        if (SceneManager.GetActiveScene().name == "Victory")
+        {
+            Trigger_Confetti();
+            Debug.Log("RErre");
+
+        }
+
+
+
         // The user has not entered any correct doors at the start of the level.
         correct_Doors_Entered = 0;
 
-        // Find reference to the ParticleSystem objects.
-        particleSystem = FindObjectsOfType<ParticleSystem>();
+
 
         _mainCamera.StartCoroutine(_mainCamera.Fade_Black(false));
 
