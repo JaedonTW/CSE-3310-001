@@ -79,9 +79,9 @@ public class MainCharacter : MovableCharacter
     }
     public override void OnDeath()
     {
-        base.OnDeath();
         Spawner.Spawners.Clear();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        base.OnDeath();
     }
     protected override void Start()
     {

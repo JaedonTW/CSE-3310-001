@@ -18,8 +18,25 @@ public class MainScript : MonoBehaviour
         LevelSelectUI.SetActive(false);
         Time.timeScale = 1f;
         //Act2Button.interactable = false;
-       // Act3Button.interactable = false;
-       //uncomment these lines when done with the game development. 
+        // Act3Button.interactable = false;
+        var actButtons = new Button[]
+        {
+            Act1Button,
+            Act2Button,
+            Act3Button,
+        };
+        int maxUnlocked = PlayerPrefs.GetInt("Max Unlocked",1);
+        if(maxUnlocked < 1 || maxUnlocked > actButtons.Length)
+        {
+            Debug.LogWarning("The 'Max Unlocked' value is set to " + maxUnlocked + 
+                ", but it should fall in the interval [1,3].  Making appropriate adjustments, but something must have gone wrong for this to happen.");
+            maxUnlocked = maxUnlocked > actButtons.Length ? actButtons.Length : maxUnlocked < 1 ? 1 : maxUnlocked;
+        }
+        for(int i = maxUnlocked; i < actButtons.Length; i++)
+        {
+            actButtons[i].GetComponentInChildren<Text>().color = Color.gray;
+            actButtons[i].interactable = false;
+        }
     }
     public void EndGame()
     {
