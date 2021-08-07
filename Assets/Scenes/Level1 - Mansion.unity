@@ -7463,106 +7463,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3470720521673858092, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720521673858092, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 110
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522075075615, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522282235248, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522282235248, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 65
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522282235248, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522496928535, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522496928535, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522496928535, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522699470543, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522744938046, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_Text
-      value: Unholy Scepter
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522744938046, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_FontData.m_HorizontalOverflow
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522744938046, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 16
-      objectReference: {fileID: 0}
     - target: {fileID: 3470720522964369975, guid: f3d1e124b80becf45b77a66c3cece5e0,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3470720522964369976, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: textBoxes.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522964369976, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: textBoxes.Array.data[0]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522964369976, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: textBoxes.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522964369976, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: textBoxes.Array.data[2]
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 3470720522964369977, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 744394507}
-    - target: {fileID: 3470720522964369977, guid: f3d1e124b80becf45b77a66c3cece5e0,
-        type: 3}
-      propertyPath: Player
-      value: 
-      objectReference: {fileID: 744394507}
     - target: {fileID: 3470720523063777313, guid: f3d1e124b80becf45b77a66c3cece5e0,
         type: 3}
       propertyPath: m_Name
@@ -7623,23 +7528,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3470720523276332851, guid: f3d1e124b80becf45b77a66c3cece5e0,
+    - target: {fileID: 6878700829386885013, guid: f3d1e124b80becf45b77a66c3cece5e0,
         type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878700829417280724, guid: f3d1e124b80becf45b77a66c3cece5e0,
+        type: 3}
+      propertyPath: m_Text
+      value: Unholy Scepter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878700829575604459, guid: f3d1e124b80becf45b77a66c3cece5e0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878700829575604459, guid: f3d1e124b80becf45b77a66c3cece5e0,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6878700829632628909, guid: f3d1e124b80becf45b77a66c3cece5e0,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3470720523703305440, guid: f3d1e124b80becf45b77a66c3cece5e0,
+    - target: {fileID: 6878700829632628909, guid: f3d1e124b80becf45b77a66c3cece5e0,
         type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 16
+      propertyPath: m_SizeDelta.x
+      value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 4881292206033530328, guid: f3d1e124b80becf45b77a66c3cece5e0,
+    - target: {fileID: 6878700830134331731, guid: f3d1e124b80becf45b77a66c3cece5e0,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 6
+      propertyPath: m_AnchoredPosition.x
+      value: 80
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3d1e124b80becf45b77a66c3cece5e0, type: 3}
 --- !u!1001 &6339580688169093132
 PrefabInstance:

@@ -387,7 +387,6 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 4822460419281191857}
   InventoryButton: {fileID: 7170417795407656415}
   weaponSelectUI: {fileID: 6878700830134331732}
-  manager: {fileID: 0}
   weapon1: {fileID: 7673649952539948130}
   weapon2: {fileID: 7673649952539948131}
   weapon3: {fileID: 7673649952539948129}
