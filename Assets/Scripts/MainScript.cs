@@ -26,11 +26,11 @@ public class MainScript : MonoBehaviour
             Act3Button,
         };
         int maxUnlocked = PlayerPrefs.GetInt("Max Unlocked",1);
-        if(maxUnlocked < 1 || maxUnlocked > actButtons.Length)
+        if(maxUnlocked < 1)
         {
             Debug.LogWarning("The 'Max Unlocked' value is set to " + maxUnlocked + 
-                ", but it should fall in the interval [1,3].  Making appropriate adjustments, but something must have gone wrong for this to happen.");
-            maxUnlocked = maxUnlocked > actButtons.Length ? actButtons.Length : maxUnlocked < 1 ? 1 : maxUnlocked;
+                ", but it should be greater than zero.");
+            maxUnlocked = 1;
         }
         for(int i = maxUnlocked; i < actButtons.Length; i++)
         {

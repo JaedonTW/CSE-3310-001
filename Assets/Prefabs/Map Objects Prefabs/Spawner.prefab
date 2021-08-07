@@ -96,5 +96,5 @@ MonoBehaviour:
     type: 3}
   cultistPrefab: {fileID: 114781340316339048, guid: e4cc885c82c85384aa2625156be4b00e,
     type: 3}
-  undeadFriendlyPrefab: {fileID: 114781340316339048, guid: e4cc885c82c85384aa2625156be4b00e,
+  undeadFriendlyPrefab: {fileID: 1243442653586513927, guid: 59a700ab85d60b14e91c0c9b2313dae4,
     type: 3}
