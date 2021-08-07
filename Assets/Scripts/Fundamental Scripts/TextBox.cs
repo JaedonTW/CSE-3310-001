@@ -54,7 +54,8 @@ public class TextBox : MonoBehaviour
     private void Start()
     {
         displayBox = false;
-        animator.SetBool("displayBox", displayBox);
+        if(animator != null)
+            animator.SetBool("displayBox", displayBox);
         
         // Find reference to MainCharacter object in the scene.
         mainCharacter = FindObjectOfType<MainCharacter>();
