@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class MeleeWeapon : Weapon
 {
+    /// <summary>
+    /// Damage dealt by this weapon per strike.
+    /// </summary>
     public int damage;
+    /// <summary>
+    /// The square of the range for this weapon.
+    /// </summary>
     public float rangeSqrd;
     //
     // remaining time in ticks

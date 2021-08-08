@@ -28,6 +28,7 @@ public abstract class Weapon : MonoBehaviour
     /// A method for firing/attacking with this method
     /// </summary>
     /// <param name="angle">The angle to be attacking at</param>
+    /// <param name="target">The desired target, left null if it does not matter.</param>
     public void AttemptUse(float angle, Hurtable target = null)
     {
         if(RechargeTicksRemaining == 0)

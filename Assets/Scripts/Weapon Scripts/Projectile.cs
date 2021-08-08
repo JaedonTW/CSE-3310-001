@@ -5,10 +5,20 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     internal const int Speed = 10;
+    /// <summary>
+    /// Damage Dealt to the target.
+    /// </summary>
     public int damage;
     //public Collider2D collider;
+    /// <summary>
+    /// The rigid body of this bullet.
+    /// </summary>
     public Rigidbody2D body;
     internal Hurtable.DamegeGroups ignoring;
+    /// <summary>
+    /// The max number of bounces on walls before 
+    ///   this projectile is destroyed.
+    /// </summary>
     public int maxBounces = 0;
     /// <summary>
     /// sets the direction the bullet is facing to be the same as the direction the bullet is moving

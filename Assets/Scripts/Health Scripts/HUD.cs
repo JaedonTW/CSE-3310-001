@@ -30,7 +30,7 @@ public class HUD : MonoBehaviour
         if(SanityBar != null)
             SanityBar.transform.localScale = new Vector3(1f * health / 100, 1, 1);
     }
-    public void Start()
+    void Start()
     {
         HealthBar = healthGauge;
         SanityBar = sanityGauge;
