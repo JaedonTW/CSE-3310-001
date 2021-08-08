@@ -17,6 +17,9 @@ public class MainCamera : MonoBehaviour
     /// A reference to the black fade sprite render.
     /// </summary>
     public SpriteRenderer black_Fade;
+    /// <summary>
+    /// Cult leader sprite renderer.
+    /// </summary>
     public SpriteRenderer CultLeaderSpriteRenderer;
 
     /*
@@ -67,10 +70,15 @@ public class MainCamera : MonoBehaviour
         // Unlock cursor so the user can proceed with the game
         Cursor.lockState = CursorLockMode.None;
     }
-
-
+    /// <summary>
+    /// Fade_To_Black will fade the camera in and out
+    /// at different points in the game.These points include
+    /// when you first begin a level, when you enter a new room,
+    /// or when you enter one of the puzzle doors.
+    /// </summary>
+    /// <param name="isOpen">If a fade-out is needed.</param>
+    /// <returns></returns>
     public IEnumerator Fade_Object()
-
     {
         Color non_translucent = new Color(1, 1, 1, 1);
 

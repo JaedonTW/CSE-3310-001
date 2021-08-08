@@ -7724,6 +7724,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 678088757, guid: f3d1e124b80becf45b77a66c3cece5e0, type: 3}
+      propertyPath: CultLeaderSpriteRenderer
+      value: 
+      objectReference: {fileID: 1456372542}
+    - target: {fileID: 678088757, guid: f3d1e124b80becf45b77a66c3cece5e0, type: 3}
       propertyPath: obj
       value: 
       objectReference: {fileID: 1456372541}
