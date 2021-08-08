@@ -17,6 +17,9 @@ public class MainCamera : MonoBehaviour
     /// A reference to the black fade sprite render.
     /// </summary>
     public SpriteRenderer black_Fade;
+    /// <summary>
+    /// Cult leader sprite renderer.
+    /// </summary>
     public SpriteRenderer CultLeaderSpriteRenderer;
 
     /*
@@ -67,10 +70,6 @@ public class MainCamera : MonoBehaviour
         // Unlock cursor so the user can proceed with the game
         Cursor.lockState = CursorLockMode.None;
     }
-<<<<<<< HEAD
-
-    public IEnumerator Fade_Object()
-=======
     /// <summary>
     /// Fade_To_Black will fade the camera in and out
     /// at different points in the game.These points include
@@ -79,8 +78,7 @@ public class MainCamera : MonoBehaviour
     /// </summary>
     /// <param name="isOpen">If a fade-out is needed.</param>
     /// <returns></returns>
-    public IEnumerator Fade_Object(bool isOpen, Color objColor)
->>>>>>> 3346c9c8485aee5afddee822ec7e73dfe39874f9
+    public IEnumerator Fade_Object()
     {
         Color non_translucent = new Color(1, 1, 1, 1);
 
