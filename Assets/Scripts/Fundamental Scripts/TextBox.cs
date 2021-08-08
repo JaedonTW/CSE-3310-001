@@ -25,6 +25,7 @@ public class TextBox : MonoBehaviour
     /// </summary>
     public GameObject bookShelf;
 
+
     /// <summary>
     /// Logic handles displaying and hiding the Display Box
     /// which promopts the user to continue into the castle as
