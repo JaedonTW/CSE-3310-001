@@ -6,20 +6,30 @@ using UnityEngine.SceneManagement;
 
 public class TextBox : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to related animator.
+    /// </summary>
     public Animator animator;
+    /// <summary>
+    /// Reference to TMP_Text object.
+    /// </summary>
     public TMP_Text text;
+    /// <summary>
+    /// Reference to related door object.
+    /// </summary>
     public Door front_Door;
     private GameManager manager;
     private MainCharacter mainCharacter;
+    /// <summary>
+    /// Reference to Bookshelf object.
+    /// </summary>
     public GameObject bookShelf;
 
-    
-
-    /*
-        Logic handles displaying and hiding the Display Box
-        which promopts the user to continue into the castle as
-        there is a storm outside.
-    */
+    /// <summary>
+    /// Logic handles displaying and hiding the Display Box
+    /// which promopts the user to continue into the castle as
+    /// there is a storm outside.
+    /// </summary>
     public bool displayBox;
 
     private void _displayRiddle() 
@@ -36,20 +46,6 @@ public class TextBox : MonoBehaviour
             animator.SetBool("displayBox", displayBox);
         }
     }
-
-
-    /*protected void Check_Front_Door()
-    {
-        if (front_Door.tag.CompareTo("Front_Door") == 0 && front_Door.Get_Door_State() == true && manager.Check_Distance(mainCharacter.transform, front_Door.transform))
-        {
-            animator.SetBool("displayBox", true);
-        }
-
-        else if (front_Door.tag.CompareTo("Front_Door") == 0 && front_Door.Get_Door_State() == false || !manager.Check_Distance(mainCharacter.transform, front_Door.transform))
-        {
-            animator.SetBool("displayBox", false);
-        }
-    }*/
 
     private void Start()
     {
