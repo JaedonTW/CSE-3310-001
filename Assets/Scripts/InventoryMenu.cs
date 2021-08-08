@@ -10,7 +10,7 @@ public class InventoryMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public Button InventoryButton;
     public GameObject weaponSelectUI;
-    public GameManager manager;
+    private GameManager Manager { get; set; }
     public Button weapon1;
     public Button weapon2;
     public Button weapon3;
@@ -20,13 +20,20 @@ public class InventoryMenu : MonoBehaviour
     public Text[] textBoxes;
     void Start()
     {
+        Manager = FindObjectOfType<GameManager>();
         pauseMenuUI.SetActive(false);
         weaponSelectUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+<<<<<<< HEAD
         /*weapon1.interactable = false;
         weapon2.interactable = false;
         weapon3.interactable = false;  // set weapons to disabled*/
+=======
+        //weapon1.interactable = false;
+        //weapon2.interactable = false;
+        //weapon3.interactable = false;  // set weapons to disabled
+>>>>>>> b4cef7fdef2c8e3113adeaeec12f8a92103d4a8e
     }
      void Resume()
     {
@@ -51,15 +58,15 @@ public class InventoryMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
 
 
-        for (int i = 0; i < manager.Player.HasWeapon.Length; i++)
-            textBoxes[i].color = manager.Player.HasWeapon[i] ? Color.red : Color.gray;
+        for (int i = 0; i < Manager.Player.HasWeapon.Length; i++)
+            textBoxes[i].color = Manager.Player.HasWeapon[i] ? Color.red : Color.gray;
 
         Time.timeScale = 0f;
 
 
 
-        for (int i = 0; i < manager.Player.HasWeapon.Length; i++)
-            textBoxes[i].color = manager.Player.HasWeapon[i] ? Color.red : Color.gray;
+        for (int i = 0; i < Manager.Player.HasWeapon.Length; i++)
+            textBoxes[i].color = Manager.Player.HasWeapon[i] ? Color.red : Color.gray;
     }
     public void clicked()
     {
@@ -74,7 +81,8 @@ public class InventoryMenu : MonoBehaviour
     }
     public void SetWeapon(int id)
     {
-        manager.Player.SetActiveWeapon(id);
+        print("Choosing weapon");
+        Manager.Player.SetActiveWeapon(id);
         weaponSelectUI.SetActive(false);
         Time.timeScale = 1f;
     }
