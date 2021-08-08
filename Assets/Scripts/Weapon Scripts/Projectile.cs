@@ -5,10 +5,20 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     internal const int Speed = 10;
+    /// <summary>
+    /// Damage Dealt to the target.
+    /// </summary>
     public int damage;
     //public Collider2D collider;
+    /// <summary>
+    /// The rigid body of this bullet.
+    /// </summary>
     public Rigidbody2D body;
-    internal Hurtable.DamegeGroups ignoring;
+    internal Hurtable.DamageGroup ignoring;
+    /// <summary>
+    /// The max number of bounces on walls before 
+    ///   this projectile is destroyed.
+    /// </summary>
     public int maxBounces = 0;
     /// <summary>
     /// sets the direction the bullet is facing to be the same as the direction the bullet is moving
@@ -32,7 +42,7 @@ public class Projectile : MonoBehaviour
         {
             Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
             // Runs the friendly fire check
-            if (ignoring == from.DamageGroup)
+            if (ignoring == from.Group)
                 return;
             // deals damage to contacting object
             else from.ChangeHealth(-damage);

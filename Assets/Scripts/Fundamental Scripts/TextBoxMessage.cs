@@ -6,6 +6,9 @@ using TMPro;
 public class TextBoxMessage : MonoBehaviour
 {
     private GameManager _manager;
+    /// <summary>
+    /// Related textBox objects.
+    /// </summary>
     public TextBox[] textBoxes;
     
     /*
@@ -70,7 +73,9 @@ public class TextBoxMessage : MonoBehaviour
     };
     private List<string> _currentRiddles;
     private List<List<string>> riddleArray;
-
+    /// <summary>
+    /// Loads the text box.
+    /// </summary>
     public void _loadTextBox() 
     {
         for(int i=0; i<textBoxes.Length; i++) 
@@ -79,7 +84,9 @@ public class TextBoxMessage : MonoBehaviour
             textMesh.text = _currentRiddles[i];
         }
     }
-    
+    /// <summary>
+    /// Sets the current riddles.
+    /// </summary>
     public void Set_Current_Riddles() 
     {
         _currentRiddles = riddleArray[_manager.GetCorrectDoorsEntered()];
@@ -98,9 +105,5 @@ public class TextBoxMessage : MonoBehaviour
 
         // Load the text boxes with the appropriate text
         _loadTextBox();
-    }
-
-    private void Update()
-    {
     }
 }

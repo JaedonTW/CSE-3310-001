@@ -5,10 +5,15 @@ using UnityEngine;
 
 public class Instantiate : MonoBehaviour
 {
+    /// <summary>
+    /// Related textBox
+    /// </summary>
     public TextBox textBox;
     Friendly friendly;
 
-    // Spawn_Text_Box will spawn a text box above the friendly NPC. Rough idea, will adapt to static objects as well.
+    /// <summary>
+    /// Spawn_Text_Box will spawn a text box above the friendly NPC. Rough idea, will adapt to static objects as well.
+    /// </summary>
     public void Spawn_Text_Box()
     {
         Instantiate(textBox).transform.position = new Vector2(friendly.transform.position.x, friendly.transform.position.y + 1);

@@ -8,14 +8,15 @@ public class Teleport : MonoBehaviour
     private Puzzle_Door[] puzzle_Doors;
     private GameManager manager;
     private Vector2 _startPos;
-
-    /*
-        Teleport_Character will determine the location to place
-        the main character after he has entered a door. The main
-        character and the door will have the same x-axis value; the
-        main character will have a y-axis value one less than the door
-        so that the location of the character will be just in front of the door.
-    */
+    
+    /// <summary>
+    /// Teleport_Character will determine the location to place
+    /// the main character after he has entered a door. The main
+    /// character and the door will have the same x-axis value; the
+    /// main character will have a y-axis value one less than the door
+    /// so that the location of the character will be just in front of the door.
+    /// </summary>
+    /// <returns></returns>
     public Vector2 Teleport_Character()
     {
         Debug.Log(manager.GetCorrectDoorsEntered());

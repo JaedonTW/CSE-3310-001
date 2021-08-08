@@ -12,11 +12,20 @@ namespace Assets.Scripts.AI
     {
         class Node
         {
+            /// <summary>
+            /// Creates a node object.
+            /// </summary>
+            /// <param name="posX">Horizontal position</param>
+            /// <param name="posY">Virtical Position</param>
             public Node(int posX, int posY)
             {
                 x = posX;
                 y = posY;
             }
+            /// <summary>
+            /// Creates a node object.
+            /// </summary>
+            /// <param name="v">The vector to be used for placement</param>
             public Node(Vector3Int v)
             {
                 x = v.x;
@@ -24,6 +33,14 @@ namespace Assets.Scripts.AI
                 cost = heuristicCost = 0;
                 prev = null;
             }
+            /// <summary>
+            /// Creates a node object.
+            /// </summary>
+            /// <param name="posX">horizontal position</param>
+            /// <param name="posY">virtical position</param>
+            /// <param name="prev">previous position</param>
+            /// <param name="cost">cost to get to this node</param>
+            /// <param name="heuristic">heuristic to get to the destination</param>
             public Node(int posX, int posY, Node prev, float cost, float heuristic)
             {
                 x = posX;
@@ -32,14 +49,47 @@ namespace Assets.Scripts.AI
                 this.cost = cost;
                 heuristicCost = cost + heuristic;
             }
+            /// <summary>
+            /// Previous node to this one.
+            /// </summary>
             public Node prev;
             float heuristicCost;
+            /// <summary>
+            /// The heuristic for this node.
+            /// </summary>
             public float Heuristic { set { heuristicCost = value; } }
+            /// <summary>
+            /// Cost to get to this node.
+            /// </summary>
             public float cost;
+            /// <summary>
+            /// Horizontal position of this node.
+            /// </summary>
             public int x;
+            /// <summary>
+            /// Virtical position of this node.
+            /// </summary>
             public int y;
+            /// <summary>
+            /// Compares the heuristic value between two nodes.
+            /// </summary>
+            /// <param name="a">First node</param>
+            /// <param name="b">Second node</param>
+            /// <returns></returns>
             public static bool operator <(Node a, Node b) => a.heuristicCost < b.heuristicCost;
+            /// <summary>
+            /// Compares the heuristic value between two nodes.
+            /// </summary>
+            /// <param name="a">First node</param>
+            /// <param name="b">Second node</param>
+            /// <returns></returns>
             public static bool operator >(Node a, Node b) => a.heuristicCost > b.heuristicCost;
+            /// <summary>
+            /// Compares the heuristic value between two nodes.
+            /// </summary>
+            /// <param name="a">First node</param>
+            /// <param name="b">Second node</param>
+            /// <returns></returns>
             public static bool operator ==(Node a, Node b)
             {
                 if (ReferenceEquals(a, null))
@@ -48,6 +98,12 @@ namespace Assets.Scripts.AI
                     return false;
                 return a.x == b.x && a.y == b.y;
             }
+            /// <summary>
+            /// Compares the heuristic value between two nodes.
+            /// </summary>
+            /// <param name="a">First node</param>
+            /// <param name="b">Second node</param>
+            /// <returns></returns>
             public static bool operator !=(Node a, Node b)
             {
                 if (ReferenceEquals(a, null))
@@ -56,6 +112,10 @@ namespace Assets.Scripts.AI
                     return true;
                 return a.x != b.x || a.y != b.y;
             }
+            /// <summary>
+            /// Converts a node into a string representation.
+            /// </summary>
+            /// <returns>String representation for this node.</returns>
             public override string ToString()
             {
                 return "< " + x + ", " + y + " >";

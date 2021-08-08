@@ -9,14 +9,17 @@ public class Hurtable : MonoBehaviour
     /// <summary>
     /// The different classes of characters that can be damaged
     /// </summary>
-    public enum DamegeGroups : byte
+    public enum DamageGroup : byte
     {
         Player = 0,
         Enemy,
         Friendly,
     }
     // public variables
-    public DamegeGroups DamageGroup { get; internal set; }
+    /// <summary>
+    /// The particular damage group this hurtable belongs to.
+    /// </summary>
+    public DamageGroup Group { get; internal set; }
     /// <summary>
     /// The current health of this object, is input parameter.
     /// </summary>
@@ -43,7 +46,7 @@ public class Hurtable : MonoBehaviour
     /// <summary>
     /// A function for changing the health of this object
     /// </summary>
-    /// <param name="change">The change in health</param>
+    /// <param name="change">The change in health.</param>
     public virtual void ChangeHealth(int change)
     {
         Health += change;

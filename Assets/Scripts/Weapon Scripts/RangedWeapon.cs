@@ -19,7 +19,7 @@ public class RangedWeapon : Weapon
     {
         //
         float bullet_place_distance = 0.5f;
-        //
+        // calculates the positions along the arc to place bullets.
         var half = numberOfProjectiles >> 1;
         float dTheta = 30 * Mathf.Deg2Rad / numberOfProjectiles;
         var theta = -half * dTheta + angle;

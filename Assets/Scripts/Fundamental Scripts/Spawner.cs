@@ -34,6 +34,14 @@ class Spawner : MonoBehaviour
     /// <param name="config">The configuration that specifies numbers for how many enemies are to be spawned of each type.</param>
     public static void SpawnEnemies(MapConfiguration config) =>
         SpawnEnemies(config.mobsterSpawnCount, config.cultistSpawnCount, config.undeadFriendlySpawnProbability);
+    /// <summary>
+    /// Spawns the specified counts of enemies.
+    /// </summary>
+    /// <param name="mobsterCount">Number of mobsters to be spawned.</param>
+    /// <param name="cultustCount">Number of cultists to be spawned.</param>
+    /// <param name="undeadSpawnProbability">Probability for each turned friendly to be spawned.</param>
+    /// <param name="returnRefs">If references to each spawned enemies are desired.</param>
+    /// <returns></returns>
     public static List<Enemy> SpawnEnemies(int mobsterCount, int cultustCount, float undeadSpawnProbability, bool returnRefs = false)
     {
         if(Spawners.Count == 0)
@@ -106,7 +114,7 @@ class Spawner : MonoBehaviour
     static int GetBinomialSample(int n, float p)
     {
         // Monte-Carlo
-        float PDF(int x)
+        float ProbabilityDistributionFunction(int x)
         {
             float value = 1;
             for (int i = 2; i <= x; i++)
@@ -115,7 +123,7 @@ class Spawner : MonoBehaviour
             value *= Mathf.Pow(1 - p, n - x);
             return value;
         }
-        float c = PDF(n >> 1) * (n + 1), U;
+        float c = ProbabilityDistributionFunction(n >> 1) * (n + 1), U;
         int canidate;
         do
         {
@@ -123,7 +131,7 @@ class Spawner : MonoBehaviour
             U = Random.Range(0f, c);
 
         }
-        while (U > PDF(canidate) * (n + 1));
+        while (U > ProbabilityDistributionFunction(canidate) * (n + 1));
         return canidate;
     }
 }

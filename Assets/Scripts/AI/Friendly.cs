@@ -7,6 +7,9 @@ namespace Assets.Scripts.AI
     {
         private const int SanityDeathChange = -10;
         private const int SanitySaveChange = 2;
+        /// <summary>
+        /// The despawn animation for a friendly.
+        /// </summary>
         public GameObject despawnAnimation;
         /*
             Below are the floating point values used 
@@ -23,7 +26,7 @@ namespace Assets.Scripts.AI
             the main character can be from a friendly before 
             a pop-up box is instantiated.
         */
-        [SerializeField] float instantiation_Distance;
+        //[SerializeField] float instantiation_Distance;
         public float probabilityOfGivingGun = 1;
         /// <summary>
         /// The minimal distance to interact with and save this friendly
@@ -36,7 +39,7 @@ namespace Assets.Scripts.AI
         {
             base.Start();
             // initialize instantiation_Distance
-            instantiation_Distance = 1.75f;
+            //instantiation_Distance = 1.75f;
 
             // Find the reference to the instantiate object
             instantiate = FindObjectOfType<Instantiate>();
@@ -44,7 +47,7 @@ namespace Assets.Scripts.AI
             // Find the reference to the mainCharacter object
             mainCharacter = FindObjectOfType<MainCharacter>();
 
-            DamageGroup = DamegeGroups.Friendly;
+            Group = DamageGroup.Friendly;
             SetSit();
         }
         private void AttemptGivePlayerWeapon()
@@ -61,6 +64,9 @@ namespace Assets.Scripts.AI
                     return;
                 }
         }
+        /// <summary>
+        /// Handles the death of a friendly.
+        /// </summary>
         public override void OnDeath()
         {
             AttemptGivePlayerWeapon();

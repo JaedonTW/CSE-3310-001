@@ -15,12 +15,21 @@ namespace Assets.Scripts.AI
     {
         MovableCharacter Reference { get; }
         float DistanceSquared { get; }
+        /// <summary>
+        /// Instantiates an instance.
+        /// </summary>
+        /// <param name="reference">The object for which the distance is to be held.</param>
+        /// <param name="distance">The desired max distance to be held.</param>
         public HoldRelativeDistanceAction(MovableCharacter reference, float distance)
         {
             Reference = reference;
             DistanceSquared = distance * distance;
         }
-
+        /// <summary>
+        /// Executes the next iteration of this action.
+        /// </summary>
+        /// <param name="actionStack">The current action stack.</param>
+        /// <param name="c">A reference to the enemy being controlled.</param>
         public void ExecuteAction(Stack<IAtomicNPCAction> actionStack, Enemy c)
         {
             if (c.state != EnemyState.HasLineOfSight)
@@ -34,7 +43,12 @@ namespace Assets.Scripts.AI
                     c.SetIdle();
             }
         }
-
+        /// <summary>
+        /// Handles a collision event.
+        /// </summary>
+        /// <param name="actionStack">The current action stack.</param>
+        /// <param name="thisNPC">The enemy being controlled.</param>
+        /// <param name="col">The collision object.</param>
         public void HandleCollision(Stack<IAtomicNPCAction> actionStack, Enemy c, Collision2D col)
         {
             // In the case of a collision, we do nothing.
