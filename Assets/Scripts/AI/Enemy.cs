@@ -14,6 +14,7 @@ namespace Assets.Scripts.AI
     }
     public abstract class Enemy : NPC
     {
+        public static List<Enemy> Enemies { get; private set; } = new List<Enemy>();
         /// <summary>
         /// The prefered distance to be from the player when fighting.
         /// </summary>
@@ -37,6 +38,7 @@ namespace Assets.Scripts.AI
             DamageGroup = DamegeGroups.Enemy;
             weapon.ignoring = DamegeGroups.Enemy;
             Manager.EnemyCount++;
+            Enemies.Add(this);
         }
         public override void OnDeath()
         {
@@ -115,6 +117,10 @@ namespace Assets.Scripts.AI
             if(PlannedActions.Count > 0)
                 // When a collision occurs, we have the current AtomicAction figure out how to respond.
                 PlannedActions.Peek().HandleCollision(PlannedActions, this, collision);
+        }
+        public void OnDestroy()
+        {
+            Enemies.Remove(this);
         }
     }
 }

@@ -40,7 +40,6 @@ public class MainScript : MonoBehaviour
     }
     public void EndGame()
     {
-        Debug.Log("Done");
         Application.Quit();
     }
 
