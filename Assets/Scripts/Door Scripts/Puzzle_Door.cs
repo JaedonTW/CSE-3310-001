@@ -29,9 +29,6 @@ public class Puzzle_Door : Door
         When we select a teleporting door, we will
         execute the following subroutines.
     */
-
-    
-
     private void OnMouseDown()
     {
         // Negate the value of the door state; opening the door
@@ -72,9 +69,5 @@ public class Puzzle_Door : Door
 
         // Find reference to the MainCharacter object.
         mainCharacter = FindObjectOfType<MainCharacter>();
-    }
-
-    void Update()
-    {
     }
 }
