@@ -2933,7 +2933,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 830449275}
-  textMeshPro: {fileID: 0}
 --- !u!95 &830449275
 Animator:
   serializedVersion: 3
@@ -7719,6 +7718,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 678088757, guid: f3d1e124b80becf45b77a66c3cece5e0, type: 3}
+      propertyPath: CultLeaderSpriteRenderer
+      value: 
+      objectReference: {fileID: 1456372542}
     - target: {fileID: 3470720522964369975, guid: f3d1e124b80becf45b77a66c3cece5e0,
         type: 3}
       propertyPath: m_LocalPosition.z
