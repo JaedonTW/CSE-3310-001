@@ -22,9 +22,10 @@ class BossFightHandler : MonoBehaviour
         Wave2,
         Wave3,
         LevelEnd,
+        //nochoice = 10
     }
     [SerializeField]
-    private Door endBossFightDoor;
+    public Door endBossFightDoor;
     /// <summary>
     /// Set values for mobs in each wave.
     /// </summary>
@@ -75,6 +76,14 @@ class BossFightHandler : MonoBehaviour
         var waveSpect = Waves[waveIndex];
         Enemies = Spawner.SpawnEnemies(waveSpect.MobsterCount, waveSpect.CultistCount, waveSpect.FriendlyCultistCount, true);
     }
+
+    MainCamera mainCamera;
+    private void Start()
+    {
+        mainCamera = FindObjectOfType<MainCamera>();
+        
+    }
+
     private void Update()
     {
         if (Stage >= BossFightStage.Wave1 && Stage <= BossFightStage.Wave3)

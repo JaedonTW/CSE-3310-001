@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
         // Find reference to the ParticleSystem objects.
         particleSystem = FindObjectsOfType<ParticleSystem>();
 
-        if (SceneManager.GetActiveScene().name == "Level2 - Library") // Changed, level2 is the only one that does this
+        if (SceneManager.GetActiveScene().name == "Level2 - Library" || SceneManager.GetActiveScene().name == "Level3 - Boss") // Changed, level2 is the only one that does this
         {
             // Disable the box collider and the sprite renderer at the beggining of the level
             _endLevelBox.GetComponent<BoxCollider2D>().enabled = false;
@@ -193,8 +193,6 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Victory")
         {
             Trigger_Confetti();
-            Debug.Log("RErre");
-
         }
 
 
