@@ -10,11 +10,12 @@ public class EndLevelBox : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        _mainCamera.StartCoroutine(_mainCamera.Fade_Black(true));
 
         MainCharacter character = collision.GetComponent<MainCharacter>();
         if(character != null)
         {
+            if(nextLevel != "Main")
+                _mainCamera.StartCoroutine(_mainCamera.Fade_Black(true));
             character.OnLevelEnd();
             SceneManager.LoadScene(nextLevel);
             Spawner.Spawners.Clear();
