@@ -6,18 +6,38 @@ using UnityEngine.SceneManagement;
 
 public class TextBox : MonoBehaviour
 {
+    /// <summary>
+    /// Reference to related animator.
+    /// </summary>
     public Animator animator;
+    /// <summary>
+    /// Reference to TMP_Text object.
+    /// </summary>
     public TMP_Text text;
+    /// <summary>
+    /// Reference to related door object.
+    /// </summary>
     public Door front_Door;
     private GameManager manager;
     private MainCharacter mainCharacter;
+    /// <summary>
+    /// Reference to Bookshelf object.
+    /// </summary>
     public GameObject bookShelf;
 
+<<<<<<< HEAD
     /*
         Logic handles displaying and hiding the Display Box
         which promopts the user to continue into the castle as
         there is a storm outside.
     */
+=======
+    /// <summary>
+    /// Logic handles displaying and hiding the Display Box
+    /// which promopts the user to continue into the castle as
+    /// there is a storm outside.
+    /// </summary>
+>>>>>>> 3346c9c8485aee5afddee822ec7e73dfe39874f9
     public bool displayBox;
 
     private void _displayRiddle() 
