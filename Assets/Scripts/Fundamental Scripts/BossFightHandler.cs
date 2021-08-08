@@ -26,6 +26,7 @@ class BossFightHandler : MonoBehaviour
     }
     [SerializeField]
     public Door endBossFightDoor;
+    public EndLevelBox _endLevelBox;
     /// <summary>
     /// Set values for mobs in each wave.
     /// </summary>
@@ -60,6 +61,8 @@ class BossFightHandler : MonoBehaviour
     /// </summary>
     public void JoinCthulhu()
     {
+        _endLevelBox.GetComponent<BoxCollider2D>().enabled = true;
+        _endLevelBox.GetComponent<SpriteRenderer>().enabled = true;
         endBossFightDoor.Change_Door_State();
         Stage = BossFightStage.LevelEnd;
     }

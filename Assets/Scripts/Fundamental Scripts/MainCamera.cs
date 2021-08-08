@@ -66,6 +66,8 @@ public class MainCamera : MonoBehaviour
 
     public IEnumerator Fade_Object(bool isOpen, Color objColor)
     {
+        //Color currentColor = (objC);
+
         // Fade_Interval signifies the 2 seconds it takes the camera to fade in/out of black
         float Fade_Interval = 2f;
 
