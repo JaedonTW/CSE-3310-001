@@ -4,57 +4,52 @@ using UnityEngine;
 
 public class DecisionButton : MonoBehaviour
 {
-    private BossFightHandler _bossFightHandler;
-    private MainCharacter mainCharacter;
-    private TextBox textBox;
     private GameManager manager;
+    private MainCharacter mainCharacter;
+    private MainCamera mainCamera;
+    private TextBox textBox;
+    private BossFightHandler _bossFightHandler;
     public GameObject CultLeader;
-    bool choiceMade;
-    MainCamera mainCamera;
+    
+    /*
+        When the user makes a decision, shrink the box
+        and begin the proper course of action handled by
+        the BossFightHandler.
+    */
     private void OnMouseDown()
     {
-        choiceMade = true;
+        textBox.animator.SetBool("displayBox", false);
+        mainCamera.StartCoroutine(mainCamera.Fade_Object());
 
         if (gameObject.name == "_yesButton") 
         {
-            mainCamera.StartCoroutine(mainCamera.Fade_Object());
             _bossFightHandler.JoinCthulhu();
         }
 
         else 
         {
-            mainCamera.StartCoroutine(mainCamera.Fade_Object());
             _bossFightHandler.RejectCthulhu();
         }
     }
 
     private void Start()
     {
-        choiceMade = false;
+        // Find reference to the GameManager object in the scene
         manager = FindObjectOfType<GameManager>();
-        _bossFightHandler = FindObjectOfType<BossFightHandler>();
-        textBox = GetComponentInParent<TextBox>();
+
+        // Find reference to the MainCharacter object in the scene
         mainCharacter = FindObjectOfType<MainCharacter>();
+
+        // Find reference to the MainCamera object in the scene
         mainCamera = FindObjectOfType<MainCamera>();
-        //textBox.animator.SetBool("displayBox", false);
+
+        // Find reference to the TextBox object in the scene
+        textBox = GetComponentInParent<TextBox>();
         
-    }
-
-    void BoxDecision() 
-    {
-        if (manager.Check_Distance(mainCharacter.transform, CultLeader.transform) == true && choiceMade == false)
-        {
-            textBox.animator.SetBool("displayBox", true);
-        }
-
-        else
-        {
-            textBox.animator.SetBool("displayBox", false);
-        }
-    }
-
-    private void Update()
-    {
-        BoxDecision();
+        // Find reference to the BossFightHandler in the scene
+        _bossFightHandler = FindObjectOfType<BossFightHandler>();
+        
+        // Start with the box displayed
+        textBox.animator.SetBool("displayBox",true);
     }
 }
