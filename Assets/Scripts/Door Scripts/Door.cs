@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
@@ -30,15 +31,6 @@ public class Door : MonoBehaviour
     {
         isOpen = !isOpen;
         animator.SetBool("isOpen", isOpen);
-
-        /*
-            Note for Andrew: You cannot do the following,
-            animator.SetBool("isOpen",!isOpen) to
-            switch the door state; you must set a boolean
-            before hand as done above. I tried for quite sometime to do it
-            this way, but it just would not work. Feel free to delete this comment
-            when seen.
-        */
     }
 
     /*
@@ -56,6 +48,14 @@ public class Door : MonoBehaviour
         Change_Door_State();
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag.CompareTo("Player") == 0 && isOpen) 
+        {
+            SceneManager.LoadScene(4);
+        }
+    }
+
     private void Start()
     {
         // Find reference to the GameManager object.
@@ -69,9 +69,5 @@ public class Door : MonoBehaviour
 
         // The door will begin in the closed state.
         animator.SetBool("isOpen", false);
-    }
-
-    private void Update()
-    {
     }
 }

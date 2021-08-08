@@ -79,9 +79,9 @@ public class MainCharacter : MovableCharacter
     }
     public override void OnDeath()
     {
-        base.OnDeath();
         Spawner.Spawners.Clear();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
+        //base.OnDeath();
     }
     protected override void Start()
     {
@@ -120,13 +120,26 @@ public class MainCharacter : MovableCharacter
     
     protected override void Update()
     {
+        Vector2 traveling, attacking;
+        const bool debugMode = true;
+        traveling = new Vector2(MovementJoystick.Horizontal, MovementJoystick.Vertical);
+        attacking = new Vector2(CombatJoystick.Horizontal, CombatJoystick.Vertical);
+        if (debugMode)
+        {
+            // NOTE: we do not handle trying to go contrasting directions at the same time very well (e.g. left and right)
+            traveling += new Vector2(Input.GetKey(KeyCode.D) ? 1 : Input.GetKey(KeyCode.A) ? -1 : 0,
+                Input.GetKey(KeyCode.W) ? 1 : Input.GetKey(KeyCode.S) ? -1 : 0).normalized;
+            attacking += new Vector2(Input.GetKey(KeyCode.RightArrow) ? 1 : Input.GetKey(KeyCode.LeftArrow) ? -1 : 0,
+                Input.GetKey(KeyCode.UpArrow) ? 1 : Input.GetKey(KeyCode.DownArrow) ? -1 : 0);
+        }
+        
         // updating player movement.
-        Vector2 traveling = new Vector2(MovementJoystick.Horizontal, MovementJoystick.Vertical);
+        
         if (traveling.x != 0 || traveling.y != 0)
             WalkInDirection(traveling);
         else SetIdle();
         // updating combat
-        Vector2 attacking = new Vector2(CombatJoystick.Horizontal, CombatJoystick.Vertical);
+        
         if(attacking.x != 0 || attacking.y != 0)
         {
             // we know that an attack direction was specified, so we just need to figure out if it was a melee or ranged attack.

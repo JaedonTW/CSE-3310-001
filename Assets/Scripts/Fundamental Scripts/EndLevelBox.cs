@@ -18,6 +18,7 @@ public class EndLevelBox : MonoBehaviour
             character.OnLevelEnd();
             SceneManager.LoadScene(nextLevel);
             Spawner.Spawners.Clear();
+            PlayerPrefs.SetInt("Max Unlocked", SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
     private void Start()

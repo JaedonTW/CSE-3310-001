@@ -56,6 +56,8 @@ namespace Assets.Scripts.AI
         // Update is called once per frame
         protected override void Update()
         {
+            if (Time.timeScale == 0f)
+                return;
             base.Update();
             if (state != EnemyState.Guarding)
             {

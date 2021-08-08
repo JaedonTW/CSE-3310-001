@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.AI;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 class BossFightHandler : MonoBehaviour
 {
@@ -31,20 +32,20 @@ class BossFightHandler : MonoBehaviour
     {
         new Wave()// wave 1
         {
-            MobsterCount = 10,
-            CultistCount = 10,
+            MobsterCount = 2,
+            CultistCount = 2,
             FriendlyCultistCount = 0.5f
         },
         new Wave()// wave 2
         {
-            MobsterCount = 10,
-            CultistCount = 10,
+            MobsterCount = 0,
+            CultistCount = 4,
             FriendlyCultistCount = 0.5f
         },
         new Wave()// wave 3
         {
-            MobsterCount = 10,
-            CultistCount = 10,
+            MobsterCount = 0,
+            CultistCount = 8,
             FriendlyCultistCount = 0.5f
         },
     };
