@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1762795305365202511}
   - component: {fileID: 1762795305365202510}
-  - component: {fileID: 1762795305365202865}
   - component: {fileID: 1762795305365202864}
   - component: {fileID: 1762795305365202867}
   - component: {fileID: 1762795305365202866}
+  - component: {fileID: 879999695911823537}
   m_Layer: 0
   m_Name: Friendly
   m_TagString: NPC
@@ -56,22 +56,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!58 &1762795305365202865
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1762795305365202869}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.3
 --- !u!212 &1762795305365202864
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -151,7 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2f79d4bbc0a5a04d81c3c901ee43907, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
   weapon: {fileID: 0}
   idleClip: {fileID: 7400000, guid: 0089ab65a283ddf4ea0d74f69795c47a, type: 2}
   walkUpClip: {fileID: 7400000, guid: 84f0a704c685df04ba5c1c7e739fae04, type: 2}
@@ -163,5 +146,20 @@ MonoBehaviour:
   walkingSpeed: 1
   despawnAnimation: {fileID: 3149955940567719245, guid: 9ddfec078f6a5654c9bf39755005ddbc,
     type: 3}
-  instantiation_Distance: 0
   probabilityOfGivingGun: 1
+--- !u!70 &879999695911823537
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762795305365202869}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.2, y: -0.1}
+  m_Size: {x: 0.5, y: 0.8}
+  m_Direction: 0
