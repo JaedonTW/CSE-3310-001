@@ -36,7 +36,27 @@ namespace Assets.Scripts.AI
 
         public void HandleCollision(Stack<IAtomicNPCAction> actionStack, Enemy c, Collision2D col)
         {
-            actionStack.Push(new GoToPositionAction(Reference.body.position + Displacement));
+            //actionStack.Push(new GoToPositionAction(Reference.body.position + Displacement));
+            float x = 0, y = 0;
+            foreach (var enemy in Enemy.Enemies)
+            {
+                if (enemy == null)
+                    Debug.LogWarning("A value from \"Enemy.Enemies\" was null.");
+                else if (c != enemy)
+                {
+                    var disp = enemy.body.position - c.body.position;
+                    if (disp == Vector2.zero)
+                    {
+                        Debug.LogWarning("There are two enemies with the same coordinates.");
+                        continue;
+                    }
+                    float weight = 1 / disp.sqrMagnitude;
+                    x -= disp.x * weight;
+                    y -= disp.y * weight;
+                }
+            }
+            const float scale = 0.1f;
+            actionStack.Push(new GoToPositionAction(c.body.position + new Vector2(x * scale, y * scale)));
         }
     }
 }
