@@ -46,6 +46,6 @@ MonoBehaviour:
   ID: 2
   body: {fileID: 0}
   ignoring: 0
-  rechargeTime: 60
+  rechargeTime: 30
   bullet: {fileID: 7520932866385995569, guid: 9eb4bf188fb39a94d9bd8f93050c031e, type: 3}
   numberOfProjectiles: 1
