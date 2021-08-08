@@ -64,6 +64,34 @@ public class MainCamera : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
+    public IEnumerator Fade_Object(bool isOpen, Color objColor)
+    {
+        // Fade_Interval signifies the 2 seconds it takes the camera to fade in/out of black
+        float Fade_Interval = 2f;
+
+        // Elapsed_Time signifies how much time has passed; will update each frame
+        float Elapsed_Time = 0f;
+
+        // If you need to fade out, run the following conditional
+        if (isOpen == true)
+        {
+            while (Elapsed_Time < Fade_Interval)
+            {
+                objColor = Color.Lerp(translucent, non_translucent, Elapsed_Time);
+                Elapsed_Time = Elapsed_Time + Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        // Else, fade in
+        while (Elapsed_Time < Fade_Interval)
+        {
+            objColor = Color.Lerp(non_translucent, translucent, Elapsed_Time);
+            Elapsed_Time = Elapsed_Time + Time.deltaTime;
+            yield return null;
+        }
+    }
+
     void Start()
     {
         mainCharacter = FindObjectOfType<MainCharacter>();
