@@ -7,6 +7,9 @@ namespace Assets.Scripts.AI
     {
         private const int SanityDeathChange = -10;
         private const int SanitySaveChange = 2;
+        /// <summary>
+        /// The despawn animation for a friendly.
+        /// </summary>
         public GameObject despawnAnimation;
         /*
             Below are the floating point values used 
@@ -61,6 +64,9 @@ namespace Assets.Scripts.AI
                     return;
                 }
         }
+        /// <summary>
+        /// Handles the death of a friendly.
+        /// </summary>
         public override void OnDeath()
         {
             AttemptGivePlayerWeapon();

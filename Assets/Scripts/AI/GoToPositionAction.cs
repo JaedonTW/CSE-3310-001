@@ -24,6 +24,11 @@ namespace Assets.Scripts.AI
         /// </summary>
         public GoToPositionAction()
         { }
+        /// <summary>
+        /// Executes the next iteration of this action.
+        /// </summary>
+        /// <param name="actionStack">The current action stack.</param>
+        /// <param name="c">A reference to the enemy being controlled.</param>
         public void ExecuteAction(Stack<IAtomicNPCAction> actionStack, Enemy c)
         {
             // current position
@@ -40,7 +45,12 @@ namespace Assets.Scripts.AI
                 c.WalkInDirection(diff.normalized);
             }
         }
-
+        /// <summary>
+        /// Handles a collision event.
+        /// </summary>
+        /// <param name="actionStack">The current action stack.</param>
+        /// <param name="thisNPC">The enemy being controlled.</param>
+        /// <param name="col">The collision object.</param>
         public void HandleCollision(Stack<IAtomicNPCAction> actionStack, Enemy thisNPC, Collision2D col)
         {
             // Checking if it just another character because 
@@ -84,14 +94,7 @@ namespace Assets.Scripts.AI
                 // finally, we will go to the center of the tile we are currently on
                 // to ensure movements are smooth
                 actionStack.Push(new GoToPositionAction(thisNPC.Manager.Walls.GetCellCenterWorld((Vector3Int)from)));
-            }/*
-            else
-            {
-                MonoBehaviour.print("Hit something else idk");
-                // we go in the opposite direction that we have been moving a distance
-                var dir = (thisNPC.body.position - Destination).normalized*0.01f;
-                actionStack.Push(new GoToPositionAction(dir));
-            }*/
+            }
         }
     }
 }

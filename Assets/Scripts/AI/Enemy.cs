@@ -5,6 +5,9 @@ using UnityEngine.Tilemaps;
 
 namespace Assets.Scripts.AI
 {
+    /// <summary>
+    /// The different possible states of an enemy.  See UML for reference.
+    /// </summary>
     public enum EnemyState : byte
     {
         Pursuing = 0,
@@ -14,6 +17,9 @@ namespace Assets.Scripts.AI
     }
     public abstract class Enemy : NPC
     {
+        /// <summary>
+        /// The current set of all active enemies in the level.
+        /// </summary>
         public static List<Enemy> Enemies { get; private set; } = new List<Enemy>();
         /// <summary>
         /// The prefered distance to be from the player when fighting.
@@ -40,6 +46,9 @@ namespace Assets.Scripts.AI
             Manager.EnemyCount++;
             Enemies.Add(this);
         }
+        /// <summary>
+        /// Handles the death of an enemy.
+        /// </summary>
         public override void OnDeath()
         {
             base.OnDeath();
@@ -118,6 +127,10 @@ namespace Assets.Scripts.AI
                 // When a collision occurs, we have the current AtomicAction figure out how to respond.
                 PlannedActions.Peek().HandleCollision(PlannedActions, this, collision);
         }
+        /// <summary>
+        /// Handles this object being destroyed.
+        /// NOTE: this could probably be merged with 'OnDeath'
+        /// </summary>
         public void OnDestroy()
         {
             Enemies.Remove(this);

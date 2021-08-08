@@ -8,6 +8,9 @@ namespace Assets.Scripts.AI
 {
     class Inkie : Mobster
     {
+        /// <summary>
+        /// Handles the death of an 'Inkie'
+        /// </summary>
         public override void OnDeath()
         {
             InkSpawner.CurrentInkCount--;

@@ -11,12 +11,21 @@ namespace Assets.Scripts.AI
     {
         MovableCharacter Reference { get; }
         Vector2 Displacement { get; }
-        
+        /// <summary>
+        /// Instantiates a 'CultistAttackAction' instance.
+        /// </summary>
+        /// <param name="reference">the objects from which the relative location is to be held.</param>
+        /// <param name="displacement">The displacement vector to be held.</param>
         public CultistAttackAction(MovableCharacter reference, Vector2 displacement)
         {
             Reference = reference;
             Displacement = displacement;
         }
+        /// <summary>
+        /// Executes the next iteration of this action.
+        /// </summary>
+        /// <param name="actionStack">The current action stack.</param>
+        /// <param name="c">A reference to the enemy being controlled.</param>
         public void ExecuteAction(Stack<IAtomicNPCAction> actionStack, Enemy c)
         {
             if (c.state != EnemyState.HasLineOfSight)
@@ -33,7 +42,12 @@ namespace Assets.Scripts.AI
                     c.WalkInDirection(path.normalized);
             }
         }
-
+        /// <summary>
+        /// Handles a collision event.
+        /// </summary>
+        /// <param name="actionStack">The current action stack.</param>
+        /// <param name="thisNPC">The enemy being controlled.</param>
+        /// <param name="col">The collision object.</param>
         public void HandleCollision(Stack<IAtomicNPCAction> actionStack, Enemy c, Collision2D col)
         {
             //actionStack.Push(new GoToPositionAction(Reference.body.position + Displacement));
