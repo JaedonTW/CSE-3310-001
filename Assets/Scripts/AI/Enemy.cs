@@ -41,8 +41,8 @@ namespace Assets.Scripts.AI
             base.Start();
             weapon = Instantiate(weapon);
             weapon.body = body;
-            DamageGroup = DamegeGroups.Enemy;
-            weapon.ignoring = DamegeGroups.Enemy;
+            Group = DamageGroup.Enemy;
+            weapon.ignoring = DamageGroup.Enemy;
             Manager.EnemyCount++;
             Enemies.Add(this);
         }

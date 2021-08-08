@@ -16,14 +16,27 @@ public class MainCharacter : MovableCharacter
     const int MeleeDamage = 1;
 
     // END PLAYER CONFIGURATION VARIABLES
+    /// <summary>
+    /// Weapons currently held by the player.
+    /// </summary>
     public Weapon[] Weapons;
+    /// <summary>
+    /// Maps the ID for weapons to if the player has them.
+    /// </summary>
     public bool[] HasWeapon { get; } = new bool[3];
     /// <summary>
     /// mainCharacter will have sanity which depends
     /// on if friendlies are saved/killed.
     /// </summary>
     public int Sanity { get; private set; }
+    /// <summary>
+    /// The game manager.
+    /// </summary>
     public GameManager Manager { get; set; }
+    /// <summary>
+    /// Sets the weapon currently held by the player by ID.
+    /// </summary>
+    /// <param name="ID">ID for the desired weapon.</param>
     public void SetActiveWeapon(int ID)
     {
         if (0 <= ID && ID < HasWeapon.Length && HasWeapon[ID])
@@ -63,6 +76,9 @@ public class MainCharacter : MovableCharacter
     /// Transformation for the main camera.
     /// </summary>
     protected Camera cam;
+    /// <summary>
+    /// To be called when the level ends.
+    /// </summary>
     public void OnLevelEnd()
     {
         PlayerPrefs.SetInt("Sanity", Sanity);
@@ -71,12 +87,19 @@ public class MainCharacter : MovableCharacter
         if(weapon != null)
             PlayerPrefs.SetInt("Equiped Weapon", weapon.ID);
     }
+    /// <summary>
+    /// Handles the player's health changing.
+    /// </summary>
+    /// <param name="change">The additive change for the players health.</param>
     public override void ChangeHealth(int change)
     {
         base.ChangeHealth(change);
         HUD.SetHealth(Health);
         print("Player health is now " + Health);
     }
+    /// <summary>
+    /// To be called when the player dies.
+    /// </summary>
     public override void OnDeath()
     {
         Spawner.Spawners.Clear();
@@ -94,7 +117,7 @@ public class MainCharacter : MovableCharacter
         int currentWeapon = PlayerPrefs.GetInt("Equiped Weapon", 0);
         SetActiveWeapon(currentWeapon);
         //
-        DamageGroup = DamegeGroups.Player;
+        Group = DamageGroup.Player;
 
         // Getting the joystick and camera objects
         MovementJoystick = FindObjectOfType<Joystick>();

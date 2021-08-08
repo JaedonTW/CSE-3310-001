@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
     /// The rigid body of this bullet.
     /// </summary>
     public Rigidbody2D body;
-    internal Hurtable.DamegeGroups ignoring;
+    internal Hurtable.DamageGroup ignoring;
     /// <summary>
     /// The max number of bounces on walls before 
     ///   this projectile is destroyed.
@@ -42,7 +42,7 @@ public class Projectile : MonoBehaviour
         {
             Physics2D.IgnoreCollision(collision.collider, collision.otherCollider);
             // Runs the friendly fire check
-            if (ignoring == from.DamageGroup)
+            if (ignoring == from.Group)
                 return;
             // deals damage to contacting object
             else from.ChangeHealth(-damage);

@@ -18,7 +18,7 @@ public abstract class Weapon : MonoBehaviour
     /// <summary>
     /// The weapon class that this weapon is not supposed to deal damage to.
     /// </summary>
-    public Hurtable.DamegeGroups ignoring;
+    public Hurtable.DamageGroup ignoring;
     /// <summary>
     /// The amount of time required for this weapon to recharge.
     /// </summary>

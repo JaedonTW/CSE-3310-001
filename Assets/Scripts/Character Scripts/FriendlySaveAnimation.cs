@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class FriendlySaveAnimation : MonoBehaviour
 {
+    /// <summary>
+    /// The transform for the associated sprite.
+    /// </summary>
     public Transform spriteTransform;
     int CurrentTick { get; set; } = 0;
     const int TotalRotations = 40;
     const int TotalTicks = 60;
     /// <summary>
-    /// a constant multiplier for the angular acceleration, given in degrees/ticks^2.
+    /// A constant multiplier for the angular acceleration, given in degrees/ticks^2.
     /// NOTE: When changing 'TotalRotations' and 'TotalTicks', it is necessary 
     ///   to check if this value should be a float.
     /// </summary>
     const int AngularAcceleration = 360 * TotalRotations / (TotalTicks * TotalTicks);
 
-    // Update is called once per frame
+    // Update is called once per frame.
     void Update()
     {
         if (CurrentTick < TotalTicks)

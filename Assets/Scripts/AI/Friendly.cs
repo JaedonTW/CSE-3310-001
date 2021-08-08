@@ -47,7 +47,7 @@ namespace Assets.Scripts.AI
             // Find the reference to the mainCharacter object
             mainCharacter = FindObjectOfType<MainCharacter>();
 
-            DamageGroup = DamegeGroups.Friendly;
+            Group = DamageGroup.Friendly;
             SetSit();
         }
         private void AttemptGivePlayerWeapon()
