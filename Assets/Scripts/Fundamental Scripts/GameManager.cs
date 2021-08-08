@@ -5,11 +5,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-
+/// <summary>
+/// The core manager for the game.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
+    /// <summary>
+    /// A reference to the 'MainCharacter' object.
+    /// </summary>
     public MainCharacter Player;
     private MainCamera _mainCamera;
+    /// <summary>
+    /// To be assigned in Unity.
+    /// </summary>
     [SerializeField]
     internal Inkie inkiePrefab;
 
@@ -17,35 +25,45 @@ public class GameManager : MonoBehaviour
 
     private EndLevelBox _endLevelBox;
     private TextBoxMessage _textBoxMessage;
-
-    [SerializeField]
+    /// <summary>
+    /// The 'Tilemap' for the walls in the level.
+    /// </summary>
     public Tilemap Walls { get; private set; }
+    /// <summary>
+    /// The coordinator script that is presently managing the cultists.
+    /// </summary>
     public CultistManager CultistCoordinator { get; set; } = new CultistManager();
+    /// <summary>
+    /// A counter for the current number of enemies in the level.
+    /// </summary>
     public int EnemyCount { get; set; }
     
-    /*
-        correct_Doors_Entered will hold the number of
-        doors entered in the correct order by the user. 
-        The user will need to enter 5 correct doors in a row to 
-        finish the level.
-    */
+    /// <summary>
+    /// Contains the number of
+    /// doors entered in the correct order by the user.
+    /// The user will need to enter 5 correct doors in a row to
+    /// finish the level.
+    /// </summary>
     private int correct_Doors_Entered;
     
-    /*
-        GetCorrectDoorsEntered() is a getter function that 
-        returns that number of correct doors entered by the user.
-    */
+    /// <summary>
+    /// Gets the number of correct doors entered by the user.
+    /// </summary>
+    /// <returns>The number of correct doors entered by the user.</returns>
     public int GetCorrectDoorsEntered() 
     {
         return correct_Doors_Entered;
     }
-
-    /*
-        Check_Distance uses the famed Distance Formula
-        to check the distance between two entities. 
-        If the distance is less than or equal to 5 world units, 
-        the Pop-up Text Box will spawn.
-    */
+    
+    /// <summary>
+    /// Check_Distance uses the famed Distance Formula
+    /// to check the distance between two entities.
+    /// If the distance is less than or equal to 5 world units,
+    /// the Pop-up Text Box will spawn.
+    /// </summary>
+    /// <param name="obj1"></param>
+    /// <param name="obj2"></param>
+    /// <returns></returns>
     public bool Check_Distance(Transform obj1, Transform obj2)
     {
         float obj1_XPos = obj1.transform.position.x;
@@ -64,22 +82,14 @@ public class GameManager : MonoBehaviour
 
         return false;
     }
-
-    public void StartLevel(int level)
-    {
-        throw new System.NotImplementedException();
-    }
-    public void ToMainMenu()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    /*
-        Track_Door_Order will keep track of if the user entered the correct
-        door in the correct order. A Disctionary lookup will be utilized to
-        ensure that the Name of the Door and it's value in the door order
-        match.
-    */
+    /// <summary>
+    /// Track_Door_Order will keep track of if the user entered the correct
+    /// door in the correct order.A Disctionary lookup will be utilized to
+    /// ensure that the Name of the Door and it's value in the door order
+    /// match.
+    /// </summary>
+    /// <param name="door_Order">The correct traversal order for the doors.</param>
+    /// <param name="door_Name">Name of the last door entered.</param>
     public void Track_Door_Order(SortedDictionary<string,int> door_Order, string door_Name) 
     {   
         // We check if the door entered was the correct one. 
