@@ -25,19 +25,19 @@ public class TextBox : MonoBehaviour
     /// </summary>
     public GameObject bookShelf;
 
-<<<<<<< HEAD
+
     /*
         Logic handles displaying and hiding the Display Box
         which promopts the user to continue into the castle as
         there is a storm outside.
     */
-=======
+
     /// <summary>
     /// Logic handles displaying and hiding the Display Box
     /// which promopts the user to continue into the castle as
     /// there is a storm outside.
     /// </summary>
->>>>>>> 3346c9c8485aee5afddee822ec7e73dfe39874f9
+
     public bool displayBox;
 
     private void _displayRiddle() 

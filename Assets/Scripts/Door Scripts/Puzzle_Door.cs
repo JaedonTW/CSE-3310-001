@@ -27,10 +27,6 @@ public class Puzzle_Door : Door
         When we select a teleporting door, we will
         execute the following subroutines.
     */
-<<<<<<< HEAD
-
-=======
->>>>>>> 3346c9c8485aee5afddee822ec7e73dfe39874f9
     private void OnMouseDown()
     {
         // Negate the value of the door state; opening the door

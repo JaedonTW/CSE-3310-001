@@ -67,20 +67,10 @@ public class MainCamera : MonoBehaviour
         // Unlock cursor so the user can proceed with the game
         Cursor.lockState = CursorLockMode.None;
     }
-<<<<<<< HEAD
+
 
     public IEnumerator Fade_Object()
-=======
-    /// <summary>
-    /// Fade_To_Black will fade the camera in and out
-    /// at different points in the game.These points include
-    /// when you first begin a level, when you enter a new room,
-    /// or when you enter one of the puzzle doors.
-    /// </summary>
-    /// <param name="isOpen">If a fade-out is needed.</param>
-    /// <returns></returns>
-    public IEnumerator Fade_Object(bool isOpen, Color objColor)
->>>>>>> 3346c9c8485aee5afddee822ec7e73dfe39874f9
+
     {
         Color non_translucent = new Color(1, 1, 1, 1);
 
