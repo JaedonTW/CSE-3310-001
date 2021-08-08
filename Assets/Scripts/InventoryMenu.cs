@@ -24,9 +24,9 @@ public class InventoryMenu : MonoBehaviour
         weaponSelectUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
-        weapon1.interactable = false;
+        /*weapon1.interactable = false;
         weapon2.interactable = false;
-        weapon3.interactable = false;  // set weapons to disabled
+        weapon3.interactable = false;  // set weapons to disabled*/
     }
      void Resume()
     {
