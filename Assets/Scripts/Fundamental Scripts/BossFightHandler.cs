@@ -21,8 +21,7 @@ class BossFightHandler : MonoBehaviour
         Wave1,
         Wave2,
         Wave3,
-        LevelEnd,
-        //nochoice = 10
+        LevelEnd
     }
     [SerializeField]
     public Door endBossFightDoor;
@@ -78,13 +77,6 @@ class BossFightHandler : MonoBehaviour
     {
         var waveSpect = Waves[waveIndex];
         Enemies = Spawner.SpawnEnemies(waveSpect.MobsterCount, waveSpect.CultistCount, waveSpect.FriendlyCultistCount, true);
-    }
-
-    MainCamera mainCamera;
-    private void Start()
-    {
-        mainCamera = FindObjectOfType<MainCamera>();
-        
     }
 
     private void Update()

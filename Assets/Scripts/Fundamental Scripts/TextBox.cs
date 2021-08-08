@@ -13,8 +13,6 @@ public class TextBox : MonoBehaviour
     private MainCharacter mainCharacter;
     public GameObject bookShelf;
 
-    
-
     /*
         Logic handles displaying and hiding the Display Box
         which promopts the user to continue into the castle as
@@ -37,20 +35,6 @@ public class TextBox : MonoBehaviour
         }
     }
 
-
-    /*protected void Check_Front_Door()
-    {
-        if (front_Door.tag.CompareTo("Front_Door") == 0 && front_Door.Get_Door_State() == true && manager.Check_Distance(mainCharacter.transform, front_Door.transform))
-        {
-            animator.SetBool("displayBox", true);
-        }
-
-        else if (front_Door.tag.CompareTo("Front_Door") == 0 && front_Door.Get_Door_State() == false || !manager.Check_Distance(mainCharacter.transform, front_Door.transform))
-        {
-            animator.SetBool("displayBox", false);
-        }
-    }*/
-
     private void Start()
     {
         displayBox = false;
@@ -66,7 +50,7 @@ public class TextBox : MonoBehaviour
 
     void Update()
     {
-        if(SceneManager.GetActiveScene().name.CompareTo("Level3 - Boss") != 0) 
+        if(SceneManager.GetActiveScene().name.CompareTo("Level2 - Library") == 0) 
         {
             _displayRiddle();
         }

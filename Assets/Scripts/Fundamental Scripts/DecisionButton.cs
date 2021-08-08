@@ -14,17 +14,18 @@ public class DecisionButton : MonoBehaviour
     private void OnMouseDown()
     {
         choiceMade = true;
-        textBox.animator.SetBool("displayBox", false);
 
         if (gameObject.name == "_yesButton") 
         {
+            mainCamera.StartCoroutine(mainCamera.Fade_Object());
             _bossFightHandler.JoinCthulhu();
-            mainCamera.Fade_Object(false, CultLeader.GetComponent<SpriteRenderer>().color);
-            return;
         }
 
-        mainCamera.Fade_Object(true, CultLeader.GetComponent<Color>());
-        _bossFightHandler.RejectCthulhu();
+        else 
+        {
+            mainCamera.StartCoroutine(mainCamera.Fade_Object());
+            _bossFightHandler.RejectCthulhu();
+        }
     }
 
     private void Start()

@@ -1578,6 +1578,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endBossFightDoor: {fileID: 830449274}
+  _endLevelBox: {fileID: 830449272}
 --- !u!4 &232864133
 Transform:
   m_ObjectHideFlags: 0
@@ -1817,7 +1818,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1954692250}
-  inkiePrefab: {fileID: 0}
+  inkiePrefab: {fileID: 2986187683301739945, guid: a925d3adb1d4c5e4b84fa10289a6e958,
+    type: 3}
 --- !u!4 &424158670
 Transform:
   m_ObjectHideFlags: 0
@@ -2906,6 +2908,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1794753877}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &830449272 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5805020449096487418, guid: 60f40498af74bd749a1712046df237d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1794753877}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830449269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a875f889a7167e7418da90a3294af03c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &830449274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7770,7 +7784,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 247254034, guid: f3d1e124b80becf45b77a66c3cece5e0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f3d1e124b80becf45b77a66c3cece5e0, type: 3}
 --- !u!1 &1591890619
 GameObject:
@@ -7849,12 +7864,12 @@ PrefabInstance:
     - target: {fileID: 5805020449096487419, guid: 60f40498af74bd749a1712046df237d9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.91
+      value: -0.99
       objectReference: {fileID: 0}
     - target: {fileID: 5805020449096487419, guid: 60f40498af74bd749a1712046df237d9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.23
+      value: 8.15
       objectReference: {fileID: 0}
     - target: {fileID: 5805020449096487419, guid: 60f40498af74bd749a1712046df237d9,
         type: 3}
