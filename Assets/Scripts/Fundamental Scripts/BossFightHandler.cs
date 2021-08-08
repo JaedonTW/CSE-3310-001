@@ -91,8 +91,12 @@ class BossFightHandler : MonoBehaviour
                         Enemies.RemoveAt(i--);
                 if (Enemies.Count == 0)
                 {
-                    if (++Stage == BossFightStage.LevelEnd)
+                    if (++Stage == BossFightStage.LevelEnd) 
+                    {
+                        _endLevelBox.GetComponent<BoxCollider2D>().enabled = true;
+                        _endLevelBox.GetComponent<SpriteRenderer>().enabled = true;
                         endBossFightDoor.Change_Door_State();
+                    }
                     else
                         StartWave(Stage - BossFightStage.Wave1);
                 }
