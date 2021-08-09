@@ -54,6 +54,22 @@ class BossFightHandler : MonoBehaviour
     private List<Enemy> Enemies { get; set; }
     private const int CheckEnemiesDelay = 60;
     private int TicksUntilNextCheck { get; set; } = 0;
+    private void Start()
+    {
+        MainCharacter character = FindObjectOfType<MainCharacter>();
+        if (character.Sanity > 30)
+        {
+            print("sanity too high");
+            var boxes = FindObjectsOfType<TMPro.TextMeshPro>();
+            foreach(var box in boxes)
+                if(box.name == "_yesButton")
+                {
+                    print("found button");
+                    Destroy(box.gameObject);
+                    break;
+                }
+        }
+    }
     // methods
     /// <summary>
     /// The method to be called if the player chooses to join Cthulhu.
