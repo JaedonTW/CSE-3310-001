@@ -59,12 +59,10 @@ class BossFightHandler : MonoBehaviour
         MainCharacter character = FindObjectOfType<MainCharacter>();
         if (character.Sanity > 30)
         {
-            print("sanity too high");
             var boxes = FindObjectsOfType<TMPro.TextMeshPro>();
             foreach(var box in boxes)
                 if(box.name == "_yesButton")
                 {
-                    print("found button");
                     Destroy(box.gameObject);
                     break;
                 }
@@ -80,6 +78,7 @@ class BossFightHandler : MonoBehaviour
         _endLevelBox.GetComponent<SpriteRenderer>().enabled = true;
         endBossFightDoor.Change_Door_State();
         Stage = BossFightStage.LevelEnd;
+        _endLevelBox.nextLevel = "Bad Ending";
     }
     /// <summary>
     /// The method to be called if the player chooses not to join Cthulhu.

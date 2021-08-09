@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Victory.unity
     guid: b56cd06502e11cf41a266a3f689b5cf7
+  - enabled: 1
+    path: Assets/Scenes/Bad Ending.unity
+    guid: b7719aae000562a41a374a6ea264ca29
   m_configObjects: {}
