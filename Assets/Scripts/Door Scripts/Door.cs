@@ -53,7 +53,7 @@ public class Door : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag.CompareTo("Player") == 0 && isOpen) 
+        if(SceneManager.GetActiveScene().name == "Level3 - Boss" && collision.gameObject.tag == "Player" && isOpen) 
         {
             SceneManager.LoadScene(4);
         }
