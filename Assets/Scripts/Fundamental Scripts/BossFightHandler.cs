@@ -35,19 +35,19 @@ class BossFightHandler : MonoBehaviour
         {
             MobsterCount = 2,
             CultistCount = 2,
-            FriendlyCultistCount = 0.5f
+            FriendlyCultistCount = 0
         },
         new Wave()// wave 2
         {
             MobsterCount = 0,
             CultistCount = 4,
-            FriendlyCultistCount = 0.5f
+            FriendlyCultistCount = 0
         },
         new Wave()// wave 3
         {
             MobsterCount = 0,
             CultistCount = 8,
-            FriendlyCultistCount = 0.5f
+            FriendlyCultistCount = 1
         },
     };
     private BossFightStage Stage { get; set; } = BossFightStage.PreStart;
