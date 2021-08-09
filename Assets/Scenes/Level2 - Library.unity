@@ -62473,7 +62473,7 @@ PrefabInstance:
     - target: {fileID: 5468693059289158396, guid: 79e927ba23dc5554198956e9de1f4158,
         type: 3}
       propertyPath: mobsterSpawnCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5468693059289158397, guid: 79e927ba23dc5554198956e9de1f4158,
         type: 3}

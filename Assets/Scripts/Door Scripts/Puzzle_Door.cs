@@ -48,7 +48,7 @@ public class Puzzle_Door : Door
         manager.Track_Door_Order(door_Order, gameObject.tag);
 
         //
-        Spawner.SpawnEnemies(Random.Range(0, 5), Random.Range(0, 5), 0.5f);
+        Spawner.SpawnEnemies(0, Random.Range(0, 5), 0.5f);
     }
 
     void Start()
