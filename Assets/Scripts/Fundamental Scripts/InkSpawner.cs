@@ -9,7 +9,7 @@ using UnityEngine.Tilemaps;
 static class InkSpawner
 {
     const int SpawnFrequency = 60 * 30;
-    static int TicksUntilNextSpawn = 0;
+    static int TicksUntilNextSpawn = 60 * 20;
     public static int CurrentInkCount { get; set; } = 0;
     /// <summary>
     /// To be called as soon as sanity drops to 50 or below.
@@ -43,6 +43,7 @@ static class InkSpawner
                         var spawnPos = new Vector3Int(pos.x + Random.Range(-3, 3), pos.y + Random.Range(-3, 3), pos.z);
                         if(!walls.HasTile(spawnPos))
                         {
+                            CurrentInkCount++;
                             MonoBehaviour.Instantiate<Inkie>(ink, walls.CellToWorld(spawnPos), Quaternion.identity, character.transform);
                             break;
                         }
