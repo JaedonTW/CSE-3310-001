@@ -46,6 +46,7 @@ public class InventoryMenu : MonoBehaviour
     public void MainMenuSwitch()
     {
         SceneManager.LoadScene("Main");
+        Spawner.Spawners.Clear();
     }
     public void WeaponSelect()
     {
