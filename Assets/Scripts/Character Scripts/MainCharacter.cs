@@ -53,7 +53,7 @@ public class MainCharacter : MovableCharacter
         Sanity += amount;
         if (Sanity > 100)
             Sanity = 100;
-        else if (Sanity < 50)
+        else if (Sanity <= 50)
         {
             if (Sanity <= 0)
             {
@@ -112,6 +112,8 @@ public class MainCharacter : MovableCharacter
         // Loading data and setting initial values
         Sanity = PlayerPrefs.GetInt("Sanity",75);
         HUD.SetSanity(Sanity);
+        if (Sanity <= 50)
+            InkSpawner.Start(this);
         for (int i = 0; i < HasWeapon.Length; i++)
             HasWeapon[i] = PlayerPrefs.GetInt("Weapon " + i + " is unlocked",0) == 1;
         int currentWeapon = PlayerPrefs.GetInt("Equiped Weapon", 0);
@@ -186,10 +188,10 @@ public class MainCharacter : MovableCharacter
             }
             if (rangeAttack && weapon != null)
                 weapon.AttemptUse(Mathf.Atan2(attacking.y,attacking.x));
-            // dealing with sanity
-            if (Sanity <= 50)
-                InkSpawner.Update(this,Manager.Walls,Manager.inkiePrefab);
         }
+        // dealing with sanity
+        if (Sanity <= 50)
+            InkSpawner.Update(this, Manager.Walls, Manager.inkiePrefab);
         // calling update for parent object.
         // this is done after getting user input to improve response time.
         base.Update();
