@@ -140,7 +140,7 @@ MonoBehaviour:
   walkDownClip: {fileID: 7400000, guid: 5d9c82a4d507b7e47b8b2e34d0c6edef, type: 2}
   sitClip: {fileID: 0}
   dieClip: {fileID: 0}
-  walkingSpeed: 1
+  walkingSpeed: 4
   state: 1
 --- !u!95 &3429505532507959768
 Animator:
