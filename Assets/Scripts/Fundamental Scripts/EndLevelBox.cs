@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.AI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,7 +22,13 @@ public class EndLevelBox : MonoBehaviour
             Spawner.Spawners.Clear();
             if(PlayerPrefs.GetInt("Max Unlocked", 1) < SceneManager.GetActiveScene().buildIndex + 1)
                 PlayerPrefs.SetInt("Max Unlocked", SceneManager.GetActiveScene().buildIndex + 1);
-            PlayerPrefs.SetInt("friendly_counter", character.Manager.TurnedFriendlyCount);
+            // counting remaining turned friendlies
+            var count = Spawner.UndeadCount == -1? 0 : Spawner.UndeadCount;
+            count += FindObjectsOfType<Friendly>().Length;
+            foreach (var baddie in FindObjectsOfType<Cultist>())
+                if (baddie.name.Contains("TurnedFriendly"))
+                    count++;
+            PlayerPrefs.SetInt("friendly_counter", count);
         }
     }
     private void Start()

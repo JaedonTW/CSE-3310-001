@@ -22,7 +22,10 @@ class Spawner : MonoBehaviour
     /// The undead friendly (friendly cultst) prefab to be used.
     /// </summary>
     public Enemy undeadFriendlyPrefab;
-    private static int UndeadCount { get; set; }
+    /// <summary>
+    /// Current count for turned friendlies not in level.
+    /// </summary>
+    public static int UndeadCount { get; private set; }
     /// <summary>
     /// The list of spawners that are currently in the level.
     /// This needs to be cleared by the end of the level.
@@ -49,10 +52,10 @@ class Spawner : MonoBehaviour
             Debug.LogWarning("You have no spawners, is this intentional?");
             return returnRefs? new List<Enemy>() : null;
         }
-        int undeadCount = UndeadCount == -1?
-            PlayerPrefs.GetInt("friendly_counter", 0) : UndeadCount;
+        if (UndeadCount == -1)
+            UndeadCount = PlayerPrefs.GetInt("friendly_counter", 0);
 
-        undeadCount = GetBinomialSample(undeadCount, undeadSpawnProbability);
+        int undeadCount = GetBinomialSample(UndeadCount, undeadSpawnProbability);
         UndeadCount -= undeadCount;
         return SpawnEnemies(mobsterCount, cultustCount, undeadCount,returnRefs);
     }

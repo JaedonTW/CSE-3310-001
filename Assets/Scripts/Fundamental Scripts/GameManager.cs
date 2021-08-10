@@ -37,7 +37,6 @@ public class GameManager : MonoBehaviour
     /// A counter for the current number of enemies in the level.
     /// </summary>
     public int EnemyCount { get; set; }
-    public int TurnedFriendlyCount { get; set; }
     /// <summary>
     /// Contains the number of
     /// doors entered in the correct order by the user.
@@ -139,8 +138,6 @@ public class GameManager : MonoBehaviour
     
     void OnMapLoad()
     {
-        TurnedFriendlyCount = PlayerPrefs.GetInt("friendly_counter", 0);
-        Debug.Log("friendly_counter: " + TurnedFriendlyCount);
         // initializing the 'PathMap' and the 'MapOffset'
         // getting walls
         var tilemaps = FindObjectsOfType<Tilemap>();
@@ -177,6 +174,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("friendly_counter: " + PlayerPrefs.GetInt("friendly_counter", 0));
         // Find reference to the TextBoxMessage object in the scene.
         _textBoxMessage = FindObjectOfType<TextBoxMessage>();
 

@@ -72,7 +72,6 @@ namespace Assets.Scripts.AI
             AttemptGivePlayerWeapon();
             Manager.Player.ChangeSanity(SanityDeathChange);
             base.OnDeath();
-            Manager.TurnedFriendlyCount++;
         }
         private void OnMouseDown()
         {
