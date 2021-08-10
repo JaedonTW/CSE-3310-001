@@ -19,7 +19,8 @@ public class EndLevelBox : MonoBehaviour
             character.OnLevelEnd();
             SceneManager.LoadScene(nextLevel);
             Spawner.Spawners.Clear();
-            PlayerPrefs.SetInt("Max Unlocked", SceneManager.GetActiveScene().buildIndex + 1);
+            if(PlayerPrefs.GetInt("Max Unlocked", 1) < SceneManager.GetActiveScene().buildIndex + 1)
+                PlayerPrefs.SetInt("Max Unlocked", SceneManager.GetActiveScene().buildIndex + 1);
             PlayerPrefs.SetInt("friendly_counter", character.Manager.TurnedFriendlyCount);
         }
     }
