@@ -1,3 +1,11 @@
+Repository Archive Date: 8/11/2021
+
+Contributors:
+* Andrew Hands
+* Che Kwanga
+* Jaedon Waller 
+* Katheryn Taylor
+
 To enable USB debugging:
 	1. On your ANDROID DEVICE, go to Settings > About phone
 	2. Tap Build number 7 times
